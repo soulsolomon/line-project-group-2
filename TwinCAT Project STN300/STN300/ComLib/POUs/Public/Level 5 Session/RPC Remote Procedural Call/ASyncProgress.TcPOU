@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+  <POU Name="ASyncProgress" Id="{0ae33a5a-8018-4090-a2cc-46f3b57373ee}" SpecialFunc="None">
+    <Declaration><![CDATA[{library PUBLIC}
+(*
+Get progress value for ASync calls.
+This function block will read the global status.
+To see a specific function progress use the output of RPCx or ASyncRP function blocks.
+*)
+
+FUNCTION_BLOCK ASyncProgress
+VAR_INPUT
+	En: 				BOOL;			(* Set to true to get progress value *)
+END_VAR
+VAR_OUTPUT
+	Done:				BOOL;			(* Done = En *)
+	Progress: 			INT;			(* Progress value *)
+END_VAR
+VAR_IN_OUT
+	Data: 				CommunicationData;		(* Common data structure to connect this function block to a specific Communicator block *)
+END_VAR
+VAR
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF En THEN
+	Progress:=Data._ASyncProgress;
+ELSE
+	Progress:=0;
+END_IF;
+
+Done:=En;]]></ST>
+    </Implementation>
+    <LineIds Name="ASyncProgress">
+      <LineId Id="29" Count="5" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,490 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <FileVersion>1.0.0.0</FileVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7fe2485d-38c7-4f20-ac09-494d03b9933c}</ProjectGuid>
+    <SubObjectsSortedByName>True</SubObjectsSortedByName>
+    <Name>STN400</Name>
+    <ProgramVersion>3.1.4022.3</ProgramVersion>
+    <Application>{e45128c2-629d-4465-a394-a2457c9faffb}</Application>
+    <TypeSystem>{de2799f1-2738-4f6a-a7e1-ae9c6925b6cb}</TypeSystem>
+    <Implicit_Task_Info>{701504bd-1ef5-440d-8b1e-8b5008552fb4}</Implicit_Task_Info>
+    <Implicit_KindOfTask>{69630511-82c3-42bc-8570-f692266fb845}</Implicit_KindOfTask>
+    <Implicit_Jitter_Distribution>{749eb558-d7ec-4282-a7f8-7e08716eab54}</Implicit_Jitter_Distribution>
+    <LibraryReferences>{5408953f-68ed-4659-8671-e0a473fffb17}</LibraryReferences>
+    <Released>false</Released>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="ComLib\DUTs\General\COM_ERROR_VALUE.TcTLEO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\DUTs\General\DEVICE_TYPE.TcTLEO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\DUTs\Level 2 Data link\DEVICE_SEQUENCE.TcTLEO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\DUTs\Level 2 Data link\INSTANCE_STATUS.TcTLEO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\DUTs\Level 4 Transport\CommunicationData.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\DUTs\Level 4 Transport\DataGram.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\DUTs\Level 4 Transport\DATAGRAM_SEQUENCE.TcTLEO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\DUTs\Level 5 Session\FUNCTION_TYPE.TcTLEO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\DUTs\Level 5 Session\INFO_FUNCTION_NUMBER.TcTLEO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\DUTs\Level 5 Session\SessionData.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\DUTs\Level 5 Session\StatusInformationData.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\DUTs\Level 6 Presentation\ABB_ASYNC_FUNCTION_NUMBER.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\DUTs\Level 6 Presentation\ABB_STATUS_OPERATING_MODE.TcTLEO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\DUTs\Level 6 Presentation\ABB_STATUS_RUNNING_MODE.TcTLEO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\DUTs\Level 6 Presentation\ABB_SYNC_FUNCTION_NUMBER.TcTLEO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\DUTs\Level 6 Presentation\GANTRY_ASYNC_FUNCTION_NUMBER.TcTLEO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\DUTs\Level 6 Presentation\GANTRY_STATUS.TcTLEO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\DUTs\Level 6 Presentation\PositionType.TcTLEO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\DUTs\Level 6 Presentation\StationType.TcTLEO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\GVL\ComGVL.TcGVL">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Private\_AllocateInstance.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Private\_CheckInstance.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Private\_DataGramSize.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Private\_FreeInstance.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Private\_GetInstance.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Private\_GetStatusInformation.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Private\_SetInstance.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Private\_TryOut.TcPOU">
+      <SubType>Code</SubType>
+      <ExcludeFromBuild>true</ExcludeFromBuild>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 1 Physical\NodeGetStatus.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 1 Physical\NodeGetType.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 1 Physical\NodeReadStrobe.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 1 Physical\NodeReadWord.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 1 Physical\NodeWriteStrobe.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 1 Physical\NodeWriteWord.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 1 Physical\ToAddress.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 2 Data link\DeviceCancel.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 2 Data link\DeviceClose.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 2 Data link\DeviceOpen.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 2 Data link\DeviceRead.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 2 Data link\DeviceStatus.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 2 Data link\DeviceUse.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 2 Data link\DeviceWrite.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 4 Transport\Communicator.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 4 Transport\DatagramCheckSum.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 5 Session\RPC Remote Procedural Call\ASyncProgress.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 5 Session\RPC Remote Procedural Call\ASyncRPC.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 5 Session\RPC Remote Procedural Call\RPC1.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 5 Session\RPC Remote Procedural Call\RPC2.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 5 Session\Session\SessionEnd.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 5 Session\Session\SessionInit.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 5 Session\Session\SessionSend.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 6 Presentation\ABB\ABBGetStatus.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 6 Presentation\ABB\Goto\ABBGoToConveyor1.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 6 Presentation\ABB\Goto\ABBGoToConveyor2.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 6 Presentation\ABB\Goto\ABBGoToHome.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 6 Presentation\ABB\Goto\ABBGoToSensor.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 6 Presentation\ABB\Goto\ABBGoToStorage.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 6 Presentation\ABB\Goto\ABBGoToTable.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 6 Presentation\ABB\IO\ABBIORead.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 6 Presentation\ABB\IO\ABBIOReadValve.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 6 Presentation\ABB\IO\ABBIOWrite.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 6 Presentation\ABB\IO\ABBIOWriteValve.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 6 Presentation\ABB\Move\ABBMoveJAbs.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 6 Presentation\ABB\Move\ABBMoveJRel.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 6 Presentation\ABB\Move\ABBMoveLAbs.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 6 Presentation\ABB\Move\ABBMoveLRel.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 6 Presentation\ABB\Pick Leave\ABBPickLeaveConveyor1.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 6 Presentation\ABB\Pick Leave\ABBPickLeaveConveyor2.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 6 Presentation\ABB\Pick Leave\ABBPickLeaveSensor.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 6 Presentation\ABB\Pick Leave\ABBPickLeaveStorage.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 6 Presentation\ABB\Pick Leave\ABBPickLeaveTable.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 6 Presentation\ABB\Pick Leave\ABBProcessAssembly.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 6 Presentation\Gantry\GantryLeave.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 6 Presentation\Gantry\GantryPick.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 6 Presentation\Gantry\GantryStatus.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\POUs\Public\Level 6 Presentation\GetStatus.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComLib\VISUs\Object\_VisuABBGoTo.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
+    </Compile>
+    <Compile Include="ComLib\VISUs\Object\_VisuABBPickLeave.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
+    </Compile>
+    <Compile Include="ComLib\VISUs\Object\_VisuABBStatus.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
+    </Compile>
+    <Compile Include="ComLib\VISUs\Object\_VisuAddressSelector.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
+    </Compile>
+    <Compile Include="ComLib\VISUs\Object\_VisuAddressShow.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
+    </Compile>
+    <Compile Include="ComLib\VISUs\Object\_VisuCommunicator.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
+    </Compile>
+    <Compile Include="ComLib\VISUs\Object\_VisuFunctionCall.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
+    </Compile>
+    <Compile Include="ComLib\VISUs\Object\_VisuGantryPickLeave.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
+    </Compile>
+    <Compile Include="ComLib\VISUs\Object\_VisuRPCStatusShow.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
+    </Compile>
+    <Compile Include="ComLib\VISUs\_TryOut.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
+      <ExcludeFromBuild>true</ExcludeFromBuild>
+    </Compile>
+    <Compile Include="GlobalTextList.TcGTLO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GVLs\GVL.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="PlcTask.TcTTO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\MAIN.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\PLC_PRG.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Visualization Manager.TcVMO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="VISUs\Visualization.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
+    </Compile>
+    <Compile Include="VISU_TASK.TcTTO">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ComLib" />
+    <Folder Include="ComLib\DUTs" />
+    <Folder Include="ComLib\DUTs\General" />
+    <Folder Include="ComLib\DUTs\Level 2 Data link" />
+    <Folder Include="ComLib\DUTs\Level 4 Transport" />
+    <Folder Include="ComLib\DUTs\Level 5 Session" />
+    <Folder Include="ComLib\DUTs\Level 6 Presentation" />
+    <Folder Include="ComLib\GVL" />
+    <Folder Include="ComLib\POUs" />
+    <Folder Include="ComLib\POUs\Private" />
+    <Folder Include="ComLib\POUs\Public" />
+    <Folder Include="ComLib\POUs\Public\Level 1 Physical" />
+    <Folder Include="ComLib\POUs\Public\Level 2 Data link" />
+    <Folder Include="ComLib\POUs\Public\Level 4 Transport" />
+    <Folder Include="ComLib\POUs\Public\Level 5 Session" />
+    <Folder Include="ComLib\POUs\Public\Level 5 Session\RPC Remote Procedural Call" />
+    <Folder Include="ComLib\POUs\Public\Level 5 Session\Session" />
+    <Folder Include="ComLib\POUs\Public\Level 6 Presentation" />
+    <Folder Include="ComLib\POUs\Public\Level 6 Presentation\ABB" />
+    <Folder Include="ComLib\POUs\Public\Level 6 Presentation\ABB\Goto" />
+    <Folder Include="ComLib\POUs\Public\Level 6 Presentation\ABB\IO" />
+    <Folder Include="ComLib\POUs\Public\Level 6 Presentation\ABB\Move" />
+    <Folder Include="ComLib\POUs\Public\Level 6 Presentation\ABB\Pick Leave" />
+    <Folder Include="ComLib\POUs\Public\Level 6 Presentation\Gantry" />
+    <Folder Include="ComLib\VISUs" />
+    <Folder Include="ComLib\VISUs\Object">
+      <ExcludeFromBuild>true</ExcludeFromBuild>
+    </Folder>
+    <Folder Include="DUTs" />
+    <Folder Include="GVLs" />
+    <Folder Include="VISUs" />
+    <Folder Include="POUs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PlaceholderReference Include="System_VisuElemMeter">
+      <DefaultResolution>VisuElemMeter, 3.5.10.0 (System)</DefaultResolution>
+      <Namespace>VisuElemMeter</Namespace>
+      <SystemLibrary>true</SystemLibrary>
+      <ResolverGuid>2717eb6a-dd07-4c66-8d8d-cacebd7b18ae</ResolverGuid>
+    </PlaceholderReference>
+    <PlaceholderReference Include="System_VisuElems">
+      <DefaultResolution>VisuElems, 3.5.10.40 (System)</DefaultResolution>
+      <Namespace>VisuElems</Namespace>
+      <SystemLibrary>true</SystemLibrary>
+      <ResolverGuid>2717eb6a-dd07-4c66-8d8d-cacebd7b18ae</ResolverGuid>
+    </PlaceholderReference>
+    <PlaceholderReference Include="System_VisuElemsSpecialControls">
+      <DefaultResolution>VisuElemsSpecialControls, 3.5.10.0 (System)</DefaultResolution>
+      <Namespace>VisuElemsSpecialControls</Namespace>
+      <SystemLibrary>true</SystemLibrary>
+      <ResolverGuid>2717eb6a-dd07-4c66-8d8d-cacebd7b18ae</ResolverGuid>
+    </PlaceholderReference>
+    <PlaceholderReference Include="System_VisuElemsWinControls">
+      <DefaultResolution>VisuElemsWinControls, 3.5.10.40 (System)</DefaultResolution>
+      <Namespace>VisuElemsWinControls</Namespace>
+      <SystemLibrary>true</SystemLibrary>
+      <ResolverGuid>2717eb6a-dd07-4c66-8d8d-cacebd7b18ae</ResolverGuid>
+    </PlaceholderReference>
+    <PlaceholderReference Include="System_VisuElemTextEditor">
+      <DefaultResolution>VisuElemTextEditor, 3.5.10.10 (System)</DefaultResolution>
+      <Namespace>VisuElemTextEditor</Namespace>
+      <SystemLibrary>true</SystemLibrary>
+      <ResolverGuid>2717eb6a-dd07-4c66-8d8d-cacebd7b18ae</ResolverGuid>
+    </PlaceholderReference>
+    <PlaceholderReference Include="system_visuinputs">
+      <DefaultResolution>visuinputs, 3.5.10.0 (system)</DefaultResolution>
+      <Namespace>visuinputs</Namespace>
+      <SystemLibrary>true</SystemLibrary>
+      <ResolverGuid>2717eb6a-dd07-4c66-8d8d-cacebd7b18ae</ResolverGuid>
+    </PlaceholderReference>
+    <PlaceholderReference Include="System_VisuNativeControl">
+      <DefaultResolution>VisuNativeControl, 3.5.10.40 (System)</DefaultResolution>
+      <Namespace>VisuNativeControl</Namespace>
+      <SystemLibrary>true</SystemLibrary>
+      <ResolverGuid>2717eb6a-dd07-4c66-8d8d-cacebd7b18ae</ResolverGuid>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_Standard">
+      <DefaultResolution>Tc2_Standard, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_Standard</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_System">
+      <DefaultResolution>Tc2_System, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_System</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc3_Module">
+      <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc3_Module</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="VisuDialogs">
+      <DefaultResolution>VisuDialogs, * (System)</DefaultResolution>
+      <Namespace>VisuDialogs</Namespace>
+    </PlaceholderReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="STN400.tmc">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ProjectExtensions>
+    <PlcProjectOptions>
+      <XmlArchive>
+        <Data>
+          <o xml:space="preserve" t="OptionKey">
+      <v n="Name">"&lt;ProjectRoot&gt;"</v>
+      <d n="SubKeys" t="Hashtable" ckt="String" cvt="OptionKey">
+        <v>{8F99A816-E488-41E4-9FA3-846536012284}</v>
+        <o>
+          <v n="Name">"{8F99A816-E488-41E4-9FA3-846536012284}"</v>
+          <d n="SubKeys" t="Hashtable" />
+          <d n="Values" t="Hashtable" />
+        </o>
+        <v>{29BD8D0C-3586-4548-BB48-497B9A01693F}</v>
+        <o>
+          <v n="Name">"{29BD8D0C-3586-4548-BB48-497B9A01693F}"</v>
+          <d n="SubKeys" t="Hashtable" ckt="String" cvt="OptionKey">
+            <v>Rules</v>
+            <o>
+              <v n="Name">"Rules"</v>
+              <d n="SubKeys" t="Hashtable" />
+              <d n="Values" t="Hashtable" />
+            </o>
+          </d>
+          <d n="Values" t="Hashtable" />
+        </o>
+        <v>{40450F57-0AA3-4216-96F3-5444ECB29763}</v>
+        <o>
+          <v n="Name">"{40450F57-0AA3-4216-96F3-5444ECB29763}"</v>
+          <d n="SubKeys" t="Hashtable" />
+          <d n="Values" t="Hashtable" ckt="String">
+            <v>ActiveVisuExtensions_0</v>
+            <v>"IR0whWr8bwdyBwAA2CM5uwAAAAC4AQAAabXwRAAAAAABAAAAAAAAAAEaUwB5AHMAdABlAG0ALgBTAHQAcgBpAG4AZwACTHsANgBkADQAMgBlADkAMQA4AC0AZQA2AGEANQAtADQAYgAyAGMALQA5ADEANwBiAC0AZQAwADcAMwAxAGIANwA2ADYAYgAxAGYAfQADDkMAbwBtAHAAYQBuAHkABDBCAGUAYwBrAGgAbwBmAGYAIABBAHUAdABvAG0AYQB0AGkAbwBuACAARwBtAGIASAAFDlYAZQByAHMAaQBvAG4ABg4xAC4AMAAuADMALgAwAAcMQQBjAHQAaQB2AGUACAhiAG8AbwBsAAkITgBhAG0AZQAKJFYAaQBzAHUARQBsAGUAbQBFAHYAZQBuAHQAVABhAGIAbABlAAsWUAByAG8AZgBpAGwAZQBEAGEAdABhAAxMewAxADYAZQA1ADUAYgA2ADAALQA3ADAANAAzAC0ANABhADYAMwAtAGIANgA1AGIALQA2ADEANAA3ADEAMwA4ADcAOABkADQAMgB9AA0STABpAGIAcgBhAHIAaQBlAHMADkx7ADMAYgBmAGQANQA0ADUAOQAtAGIAMAA3AGYALQA0AGQANgBlAC0AYQBlADEAYQAtAGEAOAAzADMANQA2AGEANQA1ADEANAAyAH0AD0x7ADkAYwA5ADUAOAA5ADYAOAAtADIAYwA4ADUALQA0ADEAYgBiAC0AOAA4ADcAMQAtADgAOQA1AGYAZgAxAGYAZQBkAGUAMQBhAH0AEAZpAG4AdAARClUAcwBhAGcAZQASClQAaQB0AGwAZQATDFMAeQBzAHQAZQBtABQSVgBpAHMAdQBFAGwAZQBtAHMAFRhWAGkAcwB1AEUAbABlAG0AQgBhAHMAZQAWFFYAaQBzAHUASQBuAHAAdQB0AHMAFyZEAGUAdgBQAGwAYQBjAGUAaABvAGwAZABlAHIAcwBVAHMAZQBkABgiUABsAHUAZwBpAG4AQwBvAG4AcwB0AHIAYQBpAG4AdABzABlMewA0ADMAZAA1ADIAYgBjAGUALQA5ADQAMgBjAC0ANAA0AGQANwAtADkAZQA5ADQALQAxAGIAZgBkAGYAMwAxADAAZQA2ADMAYwB9ABocQQB0AEwAZQBhAHMAdABWAGUAcgBzAGkAbwBuABsUUABsAHUAZwBpAG4ARwB1AGkAZAAcFlMAeQBzAHQAZQBtAC4ARwB1AGkAZAAdSGEAZgBjAGQANQA0ADQANgAtADQAOQAxADQALQA0AGYAZQA3AC0AYgBiADcAOAAtADkAYgBmAGYAZQBiADcAMABmAGQAMQA3AB4UVQBwAGQAYQB0AGUASQBuAGYAbwAfTHsAYgAwADMAMwA2ADYAYQA4AC0AYgA1AGMAMAAtADQAYgA5AGEALQBhADAAMABlAC0AZQBiADgANgAwADEAMQAxADAANABjADMAfQAgDlUAcABkAGEAdABlAHMAIUx7ADEAOAA2ADgAZgBmAGMAOQAtAGUANABmAGMALQA0ADUAMwAyAC0AYQBjADAANgAtADEAZQAzADkAYgBiADUANQA3AGIANgA5AH0AIkx7AGEANQBiAGQANAA4AGMAMwAtADAAZAAxADcALQA0ADEAYgA1AC0AYgAxADYANAAtADUAZgBjADYAYQBkADIAYgA5ADYAYgA3AH0AIxZPAGIAagBlAGMAdABzAFQAeQBwAGUAJFRVAHAAZABhAHQAZQBMAGEAbgBnAHUAYQBnAGUATQBvAGQAZQBsAEYAbwByAEMAbwBuAHYAZQByAHQAaQBiAGwAZQBMAGkAYgByAGEAcgBpAGUAcwAlEEwAaQBiAFQAaQB0AGwAZQAmFEwAaQBiAEMAbwBtAHAAYQBuAHkAJx5VAHAAZABhAHQAZQBQAHIAbwB2AGkAZABlAHIAcwAoOFMAeQBzAHQAZQBtAC4AQwBvAGwAbABlAGMAdABpAG8AbgBzAC4ASABhAHMAaAB0AGEAYgBsAGUAKRJ2AGkAcwB1AGUAbABlAG0AcwAqDHMAeQBzAHQAZQBtACtINgBjAGIAMQBjAGQAZQAxAC0AZAA1AGQAYwAtADQAYQAzAGIALQA5ADAANQA0AC0AMgAxAGYAYQA3ADUANgBhADMAZgBhADQALChJAG4AdABlAHIAZgBhAGMAZQBWAGUAcgBzAGkAbwBuAEkAbgBmAG8ALUx7AGMANgAxADEAZQA0ADAAMAAtADcAZgBiADkALQA0AGMAMwA1AC0AYgA5AGEAYwAtADQAZQAzADEANABiADUAOQA5ADYANAAzAH0ALhhNAGEAagBvAHIAVgBlAHIAcwBpAG8AbgAvGE0AaQBuAG8AcgBWAGUAcgBzAGkAbwBuADAMTABlAGcAYQBjAHkAMTBMAGEAbgBnAHUAYQBnAGUATQBvAGQAZQBsAFYAZQByAHMAaQBvAG4ASQBuAGYAbwAyMEwAbwBhAGQATABpAGIAcgBhAHIAaQBlAHMASQBuAHQAbwBQAHIAbwBqAGUAYwB0ADMaQwBvAG0AcABhAHQAaQBiAGkAbABpAHQAeQDQAAIaBtADAS0E0AUBLQbQBwitAdAJAS0K0AsMGgfQDQ4aAUUNDwTQAA8aBEUFEAQBAAAAAAAAAAMAAAAAAAAA0BEQrQIAAADQEgEtCtADAS0T0AAPGgRFBRAEAwAAAAUAAAANAAAAFAAAANAREK0BAAAA0BIBLRTQAwEtE9AADxoERQUQBAMAAAAFAAAADQAAABQAAADQERCtBAAAANASAS0V0AMBLRPQAA8aBEUFEAQDAAAABQAAAA0AAAAAAAAA0BEQrQQAAADQEgEtFtADAS0T0BcIrQFFGBkB0AAZGgJFGhAEAwAAAAUAAAANAAAAAAAAANAbHC0d0B4fGgJFICEC0AAiGgVFBRAEAwAAAAMAAAAAAAAACgAAANAjEK0AAAAA0AkBLSTQJQEtFNAmAS0T0AAiGgVFBRAEAwAAAAMAAAAAAAAACgAAANAjEK0BAAAA0AkBLSTQJQEtFNAmAS0TmicoAUUAAQLQAAEtKdAAAS0q0AAcLSvQLC0aA9AuEK0BAAAA0C8QrRcAAADQMAitANAxLRoD0C4QrQIAAADQLxCtAwAAANAwCK0A0DIIrQDQMwitAA=="</v>
+            <v>ActiveVisuExtensionsLength</v>
+            <v>0</v>
+            <v>ActiveVisuProfile</v>
+            <v>"IR0whWr8bwfyBwAAHf+pawAAAABVAgAADnffSgAAAAABAAAAAAAAAAEaUwB5AHMAdABlAG0ALgBTAHQAcgBpAG4AZwACTHsAZgA5ADUAYgBiADQAMgA2AC0ANQA1ADIANAAtADQAYgA0ADUALQA5ADQAMAAwAC0AZgBiADAAZgAyAGUANwA3AGUANQAxAGIAfQADCE4AYQBtAGUABDJUAHcAaQBuAEMAQQBUACAAMwAuADEAIABCAHUAaQBsAGQAIAA0ADAAMgAyAC4AMQAwAAUWUAByAG8AZgBpAGwAZQBEAGEAdABhAAZMewAxADYAZQA1ADUAYgA2ADAALQA3ADAANAAzAC0ANABhADYAMwAtAGIANgA1AGIALQA2ADEANAA3ADEAMwA4ADcAOABkADQAMgB9AAcSTABpAGIAcgBhAHIAaQBlAHMACEx7ADMAYgBmAGQANQA0ADUAOQAtAGIAMAA3AGYALQA0AGQANgBlAC0AYQBlADEAYQAtAGEAOAAzADMANQA2AGEANQA1ADEANAAyAH0ACUx7ADkAYwA5ADUAOAA5ADYAOAAtADIAYwA4ADUALQA0ADEAYgBiAC0AOAA4ADcAMQAtADgAOQA1AGYAZgAxAGYAZQBkAGUAMQBhAH0ACg5WAGUAcgBzAGkAbwBuAAsGaQBuAHQADApVAHMAYQBnAGUADQpUAGkAdABsAGUADhpWAGkAcwB1AEUAbABlAG0ATQBlAHQAZQByAA8OQwBvAG0AcABhAG4AeQAQDFMAeQBzAHQAZQBtABESVgBpAHMAdQBFAGwAZQBtAHMAEjBWAGkAcwB1AEUAbABlAG0AcwBTAHAAZQBjAGkAYQBsAEMAbwBuAHQAcgBvAGwAcwATKFYAaQBzAHUARQBsAGUAbQBzAFcAaQBuAEMAbwBuAHQAcgBvAGwAcwAUJFYAaQBzAHUARQBsAGUAbQBUAGUAeAB0AEUAZABpAHQAbwByABUiVgBpAHMAdQBOAGEAdABpAHYAZQBDAG8AbgB0AHIAbwBsABYUdgBpAHMAdQBpAG4AcAB1AHQAcwAXDHMAeQBzAHQAZQBtABgYVgBpAHMAdQBFAGwAZQBtAEIAYQBzAGUAGSZEAGUAdgBQAGwAYQBjAGUAaABvAGwAZABlAHIAcwBVAHMAZQBkABoIYgBvAG8AbAAbIlAAbAB1AGcAaQBuAEMAbwBuAHMAdAByAGEAaQBuAHQAcwAcTHsANAAzAGQANQAyAGIAYwBlAC0AOQA0ADIAYwAtADQANABkADcALQA5AGUAOQA0AC0AMQBiAGYAZABmADMAMQAwAGUANgAzAGMAfQAdHEEAdABMAGUAYQBzAHQAVgBlAHIAcwBpAG8AbgAeFFAAbAB1AGcAaQBuAEcAdQBpAGQAHxZTAHkAcwB0AGUAbQAuAEcAdQBpAGQAIEhhAGYAYwBkADUANAA0ADYALQA0ADkAMQA0AC0ANABmAGUANwAtAGIAYgA3ADgALQA5AGIAZgBmAGUAYgA3ADAAZgBkADEANwAhFFUAcABkAGEAdABlAEkAbgBmAG8AIkx7AGIAMAAzADMANgA2AGEAOAAtAGIANQBjADAALQA0AGIAOQBhAC0AYQAwADAAZQAtAGUAYgA4ADYAMAAxADEAMQAwADQAYwAzAH0AIw5VAHAAZABhAHQAZQBzACRMewAxADgANgA4AGYAZgBjADkALQBlADQAZgBjAC0ANAA1ADMAMgAtAGEAYwAwADYALQAxAGUAMwA5AGIAYgA1ADUANwBiADYAOQB9ACVMewBhADUAYgBkADQAOABjADMALQAwAGQAMQA3AC0ANAAxAGIANQAtAGIAMQA2ADQALQA1AGYAYwA2AGEAZAAyAGIAOQA2AGIANwB9ACYWTwBiAGoAZQBjAHQAcwBUAHkAcABlACdUVQBwAGQAYQB0AGUATABhAG4AZwB1AGEAZwBlAE0AbwBkAGUAbABGAG8AcgBDAG8AbgB2AGUAcgB0AGkAYgBsAGUATABpAGIAcgBhAHIAaQBlAHMAKBBMAGkAYgBUAGkAdABsAGUAKRRMAGkAYgBDAG8AbQBwAGEAbgB5ACoeVQBwAGQAYQB0AGUAUAByAG8AdgBpAGQAZQByAHMAKzhTAHkAcwB0AGUAbQAuAEMAbwBsAGwAZQBjAHQAaQBvAG4AcwAuAEgAYQBzAGgAdABhAGIAbABlACwSdgBpAHMAdQBlAGwAZQBtAHMALUg2AGMAYgAxAGMAZABlADEALQBkADUAZABjAC0ANABhADMAYgAtADkAMAA1ADQALQAyADEAZgBhADcANQA2AGEAMwBmAGEANAAuKEkAbgB0AGUAcgBmAGEAYwBlAFYAZQByAHMAaQBvAG4ASQBuAGYAbwAvTHsAYwA2ADEAMQBlADQAMAAwAC0ANwBmAGIAOQAtADQAYwAzADUALQBiADkAYQBjAC0ANABlADMAMQA0AGIANQA5ADkANgA0ADMAfQAwGE0AYQBqAG8AcgBWAGUAcgBzAGkAbwBuADEYTQBpAG4AbwByAFYAZQByAHMAaQBvAG4AMgxMAGUAZwBhAGMAeQAzMEwAYQBuAGcAdQBhAGcAZQBNAG8AZABlAGwAVgBlAHIAcwBpAG8AbgBJAG4AZgBvADQwTABvAGEAZABMAGkAYgByAGEAcgBpAGUAcwBJAG4AdABvAFAAcgBvAGoAZQBjAHQANRpDAG8AbQBwAGEAdABpAGIAaQBsAGkAdAB5ANAAAhoD0AMBLQTQBQYaB9AHCBoBRQcJCNAACRoERQoLBAMAAAAFAAAACgAAAAAAAADQDAutAgAAANANAS0O0A8BLRDQAAkaBEUKCwQDAAAABQAAAAoAAAAoAAAA0AwLrQEAAADQDQEtEdAPAS0Q0AAJGgRFCgsEAwAAAAUAAAAKAAAAAAAAANAMC60CAAAA0A0BLRLQDwEtENAACRoERQoLBAMAAAAFAAAACgAAACgAAADQDAutAgAAANANAS0T0A8BLRDQAAkaBEUKCwQDAAAABQAAAAoAAAAKAAAA0AwLrQIAAADQDQEtFNAPAS0Q0AAJGgRFCgsEAwAAAAUAAAAKAAAAKAAAANAMC60CAAAA0A0BLRXQDwEtENAACRoERQoLBAMAAAAFAAAACgAAAAAAAADQDAutAgAAANANAS0W0A8BLRfQAAkaBEUKCwQDAAAABQAAAAoAAAAoAAAA0AwLrQQAAADQDQEtGNAPAS0Q0BkarQFFGxwB0AAcGgJFHQsEAwAAAAUAAAAKAAAAAAAAANAeHy0g0CEiGgJFIyQC0AAlGgVFCgsEAwAAAAMAAAAAAAAACgAAANAmC60AAAAA0AMBLSfQKAEtEdApAS0Q0AAlGgVFCgsEAwAAAAMAAAAAAAAACgAAANAmC60BAAAA0AMBLSfQKAEtEdApAS0QmiorAUUAAQLQAAEtLNAAAS0X0AAfLS3QLi8aA9AwC60BAAAA0DELrRMAAADQMhqtANAzLxoD0DALrQIAAADQMQutAwAAANAyGq0A0DQarQDQNRqtAA=="</v>
+          </d>
+        </o>
+        <v>{192FAD59-8248-4824-A8DE-9177C94C195A}</v>
+        <o>
+          <v n="Name">"{192FAD59-8248-4824-A8DE-9177C94C195A}"</v>
+          <d n="SubKeys" t="Hashtable" />
+          <d n="Values" t="Hashtable" />
+        </o>
+        <v>{F66C7017-BDD8-4114-926C-81D6D687E35F}</v>
+        <o>
+          <v n="Name">"{F66C7017-BDD8-4114-926C-81D6D687E35F}"</v>
+          <d n="SubKeys" t="Hashtable" />
+          <d n="Values" t="Hashtable" />
+        </o>
+        <v>{246001F4-279D-43AC-B241-948EB31120E1}</v>
+        <o>
+          <v n="Name">"{246001F4-279D-43AC-B241-948EB31120E1}"</v>
+          <d n="SubKeys" t="Hashtable" />
+          <d n="Values" t="Hashtable" ckt="String">
+            <v>GlobalVisuImageFilePath</v>
+            <v>"%APPLICATIONPATH%"</v>
+            <v>UnicodeStrings</v>
+            <v>false</v>
+          </d>
+        </o>
+      </d>
+      <d n="Values" t="Hashtable" />
+    </o>
+        </Data>
+        <TypeList>
+          <Type n="Boolean">System.Boolean</Type>
+          <Type n="Hashtable">System.Collections.Hashtable</Type>
+          <Type n="Int32">System.Int32</Type>
+          <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
+          <Type n="String">System.String</Type>
+        </TypeList>
+      </XmlArchive>
+    </PlcProjectOptions>
+  </ProjectExtensions>
+</Project>

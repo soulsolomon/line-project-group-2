@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <POU Name="_CheckInstance" Id="{ba8ca5da-d7aa-4be6-ab51-03e63fb3949b}" SpecialFunc="None">
+    <Declaration><![CDATA[{library PRIVATE}
+(*
+Private Funtcion:
+Check if an Instance address is valid (within range) or not.
+*)
+FUNCTION _CheckInstance : BOOL
+VAR_INPUT
+	Instance: 			INT;			(* Instance, a number concatenated by SationNumber (1-INSTANCE_MAX_NUMBER_OF_STATIONS) and
+                                                                       DeviceNumber (1-INSTANCE_MAX_NUMBER_OF_DEVICES). 
+                                                                       Instance is defined as: StaionNumber*100+DeviceNumber *)
+END_VAR
+VAR
+	StationNumber: 	INT;
+	StationDevice: 	INT;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[_CheckInstance:=FALSE;
+
+IF Instance>=1*100 AND Instance<(ComGVL.INSTANCE_MAX_NUMBER_OF_STATIONS+1)*100 THEN
+	StationNumber:=Instance/100;
+	StationDevice:=Instance-StationNumber*100;
+
+	IF StationDevice>0 AND StationDevice<= ComGVL.INSTANCE_MAX_NUMBER_OF_DEVICES THEN
+		_CheckInstance:=TRUE;
+	END_IF;
+END_IF;]]></ST>
+    </Implementation>
+    <LineIds Name="_CheckInstance">
+      <LineId Id="22" Count="8" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

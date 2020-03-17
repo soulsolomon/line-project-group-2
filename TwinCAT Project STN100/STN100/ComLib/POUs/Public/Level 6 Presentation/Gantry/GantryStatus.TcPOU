@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <POU Name="GantryStatus" Id="{9cec7fbe-ba47-41c9-af9d-f76de5c58fbc}" SpecialFunc="None">
+    <Declaration><![CDATA[{library PUBLIC}
+(* Function to get gantry status.
+    This function can run continuously and will not block other communications.   
+ *)
+FUNCTION_BLOCK GantryStatus
+VAR_INPUT
+	En: 					BOOL:=FALSE;			(* Set to true to ask for status, the block  will continuously ask for status while true *)
+END_VAR
+VAR_OUTPUT
+	Done: 					BOOL:=FALSE;			(* If true, the STATUS command is running, to stop/pause set En to false *)
+	Status:					GANTRY_STATUS;			(* Gantry status *)
+END_VAR
+VAR_IN_OUT
+	Data: 					CommunicationData;		(* Common data structure to connect this function block to a specific Communicator block *)
+END_VAR
+VAR
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+IF En THEN
+	
+	Status:=NodeReadWord(Address:=Data._Address, Channel:=2);
+	Done:=TRUE;
+ELSE
+	Status:=GANTRY_STATUS.GANTRY_STATUS_NOT_ENABLED;
+	Done:=FALSE;
+END_IF;
+]]></ST>
+    </Implementation>
+    <LineIds Name="GantryStatus">
+      <LineId Id="84" Count="0" />
+      <LineId Id="26" Count="1" />
+      <LineId Id="67" Count="0" />
+      <LineId Id="28" Count="4" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

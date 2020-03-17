@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <EnumerationTextList Name="ABB_STATUS_RUNNING_MODE" Id="{601cfed0-0168-4246-86a2-501192adc3f9}">
+    <Declaration><![CDATA[
+TYPE ABB_STATUS_RUNNING_MODE :
+(
+	ABB_STATUS_RUN_UNDEF:=0, 			(* Undefined running mode *)
+	ABB_STATUS_RUN_CONT_CYCLE:=1, 		(* Continuous or cycle running mode *)
+	ABB_STATUS_RUN_INSTR_FWD:=2,		(* Instruction forward running mode *)
+	ABB_STATUS_RUN_INSTR_BWD:=3, 		(* Instruction backward running mode *)
+	ABB_STATUS_RUN_SIM:=4, 				(* Simulated running mode *)
+	ABB_STATUS_RUN_STEP_MOVE:=5 		(* MOVE instructions in forward running mode and logical instructions in continuous running mode *)
+);
+END_TYPE]]></Declaration>
+    <XmlArchive>
+      <Data>
+        <o xml:space="preserve" t="TextListEnumerationTextListObject">
+          <l n="TextList" t="ArrayList" cet="TextListRow">
+            <o>
+              <v n="TextID">"ABB_STATUS_RUN_UNDEF"</v>
+              <v n="TextDefault">"0"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"ABB_STATUS_RUN_CONT_CYCLE"</v>
+              <v n="TextDefault">"1"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"ABB_STATUS_RUN_INSTR_FWD"</v>
+              <v n="TextDefault">"2"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"ABB_STATUS_RUN_INSTR_BWD"</v>
+              <v n="TextDefault">"3"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"ABB_STATUS_RUN_SIM"</v>
+              <v n="TextDefault">"4"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"ABB_STATUS_RUN_STEP_MOVE"</v>
+              <v n="TextDefault">"5"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">""</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+          </l>
+          <l n="Languages" t="ArrayList" />
+          <v n="GuidInit">{15673e71-d755-499b-8dc5-899343a47fb3}</v>
+          <v n="GuidReInit">{a1b14f78-63d0-42d3-9253-ea2e87a708d2}</v>
+          <v n="GuidExitX">{2b858f80-03ad-4871-9122-2781726f828f}</v>
+        </o>
+      </Data>
+      <TypeList>
+        <Type n="ArrayList">System.Collections.ArrayList</Type>
+        <Type n="Guid">System.Guid</Type>
+        <Type n="String">System.String</Type>
+        <Type n="TextListEnumerationTextListObject">{4b60233c-f940-4beb-b331-82133b520151}</Type>
+        <Type n="TextListRow">{53da1be7-ad25-47c3-b0e8-e26286dad2e0}</Type>
+      </TypeList>
+    </XmlArchive>
+  </EnumerationTextList>
+</TcPlcObject>

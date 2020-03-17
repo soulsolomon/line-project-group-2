@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <POU Name="NodeGetType" Id="{491e173e-6408-417f-882d-603436b18d13}" SpecialFunc="None">
+    <Declaration><![CDATA[{library PUBLIC}
+(* Level 1 function to get communication type for a specific address.
+
+   Depending on the address (specific device) different types of communication standards might exist.
+   Note that this function does not transmit any data to check the real type of a device it only gives a predefined answer.
+   On success the type is returned otherwise TYPE_ERROR.
+*)
+
+FUNCTION NodeGetType : DEVICE_TYPE
+VAR_INPUT
+	Address: INT;
+END_VAR
+VAR
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[CASE Address OF
+	101, 201, 301, 401:  (* ABB robot *)
+		NodeGetType:=DEVICE_TYPE.TYPE_ABB_1;
+
+	502: (* Gantry robot *)
+		NodeGetType:=DEVICE_TYPE.TYPE_GANTRY_1;
+
+	ComGVL.ADDRESS_SIMULATED:  (* Simulated *)
+		NodeGetType:=DEVICE_TYPE.TYPE_SIMULATED;
+
+ELSE
+		NodeGetType:=DEVICE_TYPE.TYPE_ERROR;
+END_CASE;]]></ST>
+    </Implementation>
+    <LineIds Name="NodeGetType">
+      <LineId Id="21" Count="11" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

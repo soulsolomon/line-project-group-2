@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <POU Name="ToAddress" Id="{010e24d6-6a54-4ff0-a0c1-61ab021ee491}" SpecialFunc="None">
+    <Declaration><![CDATA[{library PUBLIC}
+(* Function to convert station number and device number to a valid address.
+An address, is a number concatenated by SationNumber  and DeviceNumber and 
+is defined as: StaionNumber*100+DeviceNumber, e.g., address 403 is Staion 4, Device 3.
+
+NOTE: staion number must be in the range 1-INSTANCE_MAX_NUMBER_OF_STATIONS
+          and device number in the range 1-INSTANCE_MAX_NUMBER_OF_DEVICES.
+
+On success a valid address is returned otherwise -1.
+*)
+FUNCTION ToAddress :	INT
+VAR_INPUT
+	StationNumber:		INT;
+	DeviceNumber:		INT;
+END_VAR
+VAR
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[ToAddress:=-1;
+
+IF DeviceNumber>0 AND DeviceNumber<=ComGVL.INSTANCE_MAX_NUMBER_OF_DEVICES THEN
+	IF StationNumber>0 AND StationNumber<=ComGVL.INSTANCE_MAX_NUMBER_OF_STATIONS THEN
+		ToAddress:=StationNumber*100+DeviceNumber;
+	END_IF;
+END_IF;
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="ToAddress">
+      <LineId Id="24" Count="7" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+  <POU Name="ABBGoToSensor" Id="{69c817f6-e201-430c-b5d1-2564f5d8f0b7}" SpecialFunc="None">
+    <Declaration><![CDATA[{library PUBLIC}
+(* Function to send a robot to sensor location *)
+FUNCTION_BLOCK ABBGoToSensor
+VAR_INPUT
+	En: 				BOOL:=FALSE;				(* Set to true to start *)
+END_VAR
+VAR_OUTPUT
+	Done: 				BOOL:=FALSE;			(* If true, the command is transmitted ok, to reset set En to false *)
+	Executing:			BOOL:=FALSE;			(* True while the command in transmitted *)
+	Waiting:			BOOL:=FALSE;			(* True if the command is queued to be transmitted *)
+	Error: 				BOOL := FALSE;			(* True if an error occured *)
+	Progress:			INT:=0;						(* Function progress *)
+END_VAR
+VAR_IN_OUT
+	Data: 				CommunicationData;		(* Common data structure to connect this function block to a specific Communicator block *)
+END_VAR
+VAR
+	FunctionType: 		FUNCTION_TYPE;
+	FunctionNumber: 	INT;
+	ParameterDW:		DWORD;
+	ParameterB:			BYTE;
+	Sequence:			INT:=0;
+
+	fbRPC:				ASyncRPC;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[FunctionType:=FUNCTION_TYPE.FUNCTION_TYPE_ASYNC_RPC;
+FunctionNumber:=ABB_ASYNC_FUNCTION_GOTO_SENSOR;
+ParameterDW:=0;										(* No parameters *)
+ParameterB:=0;
+
+fbRPC(EN:=En, Data:=Data, FunctionType:=FunctionType,FunctionNumber:=FunctionNumber, ParameterDW:=ParameterDW, ParameterB:=ParameterB);
+
+Done:=fbRPC.Done;
+Executing:=fbRPC.Executing;
+Waiting:=fbRPC.Waiting;
+Error:=fbRPC.Error OR (fbRPC.Done AND fbRPC.ReturnValue<0);
+Progress:=fbRPC.Progress;
+]]></ST>
+    </Implementation>
+    <LineIds Name="ABBGoToSensor">
+      <LineId Id="34" Count="11" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

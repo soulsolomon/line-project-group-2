@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+  <EnumerationTextList Name="INSTANCE_STATUS" Id="{7122a239-5cf8-428a-8a33-fae2a5f28592}">
+    <Declaration><![CDATA[{library PUBLIC}
+(*
+ Status word for a specific device instance .
+Function block DeviceUse or DeviceStatus will give you the status for a specific instance.
+*)
+TYPE INSTANCE_STATUS  : 
+(
+ 	INSTANCE_STATUS_FREE:=0,							(* Instance not allocated *)
+ 	INSTANCE_STATUS_READY :=1,							(* Instance ready *)
+ 	INSTANCE_STATUS_BUSY:=2,							(* Instance is busy *)
+	INSTANCE_STATUS_UNKNOWN:=3,							(* Unknown or address error *)
+
+ 	INSTANCE_STATUS_CANCEL:=-1							(* Instance cancel operation *)
+);
+END_TYPE]]></Declaration>
+    <XmlArchive>
+      <Data>
+        <o xml:space="preserve" t="TextListEnumerationTextListObject">
+          <l n="TextList" t="ArrayList" cet="TextListRow">
+            <o>
+              <v n="TextID">"INSTANCE_STATUS_FREE"</v>
+              <v n="TextDefault">"0"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"INSTANCE_STATUS_READY"</v>
+              <v n="TextDefault">"1"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"INSTANCE_STATUS_BUSY"</v>
+              <v n="TextDefault">"2"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"INSTANCE_STATUS_UNKNOWN"</v>
+              <v n="TextDefault">"3"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"INSTANCE_STATUS_CANCEL"</v>
+              <v n="TextDefault">"-1"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">""</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+          </l>
+          <l n="Languages" t="ArrayList" />
+          <v n="GuidInit">{822bf50a-4487-4673-84f5-c5309340de0d}</v>
+          <v n="GuidReInit">{3d2bedce-0b28-490f-a0eb-0e4e0e34ab81}</v>
+          <v n="GuidExitX">{2d4a4cd1-7ca1-4db3-a7e0-bf2da960af38}</v>
+        </o>
+      </Data>
+      <TypeList>
+        <Type n="ArrayList">System.Collections.ArrayList</Type>
+        <Type n="Guid">System.Guid</Type>
+        <Type n="String">System.String</Type>
+        <Type n="TextListEnumerationTextListObject">{4b60233c-f940-4beb-b331-82133b520151}</Type>
+        <Type n="TextListRow">{53da1be7-ad25-47c3-b0e8-e26286dad2e0}</Type>
+      </TypeList>
+    </XmlArchive>
+  </EnumerationTextList>
+</TcPlcObject>

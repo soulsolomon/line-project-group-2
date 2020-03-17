@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <POU Name="_GetInstance" Id="{c4d2c07f-71da-4b1d-aa28-6192c810e73f}" SpecialFunc="None">
+    <Declaration><![CDATA[{library PRIVATE}
+(*
+  Private Funtcion:
+  To get an Instance status.
+*)
+FUNCTION _GetInstance : INSTANCE_STATUS
+VAR_INPUT
+	Instance:			INT;				(* Instance, a number concatenated by SationNumber (1-INSTANCE_MAX_NUMBER_OF_STATIONS) and DeviceNumber (1-INSTANCE_MAX_NUMBER_OF_DEVICES). Instance is defined as: StaionNumber*100+DeviceNumber *)
+END_VAR
+VAR
+	StationDevice: 	INT;
+	StationNumber: 	INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[_GetInstance:=INSTANCE_STATUS.INSTANCE_STATUS_UNKNOWN;
+
+IF _CheckInstance(Instance) THEN
+	StationNumber:=Instance/100;
+	StationDevice:=Instance-StationNumber*100;
+	_GetInstance:=ComGVL._Instance[StationNumber, StationDevice];
+END_IF;
+]]></ST>
+    </Implementation>
+    <LineIds Name="_GetInstance">
+      <LineId Id="20" Count="6" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

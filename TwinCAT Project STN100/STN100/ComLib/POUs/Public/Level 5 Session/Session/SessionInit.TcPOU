@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <POU Name="SessionInit" Id="{bb2729f1-8345-4a87-8c5a-b6affa191699}" SpecialFunc="None">
+    <Declaration><![CDATA[{library PUBLIC}
+(* Use this function block to initiate, maintain and end a session. The session is queued
+    when En=TRUE, when a session is possible Established is set to True. If En becomes FALSE and the a session is queued (waiting) the 
+    session is aborted. However, if a session is established ongoing transmistion is not aborted.  To abort an ongoing transmission set En to FALSE 
+   and disable the he Communicator block (En=FALSE) at the same time.
+*)
+FUNCTION_BLOCK SessionInit
+VAR_INPUT
+	En:					BOOL:=FALSE;			(* Set to true to Initiate and maintain a session and to end a session or abort set to low *)
+END_VAR
+VAR_OUTPUT
+	Done:				BOOL:=FALSE;			(* Set to true when En is true and a session is established, set to false when En is false *)
+	Established:		BOOL:=FALSE;			(* True if a session is established *)
+	SessionID:		INT:=-1;					(* A  session ID number or -1 if no active session *)
+END_VAR
+VAR_IN_OUT
+	Data: 				CommunicationData;		(* Common data structure to connect this function block to a specific Communicator block *)
+END_VAR
+VAR
+	Sequence: 		INT := 0;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF En THEN
+	CASE Sequence OF
+		0: (* Wait until possible to get a session *)
+			IF NOT Data._Session._Locked AND Data._Status=DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_NOP AND Data._DataExecute=Data._DataCounter THEN
+				Data._Session._Locked:=TRUE;
+				Data._Session._SessionID:=Data._Session._SessionID+1;
+				Data._Session._SessionCounter:=0;
+				Data._Session._SessionBussy:=FALSE;
+				Data._DataExecute:=0;
+				Data._DataCounter:=0;
+
+				SessionID:=Data._Session._SessionID;
+				Established:=TRUE;
+				Done:=TRUE;
+				Sequence:=1;
+			END_IF;
+
+		1:
+			(* Some one else has closed the session *)
+			IF NOT Data._Session._Locked OR SessionID<>Data._Session._SessionID THEN
+				Established:=FALSE;
+				SessionID:=-1;
+			END_IF;
+	END_CASE;
+ELSE
+	Sequence:=0;
+	Done:=FALSE;
+ 	IF Established THEN
+		Data._Session._Locked:=FALSE;
+		Established:=FALSE;
+		SessionID:=-1;
+	END_IF;
+END_IF;
+]]></ST>
+    </Implementation>
+    <LineIds Name="SessionInit">
+      <LineId Id="30" Count="32" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

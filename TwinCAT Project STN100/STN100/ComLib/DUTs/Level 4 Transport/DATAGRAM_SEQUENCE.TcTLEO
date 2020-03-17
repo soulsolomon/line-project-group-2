@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <EnumerationTextList Name="DATAGRAM_SEQUENCE" Id="{38baa91f-586e-4a4e-b805-179a584ab0fa}">
+    <Declaration><![CDATA[{library PUBLIC}
+
+(* Sequence for a specific communicator during send or receive *)
+TYPE DATAGRAM_SEQUENCE : (
+	DATAGRAM_SEQUENCE_ERROR:=-1,
+	DATAGRAM_SEQUENCE_INIT:=-0,
+	DATAGRAM_SEQUENCE_NOP,							(* No operation - free *)
+	DATAGRAM_SEQUENCE_INIT_SEND,
+	DATAGRAM_SEQUENCE_SEND_1,
+	DATAGRAM_SEQUENCE_SEND_2,
+	DATAGRAM_SEQUENCE_SEND_3,
+
+	DATAGRAM_SEQUENCE_INIT_RECEIVE,
+	DATAGRAM_SEQUENCE_RECEIVE_1,
+	DATAGRAM_SEQUENCE_RECEIVE_2,
+	DATAGRAM_SEQUENCE_RECEIVE_3,
+
+	DATAGRAM_SEQUENCE_DONE
+);
+END_TYPE]]></Declaration>
+    <XmlArchive>
+      <Data>
+        <o xml:space="preserve" t="TextListEnumerationTextListObject">
+          <l n="TextList" t="ArrayList" cet="TextListRow">
+            <o>
+              <v n="TextID">"DATAGRAM_SEQUENCE_ERROR"</v>
+              <v n="TextDefault">"-1"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"DATAGRAM_SEQUENCE_INIT"</v>
+              <v n="TextDefault">"-0"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"DATAGRAM_SEQUENCE_NOP"</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"DATAGRAM_SEQUENCE_INIT_SEND"</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"DATAGRAM_SEQUENCE_SEND_1"</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"DATAGRAM_SEQUENCE_SEND_2"</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"DATAGRAM_SEQUENCE_SEND_3"</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"DATAGRAM_SEQUENCE_INIT_RECEIVE"</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"DATAGRAM_SEQUENCE_RECEIVE_1"</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"DATAGRAM_SEQUENCE_RECEIVE_2"</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"DATAGRAM_SEQUENCE_RECEIVE_3"</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"DATAGRAM_SEQUENCE_DONE"</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">""</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+          </l>
+          <l n="Languages" t="ArrayList" />
+          <v n="GuidInit">{5051a845-018b-48c4-b38b-5ac10af3a52b}</v>
+          <v n="GuidReInit">{11ca81ea-11c0-426b-aada-005cd73b861d}</v>
+          <v n="GuidExitX">{8fcfceb8-ab79-4da5-be2e-50d3a0c340af}</v>
+        </o>
+      </Data>
+      <TypeList>
+        <Type n="ArrayList">System.Collections.ArrayList</Type>
+        <Type n="Guid">System.Guid</Type>
+        <Type n="String">System.String</Type>
+        <Type n="TextListEnumerationTextListObject">{4b60233c-f940-4beb-b331-82133b520151}</Type>
+        <Type n="TextListRow">{53da1be7-ad25-47c3-b0e8-e26286dad2e0}</Type>
+      </TypeList>
+    </XmlArchive>
+  </EnumerationTextList>
+</TcPlcObject>

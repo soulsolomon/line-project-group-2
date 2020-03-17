@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+  <POU Name="GetStatus" Id="{6198bd21-a924-4c4d-8963-c35f5a1f15ee}" SpecialFunc="None">
+    <Declaration><![CDATA[{library PUBLIC}
+(* Function to get  current status of a device.
+    This function can run continiously and will not block other communications.
+    The validity/existence of the output values depends on the target device.   
+
+    Note: that all outputs will always show a value but if hear beat is not continuously changing its an indication of dead communication.
+    Frequency of the heart beat depends on communication speed and device execution speed.
+ *)
+FUNCTION_BLOCK GetStatus
+VAR_INPUT
+	En: 					BOOL:=FALSE;			(* Set to true to ask for status, the block  will continuously ask for status while true *)
+END_VAR
+VAR_OUTPUT
+	Running:				BOOL:=FALSE;			(* True if the system is in running mode *)
+	Progress:				INT:=0;					(* Progress (0-100) for last RPC call *)
+	ProgramNumber:			INT:=0;					(* Program number for last RPC call *)
+	HeartBeat:				BOOL:=FALSE;			(* On an active communication this signal will continuously change value *)
+	Error: 					BOOL := FALSE;			(* True if an error occurred *)
+END_VAR
+VAR_IN_OUT
+	Data: 					CommunicationData;		(* Common data structure to connect this function block to a specific Communicator block *)
+END_VAR
+VAR
+	FunctionType: 			FUNCTION_TYPE;
+	FunctionNumber: 		BYTE;
+	ParameterDW:		DWORD;
+	ParameterB:			BYTE;
+
+	Done: 					BOOL:=FALSE;			(* If true, the command is transmitted ok, to reset set En to false *)
+	Executing:				BOOL:=FALSE;			(* True while the command in transmitted *)
+	Waiting:				BOOL:=FALSE;			(* True if the command is queued to be transmitted *)
+	ReStart:				BOOL:=FALSE;
+
+	fbRPC:					RPC1;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[FunctionType:=FUNCTION_TYPE.FUNCTION_TYPE_INFORMATION;
+FunctionNumber:=INT_TO_BYTE(INFO_FUNCTION_NUMBER.INFO_FUNCTION_RPC_STATUS);
+ParameterDW:=0;										(* No parameters *)
+ParameterB:=0;
+
+fbRPC(EN:=En AND NOT ReStart AND NOT Data._Error, Data:=Data, FunctionType1:=FunctionType,FunctionNumber1:=FunctionNumber, ParameterDW1:=ParameterDW, ParameterB1:=ParameterB);
+
+Done:=fbRPC.Done;
+Executing:=fbRPC.Executing;
+Waiting:=fbRPC.Waiting;
+Error:=fbRPC.Error;
+
+IF Done AND NOT Error THEN
+	Data._ASyncProgress:=DWORD_TO_INT(SHR(fbRPC.ReturnValue2, 24) AND 16#FF);
+	Data._ASyncStatus.FunctionNumber:=DWORD_TO_INT(SHR(fbRPC.ReturnValue2, 16) AND 16#FF);
+	Data._ASyncStatus.Extra:=DWORD_TO_INT(fbRPC.ReturnValue2 AND 16#FF);
+	Data._ASyncStatusCounter:=Data._ASyncStatusCounter+1;
+
+	ReStart:=TRUE;
+ELSIF Error AND NOT ReStart THEN
+	ReStart:=TRUE;
+ELSIF ReStart THEN
+	ReStart:=FALSE;
+END_IF;
+
+Progress:=Data._ASyncStatus.Progress;
+ProgramNumber:=Data._ASyncStatus.FunctionNumber;
+Running:=Data._ASyncStatus.Extra=1;
+HeartBeat:=UDINT_TO_BOOL(Data._ASyncStatusCounter MOD 2);
+
+(* We need to copy global error flag *)
+Error:=Data._Error;]]></ST>
+    </Implementation>
+    <LineIds Name="GetStatus">
+      <LineId Id="44" Count="30" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

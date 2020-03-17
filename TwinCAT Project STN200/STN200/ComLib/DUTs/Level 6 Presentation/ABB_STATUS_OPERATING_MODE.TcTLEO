@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+  <EnumerationTextList Name="ABB_STATUS_OPERATING_MODE" Id="{31515297-df46-4726-bb3f-1d5e3a29d256}">
+    <Declaration><![CDATA[{library PUBLIC}
+TYPE ABB_STATUS_OPERATING_MODE :
+(
+	ABB_STATUS_OPERATION_UNDEF:=0,				(* Undefined operating mode *)
+	ABB_STATUS_OPERATION_AUTO:=1,				(* Automatic operating mode *)
+	ABB_STATUS_OPERATION_MAN_PROG:=2, 			(* Manual operating mode MAX. 250 mm/S *)
+	ABB_STATUS_OPERATION_MAN_TEST:=3 			(* Manual operating mode full speed, 100 % *)
+);
+END_TYPE]]></Declaration>
+    <XmlArchive>
+      <Data>
+        <o xml:space="preserve" t="TextListEnumerationTextListObject">
+          <l n="TextList" t="ArrayList" cet="TextListRow">
+            <o>
+              <v n="TextID">"ABB_STATUS_OPERATION_UNDEF"</v>
+              <v n="TextDefault">"0"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"ABB_STATUS_OPERATION_AUTO"</v>
+              <v n="TextDefault">"1"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"ABB_STATUS_OPERATION_MAN_PROG"</v>
+              <v n="TextDefault">"2"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"ABB_STATUS_OPERATION_MAN_TEST"</v>
+              <v n="TextDefault">"3"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">""</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+          </l>
+          <l n="Languages" t="ArrayList" />
+          <v n="GuidInit">{d43f28c1-c04b-4d28-b377-3ffb158f2649}</v>
+          <v n="GuidReInit">{0fd5df76-fc0d-4223-81db-4d50dd3a8284}</v>
+          <v n="GuidExitX">{ae8bdd27-acae-4c16-925d-35f07633c93b}</v>
+        </o>
+      </Data>
+      <TypeList>
+        <Type n="ArrayList">System.Collections.ArrayList</Type>
+        <Type n="Guid">System.Guid</Type>
+        <Type n="String">System.String</Type>
+        <Type n="TextListEnumerationTextListObject">{4b60233c-f940-4beb-b331-82133b520151}</Type>
+        <Type n="TextListRow">{53da1be7-ad25-47c3-b0e8-e26286dad2e0}</Type>
+      </TypeList>
+    </XmlArchive>
+  </EnumerationTextList>
+</TcPlcObject>

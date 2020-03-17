@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+  <POU Name="NodeGetStatus" Id="{4db11ae2-9f68-4bd0-9bbb-762cba5daca4}" SpecialFunc="None">
+    <Declaration><![CDATA[{library PUBLIC}
+(* Level 1 function to get communication status for a specific address.
+
+   Depending on the address (specific device) different status checks can be performed, e.g., bus status.
+   Note that this function does not transmit any data to check the real status of a device it only check if it is possible to communicate.
+   On success true is returned otherwise false.
+*)
+FUNCTION NodeGetStatus : BOOL
+VAR_INPUT
+	Address: 		INT;		(* Address, use the function ToAddress() to convert station and device number to a valid address. *)
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[NodeGetStatus:=FALSE;
+
+IF _CheckInstance(Address) THEN
+	NodeGetStatus:=TRUE;
+
+	(* Code here to check bus status *)
+END_IF;]]></ST>
+    </Implementation>
+    <LineIds Name="NodeGetStatus">
+      <LineId Id="20" Count="5" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

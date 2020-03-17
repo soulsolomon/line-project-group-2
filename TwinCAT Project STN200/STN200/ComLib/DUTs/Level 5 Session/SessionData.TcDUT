@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+  <DUT Name="SessionData" Id="{e7e34fe0-d634-40df-91fc-340f8305a17b}">
+    <Declaration><![CDATA[{library PRIVATE}
+(*
+This is the session handler for all session blocks.
+This structure can not be used outside of the CommunicationStructure.
+Do not change any values inside the structure instead use existing function blocks to manipulate the data.
+*)
+
+TYPE SessionData :
+STRUCT
+	_Locked:			BOOL:=FALSE;				(* A session lock for this struct *)
+	_SessionBussy:		BOOL:=FALSE;				(* If session is bussy sending data *)
+	_SessionID:			INT:=0;						(* Session ID that locked this *)
+	_SessionCounter:	INT:=0;						(* Sesion counter *)
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

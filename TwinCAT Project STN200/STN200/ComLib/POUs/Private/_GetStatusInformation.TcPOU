@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+  <POU Name="_GetStatusInformation" Id="{2bf7c850-96f7-46b8-aaa9-54cf83b19e65}" SpecialFunc="None">
+    <Declaration><![CDATA[{library PRIVATE}
+(*
+  Private Funtcion:
+  Decode Status information messages.
+
+*)
+FUNCTION _GetStatusInformation : StatusInformationData
+VAR_INPUT
+	Data: 				DataGram;
+END_VAR
+VAR
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[_GetStatusInformation.Progress:=DWORD_TO_INT((SHR(Data.ParameterDW, 24) AND  16#FF));
+_GetStatusInformation.FunctionNumber:=BYTE_TO_INT(Data.FunctionNumber);
+_GetStatusInformation.ReturnValue:=BYTE_TO_INT(Data.FunctionType);
+_GetStatusInformation.Extra:=BYTE_TO_INT(Data.ParameterB);
+]]></ST>
+    </Implementation>
+    <LineIds Name="_GetStatusInformation">
+      <LineId Id="19" Count="3" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

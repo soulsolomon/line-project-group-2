@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+  <POU Name="DeviceOpen" Id="{3e7cd0d1-884c-4c12-9836-e5831aad5866}" SpecialFunc="None">
+    <Declaration><![CDATA[{library PUBLIC}
+(* Use this function to open an communication link to a specific device defined by Instance.
+A communication link is always opened for read/write.
+Return value is true if open was ok otherwise false. *)
+FUNCTION DeviceOpen : BOOL
+VAR_INPUT
+	Instance: 				INT;		(* Instance is an address, use the function ToAddress() to convert station and device number to a valid address. *)
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[DeviceOpen:=FALSE;
+IF _GetInstance(Instance)=INSTANCE_STATUS.INSTANCE_STATUS_FREE THEN
+	IF _CheckInstance(Instance) THEN
+		IF _AllocateInstance(Instance) THEN
+			DeviceOpen:=TRUE;
+		END_IF;
+	END_IF;
+END_IF;]]></ST>
+    </Implementation>
+    <LineIds Name="DeviceOpen">
+      <LineId Id="16" Count="6" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

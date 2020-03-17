@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <EnumerationTextList Name="FUNCTION_TYPE" Id="{42de420d-7c62-4f83-bbcc-fc41d508f397}">
+    <Declaration><![CDATA[{library PUBLIC}
+(*
+ Function type, to be used in DataGram structure to specify set of functions.
+
+ Note that values <=0 are return values only.
+ *)
+TYPE FUNCTION_TYPE : 
+(
+	FUNCTION_TYPE_ERROR_BUSY:=-2,				(* Old function call is not ready  *)
+	FUNCTION_TYPE_ERROR_NO_FUNCTION:=-1,		(* RPC function not found *)
+	FUNCTION_TYPE_TASK_STARTED:=0,				(* ASynchronous function started *)
+	FUNCTION_TYPE_ASYNC_RPC:=1,					(* ASynchronous RPC *)
+	FUNCTION_TYPE_SYNC_RPC,   					(* Synchronous RPC *)
+	FUNCTION_TYPE_INFORMATION					(* Synchronous RPC dedicated for status functions *)
+);
+END_TYPE]]></Declaration>
+    <XmlArchive>
+      <Data>
+        <o xml:space="preserve" t="TextListEnumerationTextListObject">
+          <l n="TextList" t="ArrayList" cet="TextListRow">
+            <o>
+              <v n="TextID">"FUNCTION_TYPE_ERROR_BUSY"</v>
+              <v n="TextDefault">"-2"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"FUNCTION_TYPE_ERROR_NO_FUNCTION"</v>
+              <v n="TextDefault">"-1"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"FUNCTION_TYPE_TASK_STARTED"</v>
+              <v n="TextDefault">"0"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"FUNCTION_TYPE_ASYNC_RPC"</v>
+              <v n="TextDefault">"1"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"FUNCTION_TYPE_SYNC_RPC"</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"FUNCTION_TYPE_INFORMATION"</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">""</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+          </l>
+          <l n="Languages" t="ArrayList" />
+          <v n="GuidInit">{610a4f31-8007-41eb-84d8-b72834299ab8}</v>
+          <v n="GuidReInit">{cc13d56e-97c7-4b32-acff-918efcabbd9d}</v>
+          <v n="GuidExitX">{148dcf67-c360-49b5-b638-f80ec4097f00}</v>
+        </o>
+      </Data>
+      <TypeList>
+        <Type n="ArrayList">System.Collections.ArrayList</Type>
+        <Type n="Guid">System.Guid</Type>
+        <Type n="String">System.String</Type>
+        <Type n="TextListEnumerationTextListObject">{4b60233c-f940-4beb-b331-82133b520151}</Type>
+        <Type n="TextListRow">{53da1be7-ad25-47c3-b0e8-e26286dad2e0}</Type>
+      </TypeList>
+    </XmlArchive>
+  </EnumerationTextList>
+</TcPlcObject>

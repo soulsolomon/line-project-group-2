@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <GVL Name="GVL" Id="{35917646-edb3-4866-8587-1909462b487f}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+ 
+	//OPC-UA Communication to STN500 (the crane)
+	{attribute 'OPC.UA.DA' := '1'}
+	iToSTN500FromSTN400 : ARRAY[1..8] OF INT; (* To STN500 *)
+
+	{attribute 'OPC.UA.DA' := '1'}
+	iFromSTN500ToSTN400 : ARRAY[1..8] OF INT; (* From STN500 *)
+	
+	
+	(* Convayor signals *)
+	(* Loading station = the station for in transport of raw parts *)
+	(* Unloading station = the station for out transport of completed parts *)
+	ixUnLoadingBit1				AT %I* : BOOL;		(* UnLoading station Bit value 1 *)
+	ixUnLoadingBit2				AT %I* : BOOL;		(* UnLoading station Bit value 2 *)
+	ixUnLoadingBit4				AT %I* : BOOL;		(* UnLoading station Bit value 4 *)
+	ixUnLoadingBit8				AT %I* : BOOL;		(* UnLoading station Bit value 8 *)
+
+	ixLoadingBit1				AT %I* : BOOL;		(* Loading station Bit value 1 *)
+	ixLoadingBit2				AT %I* : BOOL;		(* Loading station Bit value 2 *)
+	ixLoadingBit4				AT %I* : BOOL;		(* Loading station Bit value 4 *)
+	ixLoadingBit8				AT %I* : BOOL;		(* Loading station Bit value 8 *)
+
+	ixMotorProtectionOK			AT %I* : BOOL;		(* Motor protection OK *)
+	ixPaletteInIrbUnLoadStn		AT %I* : BOOL;		(* Pallet in unload stationl*)
+	ixPaletteInIrbLoadStn		AT %I* : BOOL;		(* Pallet in load station *)
+	ixPaletteInInletStn			AT %I* : BOOL;		(* Palet in inlet station *)
+
+	qxStopDownIrbUnLoadStn		AT %Q* : BOOL;	(* Stop cylinder down, unloading station  *)
+	qxStopDownIrbLoadStn		AT %Q* : BOOL;	(* Stop cylinder down, loading station  *)
+	qxStopDownStnOutsideGate	AT %Q* : BOOL;	(* Stop cylinder down, station outside gate *)
+	qxRunConvayorMotor			AT %Q* : BOOL;	(* Run convayor motor *)
+
+	
+	(* Gates and emergency stop, status signal *)
+	ixLightBeamAndGatesClosed 	AT %I* : BOOL;
+	ixEmergencyStopActivated 	AT %I* : BOOL;
+	
+	
+	(* Light staple *)
+	qxLampRed 		AT %Q*: BOOL;
+	qxLampYellow 	AT %Q*: BOOL;
+	qxLampGreen 	AT %Q*: BOOL;
+	
+	
+
+
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <POU Name="_DataGramSize" Id="{60f5fd3d-33c0-430b-8870-b070fffb3f92}" SpecialFunc="None">
+    <Declaration><![CDATA[{library PRIVATE}
+(*
+  Private Funtcion:
+  Get the size for a datagram struct. The SIZEOF operator does not work on all systems. In all cases this function is safer.
+*)
+FUNCTION _DataGramSize : INT  
+VAR_INPUT
+END_VAR
+VAR
+	Data: 	DataGram;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[ _DataGramSize:=SIZEOF(Data);
+  
+(* Enable this row if SIZEOF() does not work *)
+(* _DataGramSize:=8; *)]]></ST>
+    </Implementation>
+    <LineIds Name="_DataGramSize">
+      <LineId Id="7" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="19" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

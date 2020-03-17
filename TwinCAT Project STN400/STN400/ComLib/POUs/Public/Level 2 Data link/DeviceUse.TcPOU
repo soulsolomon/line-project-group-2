@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+  <POU Name="DeviceUse" Id="{10d151a3-1dcb-4c74-af60-ac0d016e4e11}" SpecialFunc="None">
+    <Declaration><![CDATA[{library PUBLIC}
+(* Use this function block to handle a communication link to a specific device defined by Instance.*)
+FUNCTION_BLOCK DeviceUse
+VAR_INPUT
+	En:						BOOL;					(* Enable signal, if true this block will try to open the device  for communication use, if false and if device was opened it will be closed (Note: may take some time) *)
+	Instance: 				INT;					(* Instance is an address, use the function ToAddress() to convert station and device number to a valid address. *)
+END_VAR
+VAR_OUTPUT
+	Done:					BOOL:=FALSE;		(* True if a device was open (note: will remain false until a device is open), will go to false when a previous open device is closed *)
+	Status: 				INSTANCE_STATUS;	(* Global status for a specific device *)
+END_VAR
+VAR
+	OldInstance: INT;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[Status:=_GetInstance(Instance);
+
+IF En THEN
+	IF Status=INSTANCE_STATUS.INSTANCE_STATUS_FREE THEN
+		Done:=DeviceOpen(Instance);
+		OldInstance:=Instance;
+	END_IF;
+ELSE
+	IF Done THEN
+		IF DeviceClose(OldInstance) THEN
+			Done:=FALSE;
+		END_IF;
+	END_IF;
+END_IF;]]></ST>
+    </Implementation>
+    <LineIds Name="DeviceUse">
+      <LineId Id="21" Count="12" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

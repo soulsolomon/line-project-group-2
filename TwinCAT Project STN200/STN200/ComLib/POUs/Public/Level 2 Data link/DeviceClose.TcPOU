@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+  <POU Name="DeviceClose" Id="{01bc6dc6-4a16-4430-882e-35f7cb8d96e5}" SpecialFunc="None">
+    <Declaration><![CDATA[{library PUBLIC}
+(* Use this function to close an open communication link to a specific device defined by Instance.
+Returnvalue is true if closed ok otherwise false.*)
+FUNCTION DeviceClose : BOOL
+VAR_INPUT
+	Instance: 				INT;		(* Instance is an address, use the function ToAddress() to convert station and device number to a valid address. *)
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[DeviceClose:=FALSE;
+IF _GetInstance(Instance)=INSTANCE_STATUS.INSTANCE_STATUS_READY THEN
+	IF _FreeInstance(Instance) THEN
+		DeviceClose:=TRUE;
+	END_IF;
+END_IF;
+]]></ST>
+    </Implementation>
+    <LineIds Name="DeviceClose">
+      <LineId Id="15" Count="5" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

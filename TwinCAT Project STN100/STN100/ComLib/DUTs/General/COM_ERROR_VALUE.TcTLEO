@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <EnumerationTextList Name="COM_ERROR_VALUE" Id="{b4f8a9fd-4866-46b9-952c-fce082d59a96}">
+    <Declaration><![CDATA[{library public}
+
+(* Common error values for communication blocks *)
+TYPE COM_ERROR_VALUE :
+(
+	COM_ERR_NOT_ENABLED:=-1,						(* En signal is false or block is not enabled *)
+	COM_ERR_NO_ERROR:=0,							(* No error *)
+
+ 	(* Level 1 Errors *)
+	COM_ERR_LEVEL1,									(* The physical layer failed during communication *)
+	COM_ERR_LEVEL1_TIME_OUT,						(* Time out in the physical layer *)
+
+ 	(* Level 2 Errors *)
+	COM_ERR_NOT_ALLOCATED,							(* Instance not allocated *)
+	COM_ERR_INSTANCE,								(* Instance address (station/device) number not set or wrong *)
+	COM_ERR_LEVEL2_TIME_OUT,						(* Time out in communication with device *)
+	COM_ERR_LEVEL2_ERROR,							(* Error during send/receive *)
+	COM_ERR_CANCEL,									(* Current operation was cancelled *)
+
+ 	(* Level 3 Errors *)
+	COM_ERR_TWO_INSTANCES_OF_COMMUNICATOR,			(* Two instances of the communicator block exist in the configuration remove one *)
+	COM_ERR_CHECKSUM,								(* Checksum error during datagram transfer *)
+
+	(* Level 5 Error *)
+	COM_ERR_NO_VALID_FUNCTION						(* Calls to an unknown RPC function *)
+);
+END_TYPE
+]]></Declaration>
+    <XmlArchive>
+      <Data>
+        <o xml:space="preserve" t="TextListEnumerationTextListObject">
+          <l n="TextList" t="ArrayList" cet="TextListRow">
+            <o>
+              <v n="TextID">"COM_ERR_NOT_ENABLED"</v>
+              <v n="TextDefault">"-1"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"COM_ERR_NO_ERROR"</v>
+              <v n="TextDefault">"0"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"COM_ERR_LEVEL1"</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"COM_ERR_LEVEL1_TIME_OUT"</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"COM_ERR_NOT_ALLOCATED"</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"COM_ERR_INSTANCE"</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"COM_ERR_LEVEL2_TIME_OUT"</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"COM_ERR_LEVEL2_ERROR"</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"COM_ERR_CANCEL"</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"COM_ERR_TWO_INSTANCES_OF_COMMUNICATOR"</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"COM_ERR_CHECKSUM"</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"COM_ERR_NO_VALID_FUNCTION"</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">""</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+          </l>
+          <l n="Languages" t="ArrayList" />
+          <v n="GuidInit">{7172e2d9-c411-4673-9935-2e9d6b2aa83e}</v>
+          <v n="GuidReInit">{3019af43-74ac-4b23-9036-3879a5af3068}</v>
+          <v n="GuidExitX">{ee773ad3-d7fb-4466-8388-fa61f99f9109}</v>
+        </o>
+      </Data>
+      <TypeList>
+        <Type n="ArrayList">System.Collections.ArrayList</Type>
+        <Type n="Guid">System.Guid</Type>
+        <Type n="String">System.String</Type>
+        <Type n="TextListEnumerationTextListObject">{4b60233c-f940-4beb-b331-82133b520151}</Type>
+        <Type n="TextListRow">{53da1be7-ad25-47c3-b0e8-e26286dad2e0}</Type>
+      </TypeList>
+    </XmlArchive>
+  </EnumerationTextList>
+</TcPlcObject>

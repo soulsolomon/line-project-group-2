@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <DUT Name="ABB_ASYNC_FUNCTION_NUMBER" Id="{3e6be70d-b3cd-455e-82c1-676330288191}">
+    <Declaration><![CDATA[{library PUBLIC}
+TYPE ABB_ASYNC_FUNCTION_NUMBER :(
+
+	(* GoTo functions - No parameters *)
+	ABB_ASYNC_FUNCTION_GOTO_HOME:=			11,
+	ABB_ASYNC_FUNCTION_GOTO_TABLE:=			12,
+	ABB_ASYNC_FUNCTION_GOTO_SENSOR:=		13,
+	ABB_ASYNC_FUNCTION_GOTO_STORAGE:=		14,
+	ABB_ASYNC_FUNCTION_GOTO_CONVEYOR_1:=	15,
+	ABB_ASYNC_FUNCTION_GOTO_CONVEYOR_2:=	16,
+
+	(* Pick Leav functions
+	ParameterB=1 (TRUE) pick, 0 (FALSE) leave,
+	ParameterW=position (if several positions exist)
+	Note that Gripper is not affected by ParameterB value use separate function open or close gripper
+ 	*)
+	ABB_ASYNC_FUNCTION_PL_TABLE:=			22,			(* Position 1=brick, 2=Rod, 3=Assembly *)
+	ABB_ASYNC_FUNCTION_PL_SENSOR:=			23,
+	ABB_ASYNC_FUNCTION_PL_STORAGE:=			24,  		(* Position 1-9 *)
+	ABB_ASYNC_FUNCTION_PL_CONVEYOR_1:=		25,
+	ABB_ASYNC_FUNCTION_PL_CONVEYOR_2:=		26,
+
+	(* Process functions - No parameters *)
+	ABB_ASYNC_FUNCTION_PROCESS_ASSEMBLY:=	32,
+
+	(* Move functions
+	Note, that xyz, rx,ry and rz must first be set by call to set functions (SYNC) *)
+	ABB_ASYNC_ABS_MOVEJ_TO_POSE:=			101,
+	ABB_ASYNC_ABS_MOVEL_TO_POSE:=			102,
+
+	ABB_ASYNC_REL_MOVEJ_TO_POSE:=			111,
+	ABB_ASYNC_REL_MOVEL_TO_POSE:=			112
+);
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

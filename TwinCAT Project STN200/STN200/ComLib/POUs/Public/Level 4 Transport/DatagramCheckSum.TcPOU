@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+  <POU Name="DatagramCheckSum" Id="{8cab2cdf-4f6e-4119-a1eb-f05c5194aabc}" SpecialFunc="None">
+    <Declaration><![CDATA[{library PUBLIC}
+(* This function will return the checksum for a specific DataGram message.
+  Note: the DataGram is not changed including the CheckSum member by this function, only calculated.
+  You need to set the correct value in the DataGram.*)
+FUNCTION DatagramCheckSum : BYTE
+VAR_INPUT
+	Data:		DataGram;
+END_VAR
+VAR
+	Ptr: 		POINTER TO BYTE;
+	Size: 		INT;
+	i: 			INT;
+	CkSum: 	BYTE;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[Size:=_DataGramSize()-1;
+
+CkSum:=0;
+Ptr:=ADR(Data);
+
+FOR i:=1 TO Size DO
+	CkSum:=CkSum+Ptr^;
+	Ptr:=Ptr+1;
+END_FOR;
+
+DatagramCheckSum:=CkSum;
+]]></ST>
+    </Implementation>
+    <LineIds Name="DatagramCheckSum">
+      <LineId Id="21" Count="10" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <POU Name="NodeWriteWord" Id="{ace0addf-c90f-4ff4-b012-04041bf4cfe1}" SpecialFunc="None">
+    <Declaration><![CDATA[{library PUBLIC}
+(* Level 1 function to write a word value.
+    Do not call this function from applications if functions on level 2-6 are used. *)
+FUNCTION NodeWriteWord : WORD
+VAR_INPUT
+	Address: 		INT;		(* Address, use the function ToAddress() to convert station and device number to a valid address. *)
+	Channel:		INT:=0;		(* Only used ff the device at the address has several channels. *)
+	Data:			WORD;		(* Data to write. *)
+END_VAR
+VAR
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[CASE NodeGetType(Address) OF
+	DEVICE_TYPE.TYPE_ABB_1: (* ABB robot *)
+		Data:=Data AND 16#7FFF;
+		ComGVL._qwABB:=Data;
+
+	DEVICE_TYPE.TYPE_GANTRY_1: (* Gantry robot *)
+		Data:=Data AND 16#7FFF;
+
+		CASE Channel OF
+		0:
+			ComGVL._qw1Gantry:=Data;
+		1:
+			ComGvl._qw2Gantry:=Data;
+		2:
+			ComGVL._qw3Gantry:=Data;
+		ELSE
+			Data:=0;
+		END_CASE;
+
+	DEVICE_TYPE.TYPE_SIMULATED:
+		Data:=Data AND 16#7FFF;
+		ComGVL._DataSimulatedStation[1, 2]:=WORD_TO_BYTE(Data);
+ELSE
+		Data:=0;
+END_CASE;
+
+(* Return value *)
+NodeWriteWord:=Data;
+]]></ST>
+    </Implementation>
+    <LineIds Name="NodeWriteWord">
+      <LineId Id="18" Count="27" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

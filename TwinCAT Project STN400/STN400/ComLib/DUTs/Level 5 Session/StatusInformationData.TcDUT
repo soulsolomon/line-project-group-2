@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+  <DUT Name="StatusInformationData" Id="{8a1d1013-32ae-40b3-a62d-e22f9564a5dc}">
+    <Declaration><![CDATA[{library PUBLIC}
+TYPE StatusInformationData :
+STRUCT
+	Progress:			INT:=0;					(* Progress on current RPC call 0-100 *)
+	FunctionNumber:		INT:=0;					(* Curent RPC function number *)
+	ReturnValue:		INT:=0;					(* Return value from previous RPC call *)
+	Extra:				INT:=0;					(* Extra information *)
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

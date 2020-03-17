@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+  <POU Name="DeviceStatus" Id="{f181f7a5-fe35-4a54-8549-c5256746c038}" SpecialFunc="None">
+    <Declaration><![CDATA[{library PUBLIC}
+(* Use this function block toget status of a specific device instance.*)
+FUNCTION_BLOCK DeviceStatus
+VAR_INPUT
+	En:						BOOL;		(* Enable signal, if true this block will give new status values *)
+	Instance: 				INT;		(* Instance is an address, use the function ToAddress() to convert station and device number to a valid address. *)
+END_VAR
+VAR_OUTPUT
+	Done:					BOOL:=FALSE;			(* True if status was read  *)
+	Status: 				INSTANCE_STATUS;		(* Global status for a specific device *)
+END_VAR
+VAR
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF En THEN
+	Status:=_GetInstance(Instance);
+	Done:=TRUE;
+ELSE
+	Done:=FALSE;
+END_IF;]]></ST>
+    </Implementation>
+    <LineIds Name="DeviceStatus">
+      <LineId Id="20" Count="4" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

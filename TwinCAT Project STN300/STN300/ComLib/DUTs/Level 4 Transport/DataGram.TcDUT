@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+  <DUT Name="DataGram" Id="{d21df72c-657c-4fd5-8cd0-14bed293bd75}">
+    <Declaration><![CDATA[{library PUBLIC}
+(*
+Structure to handle datagrams on level 4.
+*)
+TYPE DataGram :
+STRUCT
+	ParameterDW:		DWORD;		(* Parameter value (32 bit), purpose dependent on type of function *)
+	ParameterB:			BYTE;		(* Parameter value (8 bit), purpose dependent on type of function *)
+
+	FunctionType:		BYTE;		(* Type of function (8 bit) specifies a set of functions, the number must be based on the enumeration FUNCTION_TYPE, note that an enumeration is 16 bit and must be converted with WORD_TO_BYTE() to fit in this structure *)
+	FunctionNumber: 	BYTE;		(* Specific Function (8 bit) *)
+
+	CheckSum:			BYTE;		(* Checksum for DataGram *)
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

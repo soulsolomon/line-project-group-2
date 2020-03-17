@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+  <EnumerationTextList Name="DEVICE_SEQUENCE" Id="{06c78995-518f-4346-a939-1912df470499}">
+    <Declaration><![CDATA[{library PUBLIC}
+(*
+Sequence for a specific device during send or receive on level 2.
+This can be used for debug but is only visible inside a block.
+ *)
+TYPE DEVICE_SEQUENCE :
+(
+	DEVICE_SEQUENCE_NOP:=0,							(* No operation - free *)
+	DEVICE_SEQUENCE_INIT,							(* Init of block *)
+	DEVICE_SEQUENCE_WAIT_FOR_DEVICE_READY,			(* Prepare for wait and set busy to true *)
+	DEVICE_SEQUENCE_WAIT_FOR_STROBE_LOW,			(* Wait until target device strobe and data are 0 *)
+	DEVICE_SEQUENCE_PREPARE_SEND_RECEIVE,
+	DEVICE_SEQUENCE_STROBE_HIGH,
+	DEVICE_SEQUENCE_SEND_RECEIVE,					(* Transfer or read data *)
+	DEVICE_SEQUENCE_ACK,
+	DEVICE_SEQUENCE_WAIT_FOR_ANSWER,
+	DEVICE_SEQUENCE_SET_LOW,						(* Data and strobe to 0 *)
+	DEVICE_SEQUENCE_READY,							(* End of sequence will wait in this step until En=false *)
+
+	DEVICE_SEQUENCE_TIME_OUT:=-1,					(* Tinme out during send or receive *)
+	DEVICE_SEQUENCE_CANCEL:=-2,						(* An ongoing operation was canceld *)
+	DEVICE_SEQUENCE_ERROR:=-3						(* An error during send/receive *)
+);
+END_TYPE]]></Declaration>
+    <XmlArchive>
+      <Data>
+        <o xml:space="preserve" t="TextListEnumerationTextListObject">
+          <l n="TextList" t="ArrayList" cet="TextListRow">
+            <o>
+              <v n="TextID">"DEVICE_SEQUENCE_NOP"</v>
+              <v n="TextDefault">"0"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"DEVICE_SEQUENCE_INIT"</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"DEVICE_SEQUENCE_WAIT_FOR_DEVICE_READY"</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"DEVICE_SEQUENCE_WAIT_FOR_STROBE_LOW"</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"DEVICE_SEQUENCE_PREPARE_SEND_RECEIVE"</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"DEVICE_SEQUENCE_STROBE_HIGH"</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"DEVICE_SEQUENCE_SEND_RECEIVE"</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"DEVICE_SEQUENCE_ACK"</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"DEVICE_SEQUENCE_WAIT_FOR_ANSWER"</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"DEVICE_SEQUENCE_SET_LOW"</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"DEVICE_SEQUENCE_READY"</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"DEVICE_SEQUENCE_TIME_OUT"</v>
+              <v n="TextDefault">"-1"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"DEVICE_SEQUENCE_CANCEL"</v>
+              <v n="TextDefault">"-2"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"DEVICE_SEQUENCE_ERROR"</v>
+              <v n="TextDefault">"-3"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">""</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+          </l>
+          <l n="Languages" t="ArrayList" />
+          <v n="GuidInit">{4bb45bc1-da3e-4353-b01e-04f71b7e8507}</v>
+          <v n="GuidReInit">{725e6897-ee2c-4d90-b641-b160b7eaa272}</v>
+          <v n="GuidExitX">{b684eb86-102f-4939-8b73-93fa5d969328}</v>
+        </o>
+      </Data>
+      <TypeList>
+        <Type n="ArrayList">System.Collections.ArrayList</Type>
+        <Type n="Guid">System.Guid</Type>
+        <Type n="String">System.String</Type>
+        <Type n="TextListEnumerationTextListObject">{4b60233c-f940-4beb-b331-82133b520151}</Type>
+        <Type n="TextListRow">{53da1be7-ad25-47c3-b0e8-e26286dad2e0}</Type>
+      </TypeList>
+    </XmlArchive>
+  </EnumerationTextList>
+</TcPlcObject>

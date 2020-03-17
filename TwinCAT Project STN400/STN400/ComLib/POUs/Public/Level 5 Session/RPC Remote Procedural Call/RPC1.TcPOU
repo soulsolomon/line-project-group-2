@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+  <POU Name="RPC1" Id="{aa21f7f5-ffff-41f6-bbe6-654469fa7ac7}" SpecialFunc="None">
+    <Declaration><![CDATA[{library PUBLIC}
+(*
+RPC1 will handle RPC calls with 1 parameter.
+A session will be established to the specific equipment during the function call and when a return value exist (or error) the session is ended.
+Note, if FunctionType1 is set to ASync, RPC will only start a function and not wait for the function to end.
+
+It is possible to queue many calls by cascade coupled blocks in serie or parallel.
+By using the Done output signal as input to En on another function blockit is possible to serialise calls.
+
+*)
+FUNCTION_BLOCK RPC1
+VAR_INPUT
+	En: 			BOOL:=FALSE;			(* Set to true to call a  RPC 1 parameter function *)
+	FunctionType1:	FUNCTION_TYPE;			(* Function type ASYNC or SYNC *)
+	FunctionNumber1:INT;					(* RPC function number *)
+	ParameterDW1:	DWORD;					(* DWORD parameter value *)
+	ParameterB1:	BYTE;					(* Byte parameter value *)
+END_VAR
+VAR_OUTPUT
+	Done: 				BOOL:=FALSE;			(* If true, the command is transmitted ok, to reset set En to false *)
+	Executing:			BOOL:=FALSE;			(* True while the command in transmitted *)
+	Waiting:			BOOL:=FALSE;			(* True if the command is queued to be transmitted *)
+	Error: 				BOOL := FALSE;			(* True if an communication error occured *)
+	ReturnValue1:		FUNCTION_TYPE;			(* Return value *)
+	ReturnValue2:		DWORD;					(* DWORD return value *)
+	ReturnValue3:		BYTE;						(* BYTE return value *)
+END_VAR
+VAR_IN_OUT
+	Data: 				CommunicationData;		(* Common data structure to connect this function block to a specific Communicator block *)
+END_VAR
+VAR
+	fbSessionInit: 		SessionInit;
+	fbSessionSend: 	SessionSend;
+	fbSessionEnd: 	SessionEnd;
+	Memory: 			BOOL := FALSE;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[fbSessionInit(En:=En, Data:=Data);
+fbSessionSend(En:=fbSessionInit.Done, SessionID:=fbSessionInit.SessionID, Data:=Data,
+                             FunctionType:=INT_TO_BYTE(FunctionType1), FunctionNumber:=INT_TO_BYTE(FunctionNumber1), ParameterDW:=ParameterDW1, ParameterB:=ParameterB1);
+
+fbSessionEnd(En:=fbSessionSend.Done, Data:=Data);
+
+Done:=fbSessionSend.Done;
+Executing:=fbSessionSend.Executing;
+Waiting:=fbSessionSend.Waiting;
+Error:=fbSessionSend.Error;
+
+IF fbSessionSend.Done AND NOT Memory THEN
+	Memory:=TRUE;
+	ReturnValue1:= fbSessionSend.Answer.FunctionType;  //BYTE_TO_FUNCTION_TYPE
+	ReturnValue2:=fbSessionSend.Answer.ParameterDW;
+	ReturnValue3:=fbSessionSend.Answer.ParameterB;
+ELSIF NOT En THEN
+	ReturnValue1:=FUNCTION_TYPE.FUNCTION_TYPE_ERROR_NO_FUNCTION;
+	Memory:=FALSE;
+ELSE
+	Memory:=FALSE;
+	ReturnValue1:=FUNCTION_TYPE.FUNCTION_TYPE_ERROR_BUSY;
+END_IF;
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="RPC1">
+      <LineId Id="45" Count="23" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <POU Name="ASyncRPC" Id="{43c3a092-8052-44be-add7-561b6fa0eebf}" SpecialFunc="None">
+    <Declaration><![CDATA[{library PUBLIC}
+(*
+ASyncRPC will handle ASync RPC calls with 1 parameter.
+It is possible to use RPC1 to start a ASync call however, ASyncRPC will wait until the function call is done.
+
+A session will be established to the specific equipment during the function call and when a return value (or error) the session is ended.
+It is possible to queue many calls by cascade coupled blocks in serie or parallel.
+
+By using the Done output signal as input to En on another function block it is possible to serialise calls.
+
+*)
+FUNCTION_BLOCK ASyncRPC
+VAR_INPUT
+	En: 				BOOL:=FALSE;				(* Set to true to call a  RPC function and wait for an answer *)
+	FunctionType:		FUNCTION_TYPE:=FUNCTION_TYPE.FUNCTION_TYPE_ASYNC_RPC;			(* Function type set to  ASYNC *)
+	FunctionNumber:	INT;							(* RPC function number *)
+	ParameterDW:	DWORD;							(* DWORD parameter value *)
+	ParameterB:		BYTE;							(* Byte parameter value *)
+END_VAR
+VAR_OUTPUT
+	Done: 				BOOL:=FALSE;				(* If true, the command is transmitted ok, to reset set En to false *)
+	Executing:			BOOL:=FALSE;				(* True while the command in transmitted *)
+	Waiting:			BOOL:=FALSE;				(* True if the command is queued to be transmitted *)
+	Error: 				BOOL := FALSE;				(* True if an communication error occured *)
+	Progress:			INT:=0;							(* Async progress *)
+	ReturnValue:		FUNCTION_TYPE;				(* Return value, negative i.e. FUNCTION_TYPE_ERROR_NO_FUNCTION is an error error *)
+END_VAR
+VAR_IN_OUT
+	Data: 				CommunicationData;			(* Common data structure to connect this function block to a specific Communicator block *)
+END_VAR
+VAR
+	fbSessionInit: 	 SessionInit;
+	fbSessionSend: 	 SessionSend;
+	fbSessionStatus: SessionSend;
+	fbSessionEnd: 	 SessionEnd;
+	Sequence:			INT:=0;
+	ReStart:			BOOL:=FALSE;
+	Ended:				BOOL:=FALSE;
+	RetMem: 			BYTE;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//IF fbSessionInit.Done AND NOT fbSessionInit.Established AND En THEN
+// fbSessionInit(En:=FALSE, Data:=Data);
+//ELSE
+ fbSessionInit(En:=En, Data:=Data); 
+//END_IF
+
+fbSessionSend(En:=fbSessionInit.Done, SessionID:=fbSessionInit.SessionID, Data:=Data,
+                             FunctionType:=INT_TO_BYTE(FunctionType), FunctionNumber:=INT_TO_BYTE(FunctionNumber), 
+									ParameterDW:=ParameterDW, ParameterB:=ParameterB);
+
+fbSessionStatus(En:=fbSessionInit.Done AND NOT ReStart, SessionID:=fbSessionInit.SessionID, Data:=Data,
+                             FunctionType:=INT_TO_BYTE(FUNCTION_TYPE.FUNCTION_TYPE_INFORMATION), 
+								FunctionNumber:=INT_TO_BYTE(INFO_FUNCTION_NUMBER.INFO_FUNCTION_RPC_STATUS), 
+										ParameterDW:=0, ParameterB:=0);
+
+fbSessionEnd(En:=fbSessionStatus.Done AND Ended, SessionID:=fbSessionInit.SessionID, Data:=Data);
+
+IF NOT En THEN
+	Sequence:=0;
+	Progress:=0;
+	Ended:=FALSE;
+END_IF;
+
+CASE Sequence OF
+0:		(* Wait for function to start *)
+		Done:=FALSE;
+		Progress:=0;
+		Executing:=fbSessionSend.Executing;
+		Waiting:=fbSessionSend.Waiting;
+		Error:=fbSessionSend.Error;
+		Ended:=FALSE;
+		ReturnValue:=FUNCTION_TYPE.FUNCTION_TYPE_ASYNC_RPC; (* Default value *)
+
+		IF fbSessionSend.Error THEN
+			ReturnValue:=FUNCTION_TYPE.FUNCTION_TYPE_ERROR_NO_FUNCTION;
+			Sequence:=100;
+		ELSIF fbSessionSend.Done THEN
+			Sequence:=10;
+		END_IF;
+
+10:		(* Check if any error during start of function *)
+		IF fbSessionSend.Answer.FunctionType<0 THEN
+			ReturnValue:=FUNCTION_TYPE.FUNCTION_TYPE_ERROR_NO_FUNCTION;
+			Sequence:=100;
+		ELSE
+			Data._ASyncProgress:=Progress;
+			Sequence:=20;
+		END_IF;
+
+20:		(* Ask for status *)
+		Done:=FALSE;
+		Executing:=fbSessionStatus.Executing;
+		Waiting:=fbSessionStatus.Waiting;
+		Error:=fbSessionStatus.Error;
+
+		IF fbSessionStatus.Error THEN
+			ReturnValue:=FUNCTION_TYPE.FUNCTION_TYPE_ERROR_NO_FUNCTION;
+			Sequence:=100;
+		ELSIF fbSessionStatus.Done THEN
+			Sequence:=30;
+		END_IF;
+
+30:		(* Check for any error during call for status *)
+		IF fbSessionStatus.Answer.FunctionType<0 THEN  (* This is true if the status call does not exist in the device *)
+			ReturnValue:=fbSessionStatus.Answer.FunctionType;   				
+			Sequence:=100;
+		ELSE
+			Progress:=DWORD_TO_INT((SHR(fbSessionStatus.Answer.ParameterDW, 24) AND  16#FF));
+			Data._ASyncProgress:=Progress;
+			Data._ASyncStatus:=_GetStatusInformation(fbSessionStatus.Answer);
+			Data._ASyncStatusCounter:=Data._ASyncStatusCounter+1;
+			Sequence:=40;
+		END_IF;
+
+40:		(* Check if status call is ready or error *)
+		RetMem:=DWORD_TO_BYTE((SHR(fbSessionStatus.Answer.ParameterDW, 8) AND  16#FF));
+		IF ((DWORD_TO_BYTE(fbSessionStatus.Answer.ParameterDW) AND 16#FF)=0) THEN
+			IF RetMem=16#FF THEN (* This is true if the RPC function does not exist *)
+				ReturnValue:=FUNCTION_TYPE.FUNCTION_TYPE_ERROR_NO_FUNCTION;
+				Sequence:=100;
+			ELSE
+				Sequence:=80;
+			END_IF;
+		ELSE
+			Sequence:=50;
+		END_IF;
+
+50:		(* Restart status question *)
+		ReStart:=TRUE;
+		Sequence:=60;
+
+60:		(* Restart done *)
+		ReStart:=FALSE;
+		Sequence:=20;
+
+80:		(* ASyncRPC Done *)
+		Progress:=100;
+		Data._ASyncProgress:=Progress;
+
+		Done:=fbSessionStatus.Done;
+		Executing:=fbSessionStatus.Executing;
+		Waiting:=fbSessionStatus.Waiting;
+		Error:=fbSessionStatus.Error;
+		ReturnValue:=FunctionType;
+		Ended:=TRUE;
+
+100:	(* Error *)
+		Done:=FALSE;
+		Executing:=FALSE;
+		Waiting:=FALSE;
+		Error:=TRUE;
+END_CASE;]]></ST>
+    </Implementation>
+    <LineIds Name="ASyncRPC">
+      <LineId Id="236" Count="4" />
+      <LineId Id="234" Count="0" />
+      <LineId Id="50" Count="1" />
+      <LineId Id="194" Count="0" />
+      <LineId Id="52" Count="2" />
+      <LineId Id="192" Count="1" />
+      <LineId Id="55" Count="96" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

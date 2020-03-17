@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+  <EnumerationTextList Name="GANTRY_ASYNC_FUNCTION_NUMBER" Id="{7c37ce2d-cbcc-48eb-b881-057faeb97897}">
+    <Declaration><![CDATA[{library PUBLIC}
+TYPE GANTRY_ASYNC_FUNCTION_NUMBER :(
+
+(* GoTo functions - No parameters *)
+	GANTRY_ASYNC_FUNCTION_GOTO_HOME:=		11,
+	GANTRY_ASYNC_FUNCTION_GOTO_STATION:=	12,
+
+(* Pick Leav function
+	ParameterW=Station 1-4*10 + position 1-9 + Station 1-4*1000 +position 1-9 * 100
+ *)
+	GANTRY_ASYNC_FUNCTION_PL:=					22			(* Pick/leave at position *)
+);
+END_TYPE]]></Declaration>
+    <XmlArchive>
+      <Data>
+        <o xml:space="preserve" t="TextListEnumerationTextListObject">
+          <l n="TextList" t="ArrayList" cet="TextListRow">
+            <o>
+              <v n="TextID">"GANTRY_ASYNC_FUNCTION_GOTO_HOME"</v>
+              <v n="TextDefault">"11"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"GANTRY_ASYNC_FUNCTION_GOTO_STATION"</v>
+              <v n="TextDefault">"12"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"GANTRY_ASYNC_FUNCTION_PL"</v>
+              <v n="TextDefault">"22"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">""</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+          </l>
+          <l n="Languages" t="ArrayList" />
+          <v n="GuidInit">{f9959ecc-b8c4-4709-bec2-0898bbaf7518}</v>
+          <v n="GuidReInit">{34bc3a0c-9e6f-4fbd-bec3-384ffb76ae4c}</v>
+          <v n="GuidExitX">{2dd7638c-ac7f-4c2d-b102-47c92ac37f87}</v>
+        </o>
+      </Data>
+      <TypeList>
+        <Type n="ArrayList">System.Collections.ArrayList</Type>
+        <Type n="Guid">System.Guid</Type>
+        <Type n="String">System.String</Type>
+        <Type n="TextListEnumerationTextListObject">{4b60233c-f940-4beb-b331-82133b520151}</Type>
+        <Type n="TextListRow">{53da1be7-ad25-47c3-b0e8-e26286dad2e0}</Type>
+      </TypeList>
+    </XmlArchive>
+  </EnumerationTextList>
+</TcPlcObject>

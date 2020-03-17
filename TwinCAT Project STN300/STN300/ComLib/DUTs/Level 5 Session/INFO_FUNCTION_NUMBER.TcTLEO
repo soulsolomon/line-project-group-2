@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+  <EnumerationTextList Name="INFO_FUNCTION_NUMBER" Id="{29635876-ff2c-4bc4-984c-0fe188b3a06b}">
+    <Declaration><![CDATA[{library PUBLIC}
+TYPE INFO_FUNCTION_NUMBER :(
+	INFO_FUNCTION_RPC_STATUS:=1,				(* Get RPC call status *)
+	INFO_FUNCTION_SYSTEM_STATUS:=2				(* Get system status *)
+);
+END_TYPE
+]]></Declaration>
+    <XmlArchive>
+      <Data>
+        <o xml:space="preserve" t="TextListEnumerationTextListObject">
+          <l n="TextList" t="ArrayList" cet="TextListRow">
+            <o>
+              <v n="TextID">"INFO_FUNCTION_RPC_STATUS"</v>
+              <v n="TextDefault">"1"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"INFO_FUNCTION_SYSTEM_STATUS"</v>
+              <v n="TextDefault">"2"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">""</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+          </l>
+          <l n="Languages" t="ArrayList" />
+          <v n="GuidInit">{d644a2e9-5682-400d-8ace-16b76037b341}</v>
+          <v n="GuidReInit">{38f45fe4-25a8-4fa4-8c18-f0bbf49e79f1}</v>
+          <v n="GuidExitX">{c6a9b427-1daf-4248-9fee-f45d50126343}</v>
+        </o>
+      </Data>
+      <TypeList>
+        <Type n="ArrayList">System.Collections.ArrayList</Type>
+        <Type n="Guid">System.Guid</Type>
+        <Type n="String">System.String</Type>
+        <Type n="TextListEnumerationTextListObject">{4b60233c-f940-4beb-b331-82133b520151}</Type>
+        <Type n="TextListRow">{53da1be7-ad25-47c3-b0e8-e26286dad2e0}</Type>
+      </TypeList>
+    </XmlArchive>
+  </EnumerationTextList>
+</TcPlcObject>

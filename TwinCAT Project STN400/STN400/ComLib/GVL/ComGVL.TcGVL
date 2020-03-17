@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+  <GVL Name="ComGVL" Id="{31853053-1ae2-4545-8db5-3a06302b5e72}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{library PUBLIC}
+VAR_GLOBAL CONSTANT
+	VERSION_COM_LIBRARY:					REAL:=3.0;		(* Version number for library *)
+	DEVICE_DEFAULT_TIME_OUT:		 		TIME := T#1S;	(* Default time out for single word messages to a specific device *)
+END_VAR
+
+{library private}
+VAR_GLOBAL CONSTANT
+	INSTANCE_MAX_NUMBER_OF_STATIONS:		INT := 6;
+	INSTANCE_MAX_NUMBER_OF_DEVICES:			INT := 2;
+
+	ADDRESS_SIMULATED:						INT := 602;
+END_VAR
+
+{library private}
+VAR_GLOBAL
+	
+	//ProfiBusDP Communication to ABB-robot or Portal Robot (Gantry)
+	{attribute 'TcSwapWord'}
+	_iwABB     AT %I* : WORD;	//From ABB robot (Swaped byte order)
+	_iw1Gantry AT %I* : WORD;	//From Gantry robot
+	_iw2Gantry AT %I* : WORD;	
+	_iw3Gantry AT %I* : WORD;	
+
+	{attribute 'TcSwapWord'}
+	_qwABB 	   AT %Q* : WORD; //To ABB robot (Swaped Byte order)
+	_qw1Gantry AT %Q* : WORD; //To Gantry robot 
+	_qw2Gantry AT %Q* : WORD; //To Gantry robot 
+	_qw3Gantry AT %Q* : WORD; //To Gantry robot 
+	
+	
+	
+
+
+
+
+	_Instance : ARRAY  [1..INSTANCE_MAX_NUMBER_OF_STATIONS,
+						   1..INSTANCE_MAX_NUMBER_OF_DEVICES]
+													OF  INSTANCE_STATUS;
+
+(*	Index 1: 1=PLC, 2="Simulated Robot",
+	Index 2: 1=Strobe, 2=data  *)	
+	_DataSimulatedStation:	ARRAY [1..INSTANCE_MAX_NUMBER_OF_DEVICES, 1..2] OF BYTE;
+
+
+(*|                         |                                     | *)
+(*|                         |                                     | *)
+(*V                         V                                     V *)
+(* -----------------------------------------------------------------*)
+
+
+(*
+
+(* Global Try Out variables only used by the TryOut block *)
+
+(* Try out Communicator *)
+	_miAddressNumber:			ARRAY [1..5] OF INT := [101, 201, 301, 401, 502];
+	_miAddressIndex:			INT:=1;
+	_fbTryOutCommunicator:		Communicator;
+	_msTryOutData: 				CommunicationData;
+	_mxTryOutEnable:			BOOL;
+
+	_glAddressNameTable: 		ARRAY [1..5] OF STRING:= ['Station 100' , 'Station 200', 'Station 300', 'Station 400',  'Station 500'];
+	_glAddressSelectionIndex: 	INT:=1;
+
+	_glErrorTable:				ARRAY [ -1 .. 10] OF STRING :=
+	 	['En signal is false or block is not enabled',
+		 'No error',
+		 'The physical layer failed during communication',
+		 'Time out in the physical layer',
+		 'Instance not allocated',
+		 'Instance address (station/device) number not set or wrong',
+		 'Time out in communication with device',
+		 'Error during send/receive',
+		 'Current operation was cancelled',
+		 'Two instances of the communicator block exist in the configuration remove one',
+		 'Checksum error during datagram transfer',
+		 'Calls to an unknown RPC function'];
+
+	_fbTryOutGetStatus:					GetStatus;
+	_fbTryOutGetStatusRunning:			BOOL;
+	_fbTryOutGetStatusProgress:			INT;
+	_fbTryOutGetStatusProgramNumber:	INT;
+	_fbTryOutGetStatusHeartBeat:		BOOL;
+	_fbTryOutGetStatusError: 			BOOL;
+
+(* ABB Functions *)
+	_fbTryOutShowABB:					BOOL;
+
+	_fbTryOutDone:						BOOL;
+	_fbTryOutExecuting:					BOOL;
+	_fbTryOutWaiting:					BOOL;
+	_fbTryOutError:						BOOL;
+	_fbTryOutProgress:					INT;
+
+	_fbTryOutABBGetStatus:				ABBGetStatus;
+	_fbTryOutABBRunMode:				ABB_STATUS_RUNNING_MODE;
+	_fbTryOutABBOpMode:					ABB_STATUS_OPERATING_MODE;
+
+	_gABBRunTable:						ARRAY [1 .. 6] OF STRING :=
+		['Undefined running mode',
+		'Continuous or cycle running mode',
+		'Instruction forward running mode',
+		'Instruction backward running mode',
+		'Simulated running mode',
+		'MOVE instr. in forward running and logical instr. in continuous running mode'];
+
+	_gABBOpTable:						ARRAY [ 1 .. 4] OF STRING :=
+		['Undefined operating mode',
+		'Automatic operating mode',
+		'Manual operating mode MAX. 250 mm/S',
+		'Manual operating mode full speed, 100 %'];
+
+	_fbTryOutABBGoToHome:				ABBGoToHome;
+	_fbTryOutABBGoToHomeEn:				BOOL;
+
+	_fbTryOutABBGoToSensor:				ABBGoToSensor;
+	_fbTryOutABBGoToSensorEn:			BOOL;
+
+	_fbTryOutABBGoToStorage:			ABBGoToStorage;
+	_fbTryOutABBGoToStorageEn:			BOOL;
+
+	_fbTryOutABBGoToTable:				ABBGoToTable;
+	_fbTryOutABBGoToTableEn:			BOOL;
+
+	_fbTryOutABBGoToConveyor1:			ABBGoToConveyor1;
+	_fbTryOutABBGoToConveyor1En:		BOOL;
+
+	_fbTryOutABBGoToConveyor2:			ABBGoToConveyor2;
+	_fbTryOutABBGoToConveyor2En:		BOOL;
+
+	_fbTryOutABBPickLeaveSensor:		ABBPickLeaveSensor;
+	_fbTryOutABBPickLeaveSensorEn:		BOOL;
+	_fbTryOutABBPSensor:				BOOL;
+
+	_fbTryOutABBPickLeaveStorage:		ABBPickLeaveStorage;
+	_fbTryOutABBPickLeaveStorageEn:		BOOL;
+	_fbTryOutABBPStorage:				BOOL;
+	_fbTryOutABBPStoragePos:			INT:=1;
+
+	_fbTryOutABBPickLeaveTable:			ABBPickLeaveTable;
+	_fbTryOutABBPickLeaveTableEn:		BOOL;
+	_fbTryOutABBPTable:					BOOL;
+	_fbTryOutABBPTablePos:				INT:=1;
+
+	_fbTryOutABBPickLeaveConveyor1:		ABBPickLeaveConveyor1;
+	_fbTryOutABBPickLeaveConveyor1En:	BOOL;
+	_fbTryOutABBPConveyor1:				BOOL;
+
+	_fbTryOutABBPickLeaveConveyor2:		ABBPickLeaveConveyor2;
+	_fbTryOutABBPickLeaveConveyor2En:	BOOL;
+	_fbTryOutABBPConveyor2:				BOOL;
+
+(* Gantry Functions *)
+	_fbTryOutShowGantry:			BOOL;
+
+	_fbTryOutGantryPick:			GantryPick;
+	_fbTryOutGantryPickEn:			BOOL;
+	_fbTryOutGantryPickStation:		INT:=1;
+	_fbTryOutGantryPickPos:			INT:=1;
+
+	_fbTryOutGantryLeave:			GantryLeave;
+	_fbTryOutGantryLeaveEn:			BOOL;
+	_fbTryOutGantryLeaveStation:	INT:=1;
+	_fbTryOutGantryLeavePos:		INT:=2;
+*)
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

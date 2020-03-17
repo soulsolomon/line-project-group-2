@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+  <POU Name="ABBGetStatus" Id="{691fef67-eaf3-49c3-b02e-d1c0a47a1aa9}" SpecialFunc="None">
+    <Declaration><![CDATA[{library PUBLIC}
+(* Function to get robot status *)
+FUNCTION_BLOCK ABBGetStatus
+VAR_INPUT
+	En: 					BOOL:=FALSE;			(* Set to true to ask for status *)
+END_VAR
+VAR_OUTPUT
+	Done: 					BOOL:=FALSE;			(* If true, the command is transmitted ok, to reset set En to false *)
+	Executing:				BOOL:=FALSE;			(* True while the command in transmitted *)
+	Waiting:				BOOL:=FALSE;			(* True if the command is queued to be transmitted *)
+	Error: 					BOOL := FALSE;			(* True if an error occured *)
+	Progress:				INT:=0;							(* Return value *)
+	RunningMode:			ABB_STATUS_RUNNING_MODE:=0;		(* Return value *)
+	OperatingMode:			ABB_STATUS_OPERATING_MODE:=0;	(* Return value *)
+	Running:				BOOL:=FALSE;					(* Return value *)
+END_VAR
+VAR_IN_OUT
+	Data: 					CommunicationData;		(* Common data structure to connect this function block to a specific Communicator block *)
+END_VAR
+VAR
+	FunctionType: 			FUNCTION_TYPE;
+	FunctionNumber: 		BYTE;
+	ParameterDW:			DWORD;
+	ParameterB:				BYTE;
+	Sequence:				INT:=0;
+
+	fbRPC:					RPC1;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+FunctionType:=FUNCTION_TYPE.FUNCTION_TYPE_INFORMATION;
+FunctionNumber:=INT_TO_BYTE(INFO_FUNCTION_NUMBER.INFO_FUNCTION_SYSTEM_STATUS);
+ParameterDW:=0;										(* No parameters *)
+ParameterB:=0;
+
+fbRPC(EN:=En, Data:=Data, FunctionType1:=FunctionType,FunctionNumber1:=FunctionNumber, ParameterDW1:=ParameterDW, ParameterB1:=ParameterB);
+
+Done:=fbRPC.Done;
+Executing:=fbRPC.Executing;
+Waiting:=fbRPC.Waiting;
+Error:=fbRPC.Error;
+
+Progress:=DWORD_TO_INT(SHR(fbRPC.ReturnValue2, 24) AND 16#FF);
+RunningMode:=DWORD_TO_INT(SHR(fbRPC.ReturnValue2, 16) AND 16#FF);  
+OperatingMode:=DWORD_TO_INT(SHR(fbRPC.ReturnValue2, 8) AND 16#FF); 
+Running:=DWORD_TO_BOOL(fbRPC.ReturnValue2 AND 16#FF);]]></ST>
+    </Implementation>
+    <LineIds Name="ABBGetStatus">
+      <LineId Id="79" Count="0" />
+      <LineId Id="37" Count="14" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+  <EnumerationTextList Name="ABB_SYNC_FUNCTION_NUMBER" Id="{7f317629-5a00-4b4b-89dd-e77fd98345d9}">
+    <Declaration><![CDATA[{library PUBLIC}
+TYPE ABB_SYNC_FUNCTION_NUMBER :(
+(* Set variable values
+	ParameterW is the new value *)
+	ABB_SYNC_FUNCTION_SET_X:=11,
+	ABB_SYNC_FUNCTION_SET_Y:=12,
+	ABB_SYNC_FUNCTION_SET_Z:=13,
+	ABB_SYNC_FUNCTION_SET_RX:=14,
+	ABB_SYNC_FUNCTION_SET_RY:=15,
+	ABB_SYNC_FUNCTION_SET_RZ:=16,
+
+(* Get variable values *)
+	ABB_SYNC_FUNCTION_GET_X:=21,
+	ABB_SYNC_FUNCTION_GET_Y:=22,
+	ABB_SYNC_FUNCTION_GET_Z:=23,
+	ABB_SYNC_FUNCTION_GET_RX:=24,
+	ABB_SYNC_FUNCTION_GET_RY:=25,
+	ABB_SYNC_FUNCTION_GET_RZ:=26,
+
+(* Set pneumatic valve value
+	ParameterB=1 or 0 *)
+	ABB_SYNC_SET_VALVE1:=31,
+	ABB_SYNC_SET_VALVE2:=32,
+	ABB_SYNC_SET_VALVE3:=33,
+
+	ABB_SYNC_GET_VALVE1:=41,
+	ABB_SYNC_GET_VALVE2:=42,
+	ABB_SYNC_GET_VALVE3:=43,
+
+	ABB_SYNC_READ_DI:=101,
+	ABB_SYNC_WRITE_DO:=102
+
+);
+END_TYPE]]></Declaration>
+    <XmlArchive>
+      <Data>
+        <o xml:space="preserve" t="TextListEnumerationTextListObject">
+          <l n="TextList" t="ArrayList" cet="TextListRow">
+            <o>
+              <v n="TextID">"ABB_SYNC_FUNCTION_SET_X"</v>
+              <v n="TextDefault">"11"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"ABB_SYNC_FUNCTION_SET_Y"</v>
+              <v n="TextDefault">"12"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"ABB_SYNC_FUNCTION_SET_Z"</v>
+              <v n="TextDefault">"13"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"ABB_SYNC_FUNCTION_SET_RX"</v>
+              <v n="TextDefault">"14"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"ABB_SYNC_FUNCTION_SET_RY"</v>
+              <v n="TextDefault">"15"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"ABB_SYNC_FUNCTION_SET_RZ"</v>
+              <v n="TextDefault">"16"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"ABB_SYNC_FUNCTION_GET_X"</v>
+              <v n="TextDefault">"21"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"ABB_SYNC_FUNCTION_GET_Y"</v>
+              <v n="TextDefault">"22"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"ABB_SYNC_FUNCTION_GET_Z"</v>
+              <v n="TextDefault">"23"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"ABB_SYNC_FUNCTION_GET_RX"</v>
+              <v n="TextDefault">"24"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"ABB_SYNC_FUNCTION_GET_RY"</v>
+              <v n="TextDefault">"25"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"ABB_SYNC_FUNCTION_GET_RZ"</v>
+              <v n="TextDefault">"26"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"ABB_SYNC_SET_VALVE1"</v>
+              <v n="TextDefault">"31"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"ABB_SYNC_SET_VALVE2"</v>
+              <v n="TextDefault">"32"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"ABB_SYNC_SET_VALVE3"</v>
+              <v n="TextDefault">"33"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"ABB_SYNC_GET_VALVE1"</v>
+              <v n="TextDefault">"41"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"ABB_SYNC_GET_VALVE2"</v>
+              <v n="TextDefault">"42"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"ABB_SYNC_GET_VALVE3"</v>
+              <v n="TextDefault">"43"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"ABB_SYNC_READ_DI"</v>
+              <v n="TextDefault">"101"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"ABB_SYNC_WRITE_DO"</v>
+              <v n="TextDefault">"102"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">""</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+          </l>
+          <l n="Languages" t="ArrayList" />
+          <v n="GuidInit">{32386aac-bb4c-4106-8196-c75b10c015f8}</v>
+          <v n="GuidReInit">{71d3fa74-abf1-44ec-b804-1bb846fa811f}</v>
+          <v n="GuidExitX">{824bd47a-7e57-4917-90d8-2a2996775e5c}</v>
+        </o>
+      </Data>
+      <TypeList>
+        <Type n="ArrayList">System.Collections.ArrayList</Type>
+        <Type n="Guid">System.Guid</Type>
+        <Type n="String">System.String</Type>
+        <Type n="TextListEnumerationTextListObject">{4b60233c-f940-4beb-b331-82133b520151}</Type>
+        <Type n="TextListRow">{53da1be7-ad25-47c3-b0e8-e26286dad2e0}</Type>
+      </TypeList>
+    </XmlArchive>
+  </EnumerationTextList>
+</TcPlcObject>

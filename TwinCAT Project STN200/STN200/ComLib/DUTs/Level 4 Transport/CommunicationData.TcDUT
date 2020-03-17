@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+  <DUT Name="CommunicationData" Id="{84a1aa35-7832-453f-987d-311d23c89e7a}">
+    <Declaration><![CDATA[{library PUBLIC}
+(*
+This is the data handler for all communications blocks.
+Do not change any values inside the structure instead use existing function blocks to manipulate the data.
+*)
+TYPE CommunicationData :
+STRUCT
+	_Instance: 				BOOL := FALSE;								(*To check that we only have one instance of the communicator function block only one Instance can be true *)
+	_ErrorID:				COM_ERROR_VALUE := COM_ERROR_VALUE.COM_ERR_NO_ERROR;			(* Current error value *)
+	_Error:					BOOL:=FALSE	;								(* True if any error *)
+	_Address:				INT:=-1;									(* Address value for device *)
+
+	_Session:				SessionData;								(* Session data *)
+
+	_ASyncProgress:			INT:=0;										(* Asynchronous function progress *)
+	_ASyncStatus:			StatusInformationData;						(* Asynchronous function call status *)
+	_ASyncStatusCounter:	UDINT:=0;									(* Counter to keep track of number of status calls *)
+
+	_DataCounter:			UDINT:=0;									(* Datagram bytes transfered counter *)
+	_DataExecute:			UDINT:=0;									(* Current datagram BYTE counter (EQ TO _DatatCounter OR <_DataCounter+SIZEOF DataGram) *)
+	_Data:					DataGram;									(* Current datagram values*)
+	_DataAnswer:			DataGram;									(* Datagram answer  *)
+
+	_Status:				DATAGRAM_SEQUENCE := DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_NOP;	(* Current status *)
+
+	_TimeOutDevice:			TIME:=ComGvl.DEVICE_DEFAULT_TIME_OUT;				(* Device time out time *)
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

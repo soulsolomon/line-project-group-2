@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+  <POU Name="ABBIOReadValve" Id="{11b56009-d87c-4ec5-9fb3-b7c9841ab080}" SpecialFunc="None">
+    <Declaration><![CDATA[{library PUBLIC}
+(* Function to read a valve value (open or closed) *)
+FUNCTION_BLOCK ABBIOReadValve
+VAR_INPUT
+	En: 			BOOL:=FALSE;				(* Set to true to start *)
+	Valve:			INT:=0;						(* Valve I/O number *)
+END_VAR
+VAR_OUTPUT
+	Done: 				BOOL:=FALSE;			(* If true, the command is transmitted ok, to reset set En to false *)
+	Executing:			BOOL:=FALSE;			(* True while the command in transmitted *)
+	Waiting:			BOOL:=FALSE;			(* True if the command is queued to be transmitted *)
+	Error: 				BOOL := FALSE;			(* True if an error occured *)
+	Progress:			INT:=0;					(* Function progress *)
+	Value:				BOOL:=FALSE;			(* FALSE=open, TRUE=closed *)
+END_VAR
+VAR_IN_OUT
+	Data: 				CommunicationData;		(* Common data structure to connect this function block to a specific Communicator block *)
+END_VAR
+VAR
+	FunctionType: 		FUNCTION_TYPE;
+	FunctionNumber: 	INT;
+	ParameterDW:	DWORD;
+	ParameterB:		BYTE;
+	Sequence:			INT:=0;
+
+	fbRPC:				RPC1;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[FunctionType:=FUNCTION_TYPE.FUNCTION_TYPE_SYNC_RPC;
+FunctionNumber:=ABB_SYNC_FUNCTION_NUMBER.ABB_SYNC_WRITE_DO;
+ParameterDW:=INT_TO_DWORD(Valve);
+ParameterB:=0;
+
+fbRPC(EN:=En, Data:=Data, FunctionType1:=FunctionType,FunctionNumber1:=FunctionNumber, ParameterDW1:=ParameterDW, ParameterB1:=ParameterB);
+
+Done:=fbRPC.Done;
+Executing:=fbRPC.Executing;
+Waiting:=fbRPC.Waiting;
+Error:=fbRPC.Error;
+Progress:=100*BOOL_TO_INT(Done);
+Value:=BYTE_TO_BOOL(fbRPC.ReturnValue3);
+]]></ST>
+    </Implementation>
+    <LineIds Name="ABBIOReadValve">
+      <LineId Id="36" Count="12" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

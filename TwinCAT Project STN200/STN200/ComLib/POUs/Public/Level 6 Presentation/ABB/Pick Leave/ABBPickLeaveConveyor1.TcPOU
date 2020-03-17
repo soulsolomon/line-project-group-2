@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+  <POU Name="ABBPickLeaveConveyor1" Id="{56b7febc-5ff7-41b0-83c6-117546a0462f}" SpecialFunc="None">
+    <Declaration><![CDATA[{library PUBLIC}
+(* Function to start a pick or leave operation *)
+FUNCTION_BLOCK ABBPickLeaveConveyor1
+VAR_INPUT
+	En: 			BOOL:=FALSE;				(* Set to true to start *)
+	Pick:			BOOL:=TRUE;					(* If true pick operation, if false leave operation *)
+	Position:		INT:=0;						(* Position number not used *)
+END_VAR
+VAR_OUTPUT
+	Done: 				BOOL:=FALSE;			(* If true, the command is transmitted ok, to reset set En to false *)
+	Executing:			BOOL:=FALSE;			(* True while the command in transmitted *)
+	Waiting:			BOOL:=FALSE;			(* True if the command is queued to be transmitted *)
+	Error: 				BOOL := FALSE;			(* True if an error occured *)
+	Progress:			INT:=0;					(* Function progress *)
+END_VAR
+VAR_IN_OUT
+	Data: 				CommunicationData;		(* Common data structure to connect this function block to a specific Communicator block *)
+END_VAR
+VAR
+	FunctionType: 		FUNCTION_TYPE;
+	FunctionNumber: 	INT;
+	ParameterDW:		DWORD;
+	ParameterB:			BYTE;
+	Sequence:			INT:=0;
+
+	fbRPC:				ASyncRPC;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+FunctionType:=FUNCTION_TYPE.FUNCTION_TYPE_ASYNC_RPC;
+FunctionNumber:=ABB_ASYNC_FUNCTION_PL_CONVEYOR_1;
+ParameterDW:=INT_TO_DWORD(Position);
+ParameterB:=BOOL_TO_BYTE(Pick);
+
+fbRPC(EN:=En, Data:=Data, FunctionType:=FunctionType,FunctionNumber:=FunctionNumber, ParameterDW:=ParameterDW, ParameterB:=ParameterB);
+
+Done:=fbRPC.Done;
+Executing:=fbRPC.Executing;
+Waiting:=fbRPC.Waiting;
+Error:=fbRPC.Error OR (fbRPC.Done AND fbRPC.ReturnValue<0);
+Progress:=fbRPC.Progress;
+]]></ST>
+    </Implementation>
+    <LineIds Name="ABBPickLeaveConveyor1">
+      <LineId Id="74" Count="0" />
+      <LineId Id="36" Count="11" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

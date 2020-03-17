@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+  <POU Name="GantryPick" Id="{4ceda01f-ebe6-4a56-9474-3b3d4a797808}" SpecialFunc="None">
+    <Declaration><![CDATA[{library PUBLIC}
+(* Function to pick a pallet from a specific station and position. *)
+FUNCTION_BLOCK GantryPick
+VAR_INPUT
+	En: 				BOOL:=FALSE;			(* Set to true to start *)
+	PickStation:		StationType;			(* Station number 1-4 to pick from *)
+	PickPosition:		PositionType;			(* Position number 1-9 to pick from *)
+END_VAR
+VAR_OUTPUT
+	Done: 				BOOL:=FALSE;			(* If true, the command is transmitted ok, to reset set En to false *)
+	Executing:			BOOL:=FALSE;			(* True while the command in transmitted *)
+	Waiting:			BOOL:=FALSE;			(* True if the command is queued to be transmitted *)
+	Error: 				BOOL := FALSE;			(* True if an error occured *)
+	Progress:			INT:=0;					(* Function progress *)
+END_VAR
+VAR_IN_OUT
+	Data: 				CommunicationData;		(* Common data structure to connect this function block to a specific Communicator block *)
+END_VAR
+VAR
+	FunctionType: 		FUNCTION_TYPE;
+	FunctionNumber: 	INT;
+	ParameterDW:	DWORD;
+	ParameterB:		BYTE;
+	ParametersOK:	BOOL;
+
+	fbRPC:				ASyncRPC;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+FunctionType:=FUNCTION_TYPE.FUNCTION_TYPE_ASYNC_RPC;
+FunctionNumber:=GANTRY_ASYNC_FUNCTION_NUMBER.GANTRY_ASYNC_FUNCTION_PL;
+ParameterDW:=0;
+ParameterB:=0;
+ParametersOK:=FALSE;
+
+IF En THEN
+	IF PickStation<=4 AND PickStation>=1 THEN
+		IF PickPosition<=9 AND PickPosition>=1 THEN
+			ParametersOK:=TRUE;
+			ParameterDW:=INT_TO_DWORD((PickStation*1000+PickPosition*100) + (0*10+0));
+		END_IF
+	END_IF
+END_IF
+
+fbRPC(EN:=En AND ParametersOK, Data:=Data, FunctionType:=FunctionType,FunctionNumber:=FunctionNumber, ParameterDW:=ParameterDW, ParameterB:=ParameterB);
+
+Done:=fbRPC.Done;
+Executing:=fbRPC.Executing;
+Waiting:=fbRPC.Waiting;
+Error:=fbRPC.Error OR (fbRPC.Done AND fbRPC.ReturnValue<0) OR NOT ParametersOK;
+Progress:=fbRPC.Progress;
+]]></ST>
+    </Implementation>
+    <LineIds Name="GantryPick">
+      <LineId Id="85" Count="0" />
+      <LineId Id="36" Count="21" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

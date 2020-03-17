@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+  <POU Name="RPC2" Id="{9e801605-8df7-45c9-9eba-e29f8dd873b4}" SpecialFunc="None">
+    <Declaration><![CDATA[{library PUBLIC}
+(*
+RPC2 will handle RPC calls with 2 parameters.
+A session will be established to the specific equipment during the function call and when a return value exist (or error) the session is ended.
+Note, if FunctionType is set to ASync, RPC will only start a function and not wait for the function to end.
+
+It is possible to queue many calls by cascade coupled blocks in serie or parallel.
+By using the Done output signal as input to En on another function blockit is possible to serialise calls.
+
+*)
+FUNCTION_BLOCK RPC2
+VAR_INPUT
+	En: 				BOOL:=FALSE;			(* Set to true to call a  RPC 1 parameter function *)
+	FunctionType1:	FUNCTION_TYPE:=FUNCTION_TYPE.FUNCTION_TYPE_SYNC_RPC;		(* Function type 1 must be of type SYNC *)
+	FunctionNumber1:INT;						(* RPC function number 1 *)
+	ParameterDW1:	DWORD;					(* DWORD parameter value 1 *)
+	ParameterB1:		BYTE;						(* Byte parameter value 1 *)
+	FunctionType2:	FUNCTION_TYPE:=FUNCTION_TYPE.FUNCTION_TYPE_SYNC_RPC;		(*Function type 2 must be of type SYNC *)
+	FunctionNumber2:INT;						(* RPC function number 2 *)
+	ParameterDW2:	DWORD;					(* DWORD parameter value 2 *)
+	ParameterB2:		BYTE;						(* Byte parameter value 2 *)
+END_VAR
+VAR_OUTPUT
+	Done: 				BOOL:=FALSE;			(* If true, the command is transmitted ok, to reset set En to false *)
+	Executing:			BOOL:=FALSE;			(* True while the command in transmitted *)
+	Waiting:			BOOL:=FALSE;			(* True if the command is queued to be transmitted *)
+	Error: 				BOOL := FALSE;			(* True if an communication error occured *)
+	ReturnValue1:		FUNCTION_TYPE;		(* Return value *)
+	ReturnValue2:		DWORD;					(* DWORD return value *)
+	ReturnValue3:		BYTE;						(* BYTE return value *)
+END_VAR
+VAR_IN_OUT
+	Data: 				CommunicationData;		(* Common data structure to connect this function block to a specific Communicator block *)
+END_VAR
+VAR
+	fbSessionInit: 		SessionInit;
+	fbSessionSend1: 	SessionSend;
+	fbSessionSend2: 	SessionSend;
+	fbSessionEnd: 	SessionEnd;
+	Memory: 			BOOL := FALSE;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[fbSessionInit(En:=En, Data:=Data);
+fbSessionSend1(En:=fbSessionInit.Done, SessionID:=fbSessionInit.SessionID, Data:=Data,
+					FunctionType:=INT_TO_BYTE(FunctionType1), FunctionNumber:=INT_TO_BYTE(FunctionNumber1),
+ 					ParameterDW:=ParameterDW1, ParameterB:=ParameterB1);
+
+fbSessionSend2(En:=fbSessionInit.Done, SessionID:=fbSessionInit.SessionID, Data:=Data,
+					FunctionType:=INT_TO_BYTE(FunctionType2), FunctionNumber:=INT_TO_BYTE(FunctionNumber2),
+					ParameterDW:=ParameterDW2, ParameterB:=ParameterB2);
+
+fbSessionEnd(En:=fbSessionSend2.Done, Data:=Data);
+
+Done:=fbSessionSend2.Done;
+Executing:=fbSessionSend1.Executing OR fbSessionSend1.Executing;
+Waiting:=fbSessionSend1.Waiting;
+Error:=fbSessionSend1.Error OR fbSessionSend2.Error;
+
+
+IF fbSessionSend2.Done AND NOT Memory THEN
+	Memory:=TRUE;
+	ReturnValue1:=fbSessionSend2.Answer.FunctionType;
+	ReturnValue2:=fbSessionSend2.Answer.ParameterDW;
+	ReturnValue3:=fbSessionSend2.Answer.ParameterB;
+ELSIF NOT En THEN
+	ReturnValue1:=FUNCTION_TYPE.FUNCTION_TYPE_ERROR_NO_FUNCTION;
+	Memory:=FALSE;
+ELSE
+	Memory:=FALSE;
+	ReturnValue1:=FUNCTION_TYPE.FUNCTION_TYPE_ERROR_BUSY;
+END_IF;
+]]></ST>
+    </Implementation>
+    <LineIds Name="RPC2">
+      <LineId Id="50" Count="19" />
+      <LineId Id="119" Count="0" />
+      <LineId Id="71" Count="7" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

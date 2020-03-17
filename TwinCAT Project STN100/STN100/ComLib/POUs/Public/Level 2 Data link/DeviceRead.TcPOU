@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <POU Name="DeviceRead" Id="{97ca960f-918b-47a7-8501-0db265017ab1}" SpecialFunc="None">
+    <Declaration><![CDATA[{library PUBLIC}
+(*
+  Function to read a word from a specific device defined by Instance number.
+  The Instance must be open (DeviceOpen or DeviceUse) before you can use DeviceRead. 
+*)
+FUNCTION_BLOCK DeviceRead
+VAR_INPUT
+	En: 					BOOL;				(* Enable signal *)
+	Instance: 				INT;				(* Instance is an address, use the function ToAddress() to convert station and device number to a valid address. *)
+	Channel:				INT:=0;				(* Only used ff the device at the address has several channels. *)
+	TimeOut:				TIME:=ComGVL.DEVICE_DEFAULT_TIME_OUT; (* Time out time to be used during read, default value is DEVICE_DEFAULT_TIME_OUT *)
+END_VAR
+VAR_OUTPUT
+	Done:					BOOL:=FALSE;		(* If true, a data word was read ok, to reset set En to false *)
+	Busy: 					BOOL:=FALSE;		(* Busy is true if the block is communicating with target, otherwise false. *)
+	Error: 					BOOL:=FALSE;		(* True if any error, to reset error set En to low and then back to high*)
+	ErrorID: 				COM_ERROR_VALUE:=COM_ERROR_VALUE.COM_ERR_NO_ERROR;	(* The error number, if no error the output is equal to COM_ERR_NO_ERROR i.e., 0 *)
+	Data:	 				WORD;				(* The word read from the device *)
+	Sequence:				DEVICE_SEQUENCE;	(* Main Sequence for the function block. This output signal can be used for debug purposes. *)
+	ErrorStep:				DEVICE_SEQUENCE;	(* Error step to help debug to where the error was. *)
+END_VAR
+VAR
+	InstanceStatus:		INSTANCE_STATUS;
+	fbTON_TimeOut: 		TON;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* Check Instance status *)
+InstanceStatus:=_GetInstance(Instance);
+CASE InstanceStatus OF
+	INSTANCE_STATUS.INSTANCE_STATUS_CANCEL:
+		IF Sequence<> DEVICE_SEQUENCE.DEVICE_SEQUENCE_NOP AND Sequence<> DEVICE_SEQUENCE.DEVICE_SEQUENCE_TIME_OUT THEN
+			Error:=TRUE;
+			ErrorID:=COM_ERROR_VALUE.COM_ERR_CANCEL;
+			Sequence:=DEVICE_SEQUENCE.DEVICE_SEQUENCE_CANCEL;
+			_SetInstance(Instance, INSTANCE_STATUS.INSTANCE_STATUS_READY);
+		END_IF;
+
+ 	INSTANCE_STATUS.INSTANCE_STATUS_FREE:									(* Device not allocated *)
+		ErrorID:=COM_ERROR_VALUE.COM_ERR_NOT_ALLOCATED;
+		Error:=TRUE;
+		Busy:=FALSE;
+		Done:=FALSE;
+		Sequence:=DEVICE_SEQUENCE.DEVICE_SEQUENCE_NOP;
+		RETURN;
+
+	INSTANCE_STATUS.INSTANCE_STATUS_UNKNOWN:
+		ErrorID:=COM_ERROR_VALUE.COM_ERR_LEVEL1;
+		Error:=TRUE;
+		Busy:=FALSE;
+		Done:=FALSE;
+		Sequence:=DEVICE_SEQUENCE.DEVICE_SEQUENCE_NOP;
+		RETURN;
+END_CASE;
+
+(* Check if time out *)
+IF fbTON_TimeOut.Q THEN
+	NodeWriteStrobe(Instance, FALSE);
+	NodeWriteWord(Instance, 0, 0);
+	ErrorStep:=Sequence;
+	Sequence:=DEVICE_SEQUENCE.DEVICE_SEQUENCE_TIME_OUT;
+END_IF;
+
+(* Main sequence *)
+IF En THEN
+	CASE Sequence OF
+		DEVICE_SEQUENCE.DEVICE_SEQUENCE_TIME_OUT: (* -1, Error time out *)
+			_SetInstance(Instance, INSTANCE_STATUS.INSTANCE_STATUS_READY);
+			Busy:=FALSE;
+			Done:=FALSE;
+			Error:=TRUE;
+			ErrorID:=COM_ERROR_VALUE .COM_ERR_NO_ERROR;
+			fbTON_TimeOut(IN:=FALSE);
+
+		DEVICE_SEQUENCE.DEVICE_SEQUENCE_CANCEL:
+			Busy:=FALSE;
+			Done:=FALSE;
+			Error:=TRUE;
+			ErrorID:=COM_ERROR_VALUE.COM_ERR_CANCEL;
+			NodeWriteStrobe(Instance, FALSE);
+			NodeWriteWord(Instance, 0, 0);
+
+		DEVICE_SEQUENCE.DEVICE_SEQUENCE_ERROR: (* -3, Error during send/receive or GetStatus  *)
+			_SetInstance(Instance, INSTANCE_STATUS.INSTANCE_STATUS_READY);
+			Busy:=FALSE;
+			Done:=FALSE;
+			Error:=TRUE;
+			ErrorID:=COM_ERROR_VALUE.COM_ERR_LEVEL2_ERROR;
+			fbTON_TimeOut(IN:=FALSE);
+
+		DEVICE_SEQUENCE.DEVICE_SEQUENCE_NOP:
+			ErrorId:=COM_ERROR_VALUE.COM_ERR_NO_ERROR;
+			Error:=FALSE;
+			IF NOT Done AND NOT Busy THEN
+				IF InstanceStatus=INSTANCE_STATUS.INSTANCE_STATUS_READY THEN
+					IF _SetInstance(Instance, INSTANCE_STATUS.INSTANCE_STATUS_BUSY) THEN
+						Busy:=TRUE;
+						Sequence:=DEVICE_SEQUENCE.DEVICE_SEQUENCE_INIT;
+					END_IF;
+				END_IF;
+			END_IF;
+
+		DEVICE_SEQUENCE.DEVICE_SEQUENCE_INIT: (* Init *)
+			IF NOT NodeGetStatus(Instance) THEN
+				ErrorStep:=Sequence;
+				Sequence:=Sequence:=DEVICE_SEQUENCE.DEVICE_SEQUENCE_ERROR;
+			ELSE
+				Sequence:=DEVICE_SEQUENCE.DEVICE_SEQUENCE_WAIT_FOR_DEVICE_READY;
+				NodeWriteStrobe(Instance, FALSE);
+				NodeWriteWord(Instance, 0, 0);
+			END_IF;
+
+		DEVICE_SEQUENCE.DEVICE_SEQUENCE_WAIT_FOR_DEVICE_READY: (* Init of wait function *)
+			fbTON_TimeOut(IN:=FALSE);
+			Sequence:=DEVICE_SEQUENCE.DEVICE_SEQUENCE_WAIT_FOR_STROBE_LOW;
+
+		DEVICE_SEQUENCE.DEVICE_SEQUENCE_WAIT_FOR_STROBE_LOW:
+			Sequence:=DEVICE_SEQUENCE.DEVICE_SEQUENCE_PREPARE_SEND_RECEIVE;
+
+		DEVICE_SEQUENCE.DEVICE_SEQUENCE_PREPARE_SEND_RECEIVE:
+			fbTON_TimeOut(IN:=FALSE);
+			Sequence:=DEVICE_SEQUENCE.DEVICE_SEQUENCE_STROBE_HIGH;
+
+		DEVICE_SEQUENCE.DEVICE_SEQUENCE_STROBE_HIGH: (*Wait for strobe high or time out *)
+			fbTON_TimeOut(IN:=TRUE, PT:=TimeOut);
+
+			IF NodeReadStrobe(Instance) THEN
+				Sequence:=DEVICE_SEQUENCE.DEVICE_SEQUENCE_SEND_RECEIVE;
+				fbTON_TimeOut(IN:=FALSE);
+			END_IF;
+
+		DEVICE_SEQUENCE.DEVICE_SEQUENCE_SEND_RECEIVE:
+			Data:=NodeReadWord(Instance, 0);
+			NodeWriteWord(Instance, 0, Data);
+  			Sequence:=DEVICE_SEQUENCE.DEVICE_SEQUENCE_ACK;
+
+		DEVICE_SEQUENCE.DEVICE_SEQUENCE_ACK:
+			NodeWriteStrobe(Instance, TRUE);
+			Sequence:=DEVICE_SEQUENCE.DEVICE_SEQUENCE_WAIT_FOR_ANSWER;
+			fbTON_TimeOut(IN:=FALSE);
+
+		DEVICE_SEQUENCE.DEVICE_SEQUENCE_WAIT_FOR_ANSWER:
+			fbTON_TimeOut(IN:=TRUE, PT:=TimeOut);
+			IF NOT NodeReadStrobe(Instance) THEN
+				NodeWriteStrobe(Instance, FALSE);
+
+				fbTON_TimeOut(IN:=FALSE);
+				Sequence:=DEVICE_SEQUENCE.DEVICE_SEQUENCE_SET_LOW;
+			END_IF;
+
+		DEVICE_SEQUENCE.DEVICE_SEQUENCE_SET_LOW:
+			NodeWriteWord(Instance, 0, 0);
+
+			_SetInstance(Instance, INSTANCE_STATUS.INSTANCE_STATUS_READY);
+			Busy:=FALSE;
+			Sequence:=DEVICE_SEQUENCE.DEVICE_SEQUENCE_READY;
+
+		DEVICE_SEQUENCE.DEVICE_SEQUENCE_READY:
+			Done:=TRUE;
+			(* Wait in this step until En=false *)
+
+	END_CASE;
+ELSE      (* En *)
+	IF Busy THEN
+		_SetInstance(Instance, INSTANCE_STATUS.INSTANCE_STATUS_READY);
+	END_IF;
+
+	Busy:=FALSE;
+	Done:=FALSE;
+	Error:=FALSE;
+	ErrorId:=COM_ERROR_VALUE.COM_ERR_NOT_ENABLED;
+	Sequence:=DEVICE_SEQUENCE.DEVICE_SEQUENCE_NOP;
+END_IF; (* En *)
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="DeviceRead">
+      <LineId Id="34" Count="146" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

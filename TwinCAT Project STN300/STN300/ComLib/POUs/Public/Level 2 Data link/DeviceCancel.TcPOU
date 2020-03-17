@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+  <POU Name="DeviceCancel" Id="{912d37a3-1c46-44e3-88af-0a760b61ffb3}" SpecialFunc="None">
+    <Declaration><![CDATA[{library PUBLIC}
+(* Use this function to cancel an ongoing communication action to a specific device defined by Instance *)
+FUNCTION_BLOCK DeviceCancel
+VAR_INPUT
+	En:						BOOL;		(* Enable signal *)
+	Instance: 				INT;		(* Instance is an aAddress, use the function ToAddress() to convert station and device number to a valid address. *)
+END_VAR
+VAR_OUTPUT
+	Done: 					BOOL;		(* True if En is true *)
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF En THEN
+	IF _GetInstance(Instance)=INSTANCE_STATUS.INSTANCE_STATUS_BUSY THEN
+		_SetInstance(Instance, INSTANCE_STATUS.INSTANCE_STATUS_CANCEL);
+	END_IF;
+
+	Done:=TRUE;
+
+ELSE
+	Done:=FALSE;
+END_IF;
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="DeviceCancel">
+      <LineId Id="19" Count="10" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

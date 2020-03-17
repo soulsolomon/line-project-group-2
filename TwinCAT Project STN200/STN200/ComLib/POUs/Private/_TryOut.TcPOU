@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+  <POU Name="_TryOut" Id="{bc4debaf-97de-41c3-b0b9-40aee4dbc1e5}" SpecialFunc="None">
+    <Declaration><![CDATA[{library PRIVATE}
+FUNCTION_BLOCK _TryOut
+VAR_INPUT
+	Enable: BOOL;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	ABBStatusRestart:		INT:=1;
+	
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[ComGVL._fbTryOutShowABB:=FALSE;
+ComGVL._fbTryOutShowGantry:=FALSE;
+
+ComGVL._fbTryOutCommunicator(En:=ComGVL._mxTryOutEnable, Address:=ComGVL._miAddressNumber[ComGVL._miAddressIndex], Data:=ComGVL._msTryOutData);
+
+CASE  ComGVL._glAddressSelectionIndex OF
+1,2,3,4:
+	ComGVL._fbTryOutShowABB:=TRUE;
+
+	ComGVL._fbTryOutABBGetStatus(En:=ComGVL._fbTryOutABBGoToHomeEn, Data:=ComGVL._msTryOutData);
+	IF ComGVL._fbTryOutABBGetStatus.Done THEN
+		ComGVL._fbTryOutABBRunMode:=ComGVL._fbTryOutABBGetStatus.RunningMode;
+		ComGVL._fbTryOutABBOpMode:=ComGVL._fbTryOutABBGetStatus.OperatingMode;
+		ABBStatusRestart:=ABBStatusRestart+1;
+		IF ABBStatusRestart=4 THEN
+			ABBStatusRestart:=1;
+			ComGVL._fbTryOutABBGetStatus(En:=FALSE, Data:=ComGVL._msTryOutData);
+		END_IF;
+	END_IF;
+
+	(* GoTo *)
+	ComGVL._fbTryOutABBGoToHome(En:=ComGVL._fbTryOutABBGoToHomeEn, Data:=ComGVL._msTryOutData);
+	IF ComGVL._fbTryOutABBGoToHome.En THEN
+		ComGVL._fbTryOutDone:=ComGVL._fbTryOutABBGoToHome.Done;
+		ComGVL._fbTryOutExecuting:=ComGVL._fbTryOutABBGoToHome.Executing;
+		ComGVL._fbTryOutWaiting:=ComGVL._fbTryOutABBGoToHome.Waiting;
+		ComGVL._fbTryOutError:=ComGVL._fbTryOutABBGoToHome.Error;
+		ComGVL._fbTryOutProgress:=ComGVL._fbTryOutABBGoToHome.Progress;
+	END_IF;
+	
+	ComGVL._fbTryOutABBGoToSensor(En:=ComGVL._fbTryOutABBGoToSensorEn, Data:=ComGVL._msTryOutData);
+	IF ComGVL._fbTryOutABBGoToSensor.En THEN
+		ComGVL._fbTryOutDone:=ComGVL._fbTryOutABBGoToSensor.Done;
+		ComGVL._fbTryOutExecuting:=ComGVL._fbTryOutABBGoToSensor.Executing;
+		ComGVL._fbTryOutWaiting:=ComGVL._fbTryOutABBGoToSensor.Waiting;
+		ComGVL._fbTryOutError:=ComGVL._fbTryOutABBGoToSensor.Error;
+		ComGVL._fbTryOutProgress:=ComGVL._fbTryOutABBGoToSensor.Progress;
+	END_IF;
+	
+	ComGVL._fbTryOutABBGoToStorage(En:=ComGVL._fbTryOutABBGoToStorageEn, Data:=ComGVL._msTryOutData);
+	IF ComGVL._fbTryOutABBGoToStorage.En THEN
+		ComGVL._fbTryOutDone:=ComGVL._fbTryOutABBGoToStorage.Done;
+		ComGVL._fbTryOutExecuting:=ComGVL._fbTryOutABBGoToStorage.Executing;
+		ComGVL._fbTryOutWaiting:=ComGVL._fbTryOutABBGoToStorage.Waiting;
+		ComGVL._fbTryOutError:=ComGVL._fbTryOutABBGoToStorage.Error;
+		ComGVL._fbTryOutProgress:=ComGVL._fbTryOutABBGoToStorage.Progress;
+	END_IF;
+	
+	ComGVL._fbTryOutABBGoToTable(En:=ComGVL._fbTryOutABBGoToTableEn, Data:=ComGVL._msTryOutData);
+	IF ComGVL._fbTryOutABBGoToTable.En THEN
+		ComGVL._fbTryOutDone:=ComGVL._fbTryOutABBGoToTable.Done;
+		ComGVL._fbTryOutExecuting:=ComGVL._fbTryOutABBGoToTable.Executing;
+		ComGVL._fbTryOutWaiting:=ComGVL._fbTryOutABBGoToTable.Waiting;
+		ComGVL._fbTryOutError:=ComGVL._fbTryOutABBGoToTable.Error;
+		ComGVL._fbTryOutProgress:=ComGVL._fbTryOutABBGoToTable.Progress;
+	END_IF;
+
+	ComGVL._fbTryOutABBGoToConveyor1(En:=ComGVL._fbTryOutABBGoToConveyor1En, Data:=ComGVL._msTryOutData);
+	IF ComGVL._fbTryOutABBGoToConveyor1.En THEN
+		ComGVL._fbTryOutDone:=ComGVL._fbTryOutABBGoToConveyor1.Done;
+		ComGVL._fbTryOutExecuting:=ComGVL._fbTryOutABBGoToConveyor1.Executing;
+		ComGVL._fbTryOutWaiting:=ComGVL._fbTryOutABBGoToConveyor1.Waiting;
+		ComGVL._fbTryOutError:=ComGVL._fbTryOutABBGoToConveyor1.Error;
+		ComGVL._fbTryOutProgress:=ComGVL._fbTryOutABBGoToConveyor1.Progress;
+	END_IF;
+	
+	ComGVL._fbTryOutABBGoToConveyor2(En:=ComGVL._fbTryOutABBGoToConveyor2En, Data:=ComGVL._msTryOutData);
+	IF ComGVL._fbTryOutABBGoToConveyor2.En THEN
+		ComGVL._fbTryOutDone:=ComGVL._fbTryOutABBGoToConveyor2.Done;
+		ComGVL._fbTryOutExecuting:=ComGVL._fbTryOutABBGoToConveyor2.Executing;
+		ComGVL._fbTryOutWaiting:=ComGVL._fbTryOutABBGoToConveyor2.Waiting;
+		ComGVL._fbTryOutError:=ComGVL._fbTryOutABBGoToConveyor2.Error;
+		ComGVL._fbTryOutProgress:=ComGVL._fbTryOutABBGoToConveyor2.Progress;
+	END_IF;
+	
+	(* Pick Leave *)
+	ComGVL._fbTryOutABBPickLeaveSensor(En:=ComGVL._fbTryOutABBPickLeaveSensorEn, Data:=ComGVL._msTryOutData, Pick:=ComGVL._fbTryOutABBPSensor);
+	IF ComGVL._fbTryOutABBPickLeaveSensor.En THEN
+		ComGVL._fbTryOutDone:=ComGVL._fbTryOutABBPickLeaveSensor.Done;
+		ComGVL._fbTryOutExecuting:=ComGVL._fbTryOutABBPickLeaveSensor.Executing;
+		ComGVL._fbTryOutWaiting:=ComGVL._fbTryOutABBPickLeaveSensor.Waiting;
+		ComGVL._fbTryOutError:=ComGVL._fbTryOutABBPickLeaveSensor.Error;
+		ComGVL._fbTryOutProgress:=ComGVL._fbTryOutABBPickLeaveSensor.Progress;
+	END_IF;
+	
+	ComGVL._fbTryOutABBPickLeaveStorage(En:=ComGVL._fbTryOutABBPickLeaveStorageEn, Data:=ComGVL._msTryOutData, Pick:=ComGVL._fbTryOutABBPStorage, Position:=ComGVL._fbTryOutABBPStoragePos);
+	IF ComGVL._fbTryOutABBPickLeaveStorage.En THEN
+		ComGVL._fbTryOutDone:=ComGVL._fbTryOutABBPickLeaveStorage.Done;
+		ComGVL._fbTryOutExecuting:=ComGVL._fbTryOutABBPickLeaveStorage.Executing;
+		ComGVL._fbTryOutWaiting:=ComGVL._fbTryOutABBPickLeaveStorage.Waiting;
+		ComGVL._fbTryOutError:=ComGVL._fbTryOutABBPickLeaveStorage.Error;
+		ComGVL._fbTryOutProgress:=ComGVL._fbTryOutABBPickLeaveStorage.Progress;
+	END_IF;
+	
+	ComGVL._fbTryOutABBPickLeaveTable(En:=ComGVL._fbTryOutABBPickLeaveTableEn, Data:=ComGVL._msTryOutData, Pick:=ComGVL._fbTryOutABBPTable, Position:=ComGVL._fbTryOutABBPTablePos);
+	IF ComGVL._fbTryOutABBPickLeaveTable.En THEN
+		ComGVL._fbTryOutDone:=ComGVL._fbTryOutABBPickLeaveTable.Done;
+		ComGVL._fbTryOutExecuting:=ComGVL._fbTryOutABBPickLeaveTable.Executing;
+		ComGVL._fbTryOutWaiting:=ComGVL._fbTryOutABBPickLeaveTable.Waiting;
+		ComGVL._fbTryOutError:=ComGVL._fbTryOutABBPickLeaveTable.Error;
+		ComGVL._fbTryOutProgress:=ComGVL._fbTryOutABBPickLeaveTable.Progress;
+	END_IF;
+	
+	ComGVL._fbTryOutABBPickLeaveTable(En:=ComGVL._fbTryOutABBPickLeaveTableEn, Data:=ComGVL._msTryOutData, Pick:=ComGVL._fbTryOutABBPTable, Position:=ComGVL._fbTryOutABBPTablePos);
+	IF ComGVL._fbTryOutABBPickLeaveTable.En THEN
+		ComGVL._fbTryOutDone:=ComGVL._fbTryOutABBPickLeaveTable.Done;
+		ComGVL._fbTryOutExecuting:=ComGVL._fbTryOutABBPickLeaveTable.Executing;
+		ComGVL._fbTryOutWaiting:=ComGVL._fbTryOutABBPickLeaveTable.Waiting;
+		ComGVL._fbTryOutError:=ComGVL._fbTryOutABBPickLeaveTable.Error;
+		ComGVL._fbTryOutProgress:=ComGVL._fbTryOutABBPickLeaveTable.Progress;
+	END_IF;
+	
+	ComGVL._fbTryOutABBPickLeaveConveyor1(En:=ComGVL._fbTryOutABBPickLeaveConveyor1En, Data:=ComGVL._msTryOutData, Pick:=ComGVL._fbTryOutABBPConveyor1);
+	IF ComGVL._fbTryOutABBPickLeaveConveyor1.En THEN
+		ComGVL._fbTryOutDone:=ComGVL._fbTryOutABBPickLeaveConveyor1.Done;
+		ComGVL._fbTryOutExecuting:=ComGVL._fbTryOutABBPickLeaveConveyor1.Executing;
+		ComGVL._fbTryOutWaiting:=ComGVL._fbTryOutABBPickLeaveConveyor1.Waiting;
+		ComGVL._fbTryOutError:=ComGVL._fbTryOutABBPickLeaveConveyor1.Error;
+		ComGVL._fbTryOutProgress:=ComGVL._fbTryOutABBPickLeaveConveyor1.Progress;
+	END_IF;
+	
+	ComGVL._fbTryOutABBPickLeaveConveyor2(En:=ComGVL._fbTryOutABBPickLeaveConveyor2En, Data:=ComGVL._msTryOutData, Pick:=ComGVL._fbTryOutABBPConveyor2);
+	IF ComGVL._fbTryOutABBPickLeaveConveyor2.En THEN
+		ComGVL._fbTryOutDone:=ComGVL._fbTryOutABBPickLeaveConveyor2.Done;
+		ComGVL._fbTryOutExecuting:=ComGVL._fbTryOutABBPickLeaveConveyor2.Executing;
+		ComGVL._fbTryOutWaiting:=ComGVL._fbTryOutABBPickLeaveConveyor2.Waiting;
+		ComGVL._fbTryOutError:=ComGVL._fbTryOutABBPickLeaveConveyor2.Error;
+		ComGVL._fbTryOutProgress:=ComGVL._fbTryOutABBPickLeaveConveyor2.Progress;
+	END_IF;
+
+5:
+	ComGVL._fbTryOutShowGantry:=TRUE;
+
+	ComGVL._fbTryOutGantryPick(En:=ComGVL._fbTryOutGantryPickEn, Data:=ComGVL._msTryOutData, PickStation:=ComGVL._fbTryOutGantryPickStation, PickPosition:=ComGVL._fbTryOutGantryPickPos);
+	IF ComGVL._fbTryOutGantryPick.En THEN
+		ComGVL._fbTryOutDone:=ComGVL._fbTryOutGantryPick.Done;
+		ComGVL._fbTryOutExecuting:=ComGVL._fbTryOutGantryPick.Executing;
+		ComGVL._fbTryOutWaiting:=ComGVL._fbTryOutGantryPick.Waiting;
+		ComGVL._fbTryOutError:=ComGVL._fbTryOutGantryPick.Error;
+		ComGVL._fbTryOutProgress:=ComGVL._fbTryOutGantryPick.Progress;
+	END_IF;
+
+	ComGVL._fbTryOutGantryLeave(En:=ComGVL._fbTryOutGantryLeaveEn, Data:=ComGVL._msTryOutData, LeaveStation:=ComGVL._fbTryOutGantryLeaveStation, LeavePosition:=ComGVL._fbTryOutGantryLeavePos);
+	IF ComGVL._fbTryOutGantryLeave.En THEN
+		ComGVL._fbTryOutDone:=ComGVL._fbTryOutGantryLeave.Done;
+		ComGVL._fbTryOutExecuting:=ComGVL._fbTryOutGantryLeave.Executing;
+		ComGVL._fbTryOutWaiting:=ComGVL._fbTryOutGantryLeave.Waiting;
+		ComGVL._fbTryOutError:=ComGVL._fbTryOutGantryLeave.Error;
+		ComGVL._fbTryOutProgress:=ComGVL._fbTryOutGantryLeave.Progress;
+	END_IF;
+
+END_CASE
+
+ComGVL._fbTryOutGetStatus(En:=TRUE, Data:=ComGVL._msTryOutData);
+ComGVL._fbTryOutGetStatusRunning:=ComGVL._fbTryOutGetStatus.Running;
+ComGVL._fbTryOutGetStatusProgress:=ComGVL._fbTryOutGetStatus.Progress;
+ComGVL._fbTryOutGetStatusProgramNumber:=ComGVL._fbTryOutGetStatus.ProgramNumber;
+ComGVL._fbTryOutGetStatusHeartBeat:=ComGVL._fbTryOutGetStatus.HeartBeat;
+ComGVL._fbTryOutGetStatusError:=ComGVL._fbTryOutGetStatus.Error;]]></ST>
+    </Implementation>
+    <LineIds Name="_TryOut">
+      <LineId Id="19" Count="157" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

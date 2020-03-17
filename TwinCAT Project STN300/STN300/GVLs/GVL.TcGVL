@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <GVL Name="GVL" Id="{8e091024-94ab-4415-b411-9d7923a4085e}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	
+	//OPC-UA Communication to STN500 (the crane)
+	{attribute 'OPC.UA.DA' := '1'}
+	iToSTN500FromSTN300 : ARRAY[1..8] OF INT; (* To STN500 *)
+	
+	{attribute 'OPC.UA.DA' := '1'}
+	iFromSTN500ToSTN300 : ARRAY[1..8] OF INT; (* From STN500 *)
+
+	
+	//Inputs from the sensors in controlstation
+	ixControlStnBit1 AT %I* : BOOL;	
+	ixControlStnBit2 AT %I* : BOOL;
+	ixControlStnBit4 AT %I* : BOOL;
+	ixControlStnBit8 AT %I* : BOOL;
+	
+	
+	(* Gates and emergency stop, status signal *)
+	ixLightBeamAndGatesClosed 	AT %I* : BOOL;
+	ixEmergencyStopActivated 	AT %I* : BOOL;
+	
+	
+	(* Light staple *)
+	qxLampRed 		AT %Q*: BOOL;
+	qxLampYellow 	AT %Q*: BOOL;
+	qxLampGreen 	AT %Q*: BOOL;
+	
+	
+
+	
+	
+	
+	
+
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

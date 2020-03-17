@@ -1,0 +1,399 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+  <POU Name="Communicator" Id="{65ecc42f-9cc3-47b4-a0bc-e1aad7787771}" SpecialFunc="None">
+    <Declaration><![CDATA[{library PUBLIC}
+(* Communication interface on level 4 to be used as a single access point to communicate with external equipment (device).
+    Note, that you must make one and only one instance per address (device) of this block. This block instance 
+    coordinates all communication actions from all POUs to a specific device.
+
+   The Data input must be connected to a common variable of the type CommunicationData. 
+   The Data variable must then be used together with all function blocks that want to communicate with
+   the specified equipment. It is possible to use function blocks on level 4-6 together with the communicator.
+  However, note that it is not possible to utilize function blocks on level 1-3 together with the communicator.
+*)
+FUNCTION_BLOCK Communicator
+VAR_INPUT
+	En: 				BOOL:=TRUE;						(* Enable signal must be true during communication, set to false (pulse) to reset error and restart the block.  *)
+	Address :			INT:=-1;						(* Address is the station number + device number, e.g.  202, 301, 404 and must be constant during run you can use ToAddress() function to calculate an address. *)
+END_VAR
+VAR_OUTPUT
+	Busy: 				BOOL:=FALSE;					(* Busy is true if the block is communicating with target, otherwise false. *)
+	Error: 				BOOL:=FALSE;					(* True if any error, to reset error set En to low and then back to high*)
+	ErrorID: 			COM_ERROR_VALUE:=COM_ERROR_VALUE.COM_ERR_NO_ERROR;	(* The error number, if no error the output is equal to COM_ERR_NO_ERROR i.e., 0 *)
+END_VAR
+VAR_IN_OUT
+	Data:				 CommunicationData;				(* Common data structure to connect all communication blocks that want to access this block *)
+END_VAR
+{library private}
+VAR
+	AllowToRun:		BOOL:=FALSE	;						(* If we are alone then we are allow to execute the communication*)
+	Instance:		INT:=-1;							(* Device instance number *)
+	DeviceType:		DEVICE_TYPE:=DEVICE_TYPE.TYPE_ERROR;
+	InstanceStatus: INSTANCE_STATUS;
+	Sequence: 		DATAGRAM_SEQUENCE:=DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_INIT;
+	ENWrite: 		BOOL:=FALSE;
+	ENRead: 		BOOL:=FALSE;
+
+	DataPointer:	POINTER TO BYTE;
+	DataWord: 		WORD;
+	StationNumber:	WORD;
+	PositionNumber:	WORD;
+
+	fbDeviceWrite: 	DeviceWrite;
+	fbDeviceRead: 	DeviceRead;
+	fbDeviceCancel: DeviceCancel;
+
+	fbTON_TimeOut:	TON;							(* Only used for special sequence of gantry *)
+	DEVICE_DEFAULT_TIME_OUT: INT;
+
+	(* Variables used to change byte order in Data.ParameterDW *)
+	DataHi1: BYTE; //Answer from ABB robot
+	DataLo1: BYTE;
+	DataHi2: BYTE;
+	DataLo2: BYTE;
+	DataSLo1: BYTE; //Send to ABB robot
+	DataSHi1: BYTE;
+	DataSHi2: BYTE;
+	DataSLo2: BYTE;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF NOT AllowToRun AND Instance=-1 AND En THEN
+	InstanceStatus:=_GetInstance(Address);
+	Instance:=0;
+	Data._Address:=Address;
+
+	IF InstanceStatus=INSTANCE_STATUS.INSTANCE_STATUS_FREE THEN
+		IF DeviceOpen(Address) THEN
+			Instance:=Address;
+			DeviceType:=NodeGetType(Address);
+			AllowToRun:=TRUE;
+			Data._Instance:=TRUE;
+			Error:=FALSE;
+			ErrorID:=COM_ERROR_VALUE.COM_ERR_NO_ERROR;
+		END_IF;
+	ELSE
+		Error:=TRUE;
+		CASE InstanceStatus OF
+			INSTANCE_STATUS.INSTANCE_STATUS_READY,  INSTANCE_STATUS.INSTANCE_STATUS_BUSY,  INSTANCE_STATUS.INSTANCE_STATUS_CANCEL:
+					ErrorID:=COM_ERROR_VALUE.COM_ERR_TWO_INSTANCES_OF_COMMUNICATOR;
+
+			INSTANCE_STATUS.INSTANCE_STATUS_UNKNOWN:
+				ErrorID:=COM_ERROR_VALUE.COM_ERR_INSTANCE;
+		END_CASE;
+	END_IF;
+END_IF;
+
+IF AllowToRun THEN
+	IF Address<>Data._Address THEN
+		Busy:=FALSE;
+		Error:=TRUE;
+		ErrorID:=COM_ERROR_VALUE.COM_ERR_INSTANCE;
+		RETURN;
+	END_IF;
+
+	fbDeviceWrite(En:=ENWrite AND En, Instance:=Instance, Data:=DataWord, TimeOut:=Data._TimeOutDevice);
+	fbDeviceRead(En:=ENRead AND En, Instance:=Instance, TimeOut:=Data._TimeOutDevice);
+
+	IF fbDeviceWrite.Error AND fbDeviceWrite.ErrorID<>COM_ERROR_VALUE.COM_ERR_CANCEL THEN
+		Sequence:=DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_ERROR;
+		Error:=TRUE;
+		ErrorID:=fbDeviceWrite.ErrorID;
+	END_IF;
+
+	IF fbDeviceRead.Error AND fbDeviceRead.ErrorID<>COM_ERROR_VALUE.COM_ERR_CANCEL THEN
+		Sequence:=DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_ERROR;
+		Error:=TRUE;
+		ErrorID:=fbDeviceRead.ErrorID;
+	END_IF;
+
+	IF En THEN
+		IF DeviceType=DEVICE_TYPE.TYPE_ABB_1 THEN
+			_SequenceABB_1();
+		ELSIF DeviceType=DEVICE_TYPE.TYPE_GANTRY_1 THEN
+			_SequenceGantry_1();
+		ELSE
+			Error:=TRUE;
+			ErrorID:=COM_ERROR_VALUE.COM_ERR_INSTANCE;
+		END_IF;
+	ELSE (* En *)
+		Sequence:=DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_INIT;
+		ENWrite:=FALSE;
+		ENRead:=FALSE;
+		Busy:=FALSE;
+		Error:=FALSE;
+		ErrorID:=COM_ERROR_VALUE.COM_ERR_NOT_ENABLED;
+
+		Data._DataCounter:=0;
+		Data._DataExecute:=0;
+	END_IF (* En *)
+END_IF;
+
+
+(* Copy error to struct *)
+Data._ErrorID:=ErrorID;
+Data._Error:=Error;
+Data._Status:=Sequence;]]></ST>
+    </Implementation>
+    <Action Name="_SequenceABB_1" Id="{f2656e29-4c85-4651-86c4-13b7f2955dbd}">
+      <Implementation>
+        <ST><![CDATA[CASE Sequence OF
+			DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_ERROR:
+				Error:=TRUE;
+
+			DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_INIT:
+				ErrorID:=COM_ERROR_VALUE.COM_ERR_NO_ERROR;
+				fbDeviceCancel(En:=TRUE, Instance:=Instance);
+
+				IF fbDeviceCancel.Done THEN
+					(* Cancel set ok *)
+					fbDeviceCancel(En:=FALSE, Instance:=Instance);
+
+					(* Force DeviceWrite to execute cancel *)
+					fbDeviceWrite(En:=TRUE, Instance:=Instance, Data:=DataWord, TimeOut:=Data._TimeOutDevice);
+					Sequence:=DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_NOP;
+				END_IF;
+
+			DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_NOP:		(* Wait for order *)
+				IF Data._DataCounter<>Data._DataExecute THEN
+					Busy:=TRUE;
+					Sequence:=DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_INIT_SEND;
+				END_IF;
+
+			DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_INIT_SEND:
+				Data._Data.CheckSum:=DatagramCheckSum(Data._Data);
+				DataPointer:= ADR(Data._Data);
+				Sequence:=DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_SEND_1;
+
+				(* Change byte order for Intel CPU *)
+				DataSLo2 := DWORD_TO_BYTE( Data._Data.ParameterDW AND 16#FF);
+				DataSHi2 := DWORD_TO_BYTE( SHR(Data._Data.ParameterDW AND 16#FF00,8));
+                DataSLo1 := DWORD_TO_BYTE( SHR(Data._Data.ParameterDW AND 16#FF000,16)); 
+				DataSHi1 := DWORD_TO_BYTE( SHR(Data._Data.ParameterDW AND 16#FF000000,24));
+				
+				Data._Data.ParameterDW := BYTE_TO_DWORD( DataSHi1) OR SHL( BYTE_TO_DWORD( DataSLo1),8) OR 
+                                                 SHL(BYTE_TO_DWORD( DataSHi2),16) OR SHL(BYTE_TO_DWORD( DataSLo2),24);
+				
+			DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_SEND_1:
+				DataWord:=BYTE_TO_WORD(DataPointer^);
+				ENWrite:=TRUE;
+				Sequence:=DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_SEND_2;
+
+			DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_SEND_2:
+				IF fbDeviceWrite.Done THEN
+					ENWrite:=FALSE;
+					Sequence:=DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_SEND_3;
+				END_IF;
+
+			DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_SEND_3:
+				Data._DataCounter:=Data._DataCounter+1;
+				DataPointer:=DataPointer+1;
+
+				IF Data._DataCounter=Data._DataExecute THEN
+					Sequence:=DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_INIT_RECEIVE;
+				ELSE
+					Sequence:=DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_SEND_1;
+				END_IF;
+
+			DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_INIT_RECEIVE:
+				DataPointer:= ADR(Data._DataAnswer);
+				Data._DataExecute:=Data._DataExecute + INT_TO_UDINT( _DataGramSize());
+				Sequence:=DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_RECEIVE_1;
+
+			DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_RECEIVE_1:
+				ENRead:=TRUE;
+				Sequence:=DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_RECEIVE_2;
+
+			DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_RECEIVE_2:
+				IF fbDeviceRead.Done THEN
+					ENRead:=FALSE;
+					DataPointer^:=WORD_TO_BYTE(fbDeviceRead.Data);
+					Sequence:=DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_RECEIVE_3;
+				END_IF;
+
+			DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_RECEIVE_3:
+				Data._DataCounter:=Data._DataCounter+1;
+				DataPointer:=DataPointer+1;
+
+				IF Data._DataCounter=Data._DataExecute THEN
+					Sequence:=DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_DONE;
+				ELSE
+					Sequence:=DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_RECEIVE_1;
+				END_IF;
+
+			DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_DONE:
+				Busy:=FALSE;
+
+				(* Change byte order for Intel CPU *)
+				DataLo1 := DWORD_TO_BYTE( Data._DataAnswer.ParameterDW AND 16#FF);
+				DataHi1 := DWORD_TO_BYTE( SHR(Data._DataAnswer.ParameterDW AND 16#FF00,8));
+                DataLo2 := DWORD_TO_BYTE( SHR(Data._DataAnswer.ParameterDW AND 16#FF000,16)); 
+				DataHi2 := DWORD_TO_BYTE( SHR(Data._DataAnswer.ParameterDW AND 16#FF000000,24));
+				
+				Data._DataAnswer.ParameterDW := BYTE_TO_DWORD( DataHi1) OR SHL( BYTE_TO_DWORD( DataLo1),8) OR 
+                                                SHL(BYTE_TO_DWORD( DataHi2),16) OR SHL(BYTE_TO_DWORD( DataLo2),24);
+				
+				IF Data._DataAnswer.CheckSum = DatagramCheckSum(Data._DataAnswer) THEN
+					Data._Session._SessionCounter:=Data._Session._SessionCounter+1;
+					Sequence:=DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_NOP;
+				ELSE
+					ErrorID:= DINT_TO_INT( INT_TO_DINT( DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_DONE));
+					Error:=TRUE;
+					Sequence:=DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_DONE;
+				END_IF;
+
+		END_CASE;
+]]></ST>
+      </Implementation>
+    </Action>
+    <Action Name="_SequenceGantry_1" Id="{542263d6-02b4-41b8-9303-578b6d0fb7e4}">
+      <Implementation>
+        <ST><![CDATA[(* Note that the implementation for the Gantry does not use level 2 as intended
+   it uses a mix of level 1 and 2 due to an older communication protocol in the UHS *)
+
+		CASE Sequence OF
+			DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_ERROR:
+				Error:=TRUE;
+				NodeWriteWord(Address:=Instance, Channel:=0, Data:=0);									(* Write no order to pick position to crane *)
+				NodeWriteWord(Address:=Instance, Channel:=1, Data:=0);									(* Write no order to pick position to crane *)
+
+			DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_INIT:
+				ErrorID:=COM_ERROR_VALUE.COM_ERR_NO_ERROR;
+				fbDeviceCancel(En:=TRUE, Instance:=Instance);
+
+				IF fbDeviceCancel.Done THEN
+					(* Cancel set ok *)
+					fbDeviceCancel(En:=FALSE, Instance:=Instance);
+
+					(* Force DeviceWrite to execute cancel *)
+					fbDeviceWrite(En:=TRUE, Instance:=Instance, Data:=DataWord, TimeOut:=Data._TimeOutDevice);
+					Sequence:=DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_NOP;
+				END_IF;
+
+			DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_NOP:		(* Wait for order *)
+				IF Data._DataCounter<>Data._DataExecute THEN
+					Busy:=TRUE;
+					Sequence:=DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_INIT_SEND;
+				END_IF;
+
+			DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_INIT_SEND:
+				IF Data._Data.FunctionType=FUNCTION_TYPE.FUNCTION_TYPE_INFORMATION AND Data._Data.FunctionNumber=INFO_FUNCTION_NUMBER.INFO_FUNCTION_RPC_STATUS THEN
+					IF NodeReadWord(Address:=Instance, Channel:=0) =0 AND NodeReadWord(Address:=Instance, Channel:=1) =0 THEN
+						Data._DataAnswer.ParameterDW:=0;
+					ELSE
+						Data._DataAnswer.ParameterDW:=1;
+					END_IF;
+
+					Sequence:=DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_DONE;
+
+				ELSIF Data._Data.FunctionType=FUNCTION_TYPE.FUNCTION_TYPE_ASYNC_RPC AND Data._Data.FunctionNumber=GANTRY_ASYNC_FUNCTION_NUMBER.GANTRY_ASYNC_FUNCTION_PL THEN
+					Sequence:=DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_SEND_1;
+				ELSE
+					ErrorID:=COM_ERROR_VALUE.COM_ERR_NO_VALID_FUNCTION;
+					Error:=TRUE;
+					Sequence:=DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_ERROR;
+				END_IF;
+
+			DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_SEND_1:
+				(* Get pick order from Data.ParameterDW and send to gantry *)
+				StationNumber:=DWORD_TO_WORD(Data._Data.ParameterDW/1000)*10;					(* 10-40 or 0*)
+
+				IF StationNumber<>0 THEN
+					PositionNumber:=DWORD_TO_WORD(Data._Data.ParameterDW/100)-StationNumber-1;	(* 0-8 *)
+					PositionNumber:= ((PositionNumber/3)+1)*10 + (PositionNumber MOD 3)+1 ;				(* 11, 12, 13, 21, 22, 23, 31, 32, 33 *)
+
+					DataWord:=Stationnumber*10+ PositionNumber;
+					NodeWriteWord(Address:=Instance, Channel:=0, Data:=DataWord);							(* Write pick position to crane *)
+					fbTON_TimeOut(IN:=FALSE);
+					Sequence:=DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_SEND_2;
+				ELSE
+					Sequence:=DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_SEND_3;
+				END_IF;
+
+			DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_SEND_2:
+				(* Wait for ack of order *)
+				fbTON_TimeOut(IN:=TRUE, PT:=ComGVL.DEVICE_DEFAULT_TIME_OUT);
+
+				IF DataWord=NodeReadWord(Address:=Instance, Channel:=0) THEN
+					Sequence:=DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_SEND_3;
+				ELSIF fbTON_TimeOut.Q THEN
+					ErrorID:=COM_ERROR_VALUE.COM_ERR_LEVEL2_TIME_OUT;
+					Sequence:=DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_ERROR;
+				END_IF;
+
+			DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_SEND_3:
+				NodeWriteWord(Address:=Instance, Channel:=0, Data:=0);									(* Write no order to pick position to crane *)
+				Sequence:=DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_INIT_RECEIVE;
+
+			DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_INIT_RECEIVE:
+				(* Get leave order from Data.ParameterDW*)
+				StationNumber:=DWORD_TO_WORD(Data._Data.ParameterDW)-DWORD_TO_WORD(Data._Data.ParameterDW/100)*100;	(* 11-49 or 0*)
+
+				IF StationNumber<>0 THEN
+					PositionNumber:=StationNumber-(StationNumber/10)*10-1;									(* 0-8 *)
+					PositionNumber:= ((PositionNumber/3)+1)*10 + (PositionNumber MOD 3) +1;				(* 11, 12, 13, 21, 22, 23, 31, 32, 33 *)
+	
+					StationNumber:=(StationNumber/10)*10;														(* 10-40 *)
+					DataWord:=Stationnumber*10+ PositionNumber;
+					NodeWriteWord(Address:=Instance, Channel:=1, Data:=DataWord);							(* Write leave position to crane *)
+					fbTON_TimeOut(IN:=FALSE);
+					Sequence:=DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_RECEIVE_1;
+				ELSE
+					Sequence:=DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_RECEIVE_2;
+				END_IF;
+
+			DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_RECEIVE_1:
+				(* Wait for ack. *)
+				fbTON_TimeOut(IN:=TRUE, PT:=ComGVL.DEVICE_DEFAULT_TIME_OUT);
+
+				IF DataWord=NodeReadWord(Address:=Instance, Channel:=1) THEN
+					Sequence:=DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_RECEIVE_2;
+				ELSIF fbTON_TimeOut.Q THEN
+					ErrorID:=COM_ERROR_VALUE.COM_ERR_LEVEL2_TIME_OUT;
+					Sequence:=DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_ERROR;
+				END_IF;
+
+			DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_RECEIVE_2:
+				NodeWriteWord(Address:=Instance, Channel:=1, Data:=0);									(* Write no order to leave position to crane *)
+				Sequence:=DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_RECEIVE_3;
+
+			DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_RECEIVE_3:
+				Sequence:=DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_DONE;
+
+			DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_DONE:
+				Busy:=FALSE;
+				Data._Session._SessionCounter:=Data._Session._SessionCounter+1;
+				Data._DataCounter:=Data._DataExecute;
+				Sequence:=DATAGRAM_SEQUENCE.DATAGRAM_SEQUENCE_NOP;
+		END_CASE;
+]]></ST>
+      </Implementation>
+    </Action>
+    <LineIds Name="Communicator">
+      <LineId Id="54" Count="74" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="Communicator._SequenceABB_1">
+      <LineId Id="2" Count="26" />
+      <LineId Id="106" Count="0" />
+      <LineId Id="109" Count="7" />
+      <LineId Id="29" Count="49" />
+      <LineId Id="104" Count="0" />
+      <LineId Id="90" Count="0" />
+      <LineId Id="79" Count="0" />
+      <LineId Id="93" Count="0" />
+      <LineId Id="92" Count="0" />
+      <LineId Id="95" Count="0" />
+      <LineId Id="91" Count="0" />
+      <LineId Id="99" Count="0" />
+      <LineId Id="105" Count="0" />
+      <LineId Id="100" Count="3" />
+      <LineId Id="83" Count="6" />
+      <LineId Id="1" Count="0" />
+    </LineIds>
+    <LineIds Name="Communicator._SequenceGantry_1">
+      <LineId Id="2" Count="117" />
+      <LineId Id="1" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+  <POU Name="_AllocateInstance" Id="{0571cb43-ac79-42a5-9e47-7237bb6b50d5}" SpecialFunc="None">
+    <Declaration><![CDATA[{library PRIVATE}
+(*
+  Private Funtcion:
+  Allocates a communications instance.
+
+  Return true if station is available for allocation. 
+*)
+
+FUNCTION _AllocateInstance : BOOL
+VAR_INPUT
+	Instance: 				INT;		(* Instance, a number concatenated by SationNumber (1-INSTANCE_MAX_NUMBER_OF_STATIONS) and DeviceNumber (1-INSTANCE_MAX_NUMBER_OF_DEVICES). Instance is defined as: StaionNumber*100+DeviceNumber *)
+END_VAR
+VAR
+	StationNumber: 		INT;
+	StationDevice: 		INT;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[_AllocateInstance:=FALSE;
+
+IF _CheckInstance(Instance) THEN
+	StationNumber:=Instance/100;
+	StationDevice:=Instance-StationNumber*100;
+
+	IF  ComGVL._Instance[StationNumber, StationDevice]= INSTANCE_STATUS.INSTANCE_STATUS_FREE THEN
+		ComGVL._Instance[StationNumber, StationDevice]:=INSTANCE_STATUS.INSTANCE_STATUS_READY;
+		_AllocateInstance:=TRUE;
+	END_IF;
+END_IF;
+]]></ST>
+    </Implementation>
+    <LineIds Name="_AllocateInstance">
+      <LineId Id="23" Count="10" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
