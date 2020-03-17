@@ -4,7 +4,9 @@ Group project for ATM700
 git clone https://github.com/soulsolomon/line-project-group-2.git
 # To add any changes 
 Git add .
+
 git commit -m commit-msg
+
 git push
 # To update your directory
 git pull
