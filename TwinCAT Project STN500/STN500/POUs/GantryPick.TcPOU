@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <POU Name="GantryPick" Id="{0e6931f0-f20c-44c4-b637-b8cf98b9ec7b}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK GantryPick
+VAR_INPUT
+	En: BOOL;
+	PickStation: INT;
+	PickPosition: INT;
+END_VAR
+VAR_OUTPUT
+	Done: BOOL;
+	Executing: BOOL;
+	Waiting: BOOL;
+	Error: BOOL;
+	Progress: INT;
+END_VAR
+VAR_IN_OUT
+	Data:CommunicationData;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+IF En THEN
+
+	// Auto sequence pick pallet
+	CASE Progress OF
+		0:	//Clear old order
+			Data.PickStation := 0;
+			Data.PickPosition := 0;
+			Progress := 10;
+
+		10:	//Start gantry robot auto squence
+			IF Data.Auto AND PickStation > 0 AND  PickStation <= 4 AND PickPosition > 0 AND PickPosition <= 9 THEN
+				Data.PickStation := PickStation;
+				Data.PickPosition := PickPosition;
+				Executing := FALSE;
+				Waiting := FALSE;
+				Error := FALSE;
+				Progress := 30;
+			ELSE
+				Executing := FALSE;
+				Waiting := FALSE;
+				Error := TRUE;
+			END_IF
+
+		30: // Check acknowledge from GantryRobot
+			IF Data.AckPickStation = PickStation AND Data.AckPickPosition = PickPosition THEN
+				Executing := TRUE;
+				Waiting := FALSE;
+				Error := FALSE;
+				Progress := 50;
+			ELSE
+				Executing := FALSE;
+				Waiting := TRUE;
+				Error := NOT Data.Auto;
+			END_IF
+			
+		50: // Wait for gantry auto squence ready and clear order	
+			IF Data.AckPickStation = 0 AND Data.AckPickPosition = 0 THEN
+				Data.PickStation := 0;
+				Data.PickPosition := 0;
+				Executing := FALSE;
+				Waiting := FALSE;
+				Error := FALSE;
+				Progress := 100;
+			ELSE
+				Executing := TRUE;
+				Waiting := FALSE;
+				Error := NOT Data.Auto;
+			END_IF
+		
+		100: // Operation done
+			Done := TRUE;
+	END_CASE
+
+ELSE //En
+	IF Progress > 0 THEN
+		Data.PickStation := 0;
+		Data.PickPosition := 0;	
+	END_IF
+	Progress := 0;
+	Done := FALSE;
+	Executing := FALSE;
+	Waiting := FALSE;
+	Error := FALSE;
+END_IF 
+]]></ST>
+    </Implementation>
+    <LineIds Name="GantryPick">
+      <LineId Id="52" Count="1" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="147" Count="0" />
+      <LineId Id="146" Count="0" />
+      <LineId Id="167" Count="3" />
+      <LineId Id="166" Count="0" />
+      <LineId Id="49" Count="0" />
+      <LineId Id="112" Count="0" />
+      <LineId Id="67" Count="0" />
+      <LineId Id="75" Count="0" />
+      <LineId Id="78" Count="0" />
+      <LineId Id="97" Count="0" />
+      <LineId Id="99" Count="0" />
+      <LineId Id="80" Count="0" />
+      <LineId Id="111" Count="0" />
+      <LineId Id="101" Count="2" />
+      <LineId Id="68" Count="0" />
+      <LineId Id="81" Count="0" />
+      <LineId Id="66" Count="0" />
+      <LineId Id="85" Count="0" />
+      <LineId Id="108" Count="2" />
+      <LineId Id="90" Count="0" />
+      <LineId Id="87" Count="0" />
+      <LineId Id="105" Count="2" />
+      <LineId Id="93" Count="0" />
+      <LineId Id="91" Count="1" />
+      <LineId Id="113" Count="0" />
+      <LineId Id="126" Count="0" />
+      <LineId Id="122" Count="0" />
+      <LineId Id="114" Count="7" />
+      <LineId Id="64" Count="0" />
+      <LineId Id="130" Count="0" />
+      <LineId Id="128" Count="0" />
+      <LineId Id="141" Count="0" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="72" Count="0" />
+      <LineId Id="172" Count="1" />
+      <LineId Id="175" Count="0" />
+      <LineId Id="174" Count="0" />
+      <LineId Id="73" Count="0" />
+      <LineId Id="82" Count="0" />
+      <LineId Id="195" Count="2" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="69" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <POU Name="GantryStatus" Id="{3aa1aa55-45ed-45b7-a62c-325b2077c7ca}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK GantryStatus
+VAR_INPUT
+	En: BOOL;	
+	Paus: BOOL;
+END_VAR
+VAR_OUTPUT
+	Auto : BOOL;
+	ManualMode : BOOL;	
+	Status : STRING;
+END_VAR
+VAR_IN_OUT
+	Data:CommunicationData;
+END_VAR
+VAR
+	fbTonStartDelay: TON;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+fbTonStartDelay( IN := Data.Auto, PT := T#1S);
+
+
+Auto 		:= fbTonStartDelay.Q;
+ManualMode 	:= Data.ManualMode;
+Status 		:= Data.Status;
+Data.Paus := Paus;
+]]></ST>
+    </Implementation>
+    <LineIds Name="GantryStatus">
+      <LineId Id="49" Count="1" />
+      <LineId Id="54" Count="0" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="17" Count="1" />
+      <LineId Id="33" Count="1" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

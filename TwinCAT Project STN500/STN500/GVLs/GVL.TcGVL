@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <GVL Name="GVL" Id="{cad7734b-58a1-455a-bc79-1a07db4b79f3}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+			
+	//OPC-UA Communication
+	iToSTN500FromSTN100 AT %I*: ARRAY[1..8] OF INT;		// From STN100
+	iFromSTN500ToSTN100 AT %Q*: ARRAY[1..8] OF INT;		// To STN100
+
+	iToSTN500FromSTN200 AT %I*: ARRAY[1..8] OF INT;		// From STN200
+	iFromSTN500ToSTN200 AT %Q*: ARRAY[1..8] OF INT;		// To STN200
+
+	iToSTN500FromSTN300 AT %I*: ARRAY[1..8] OF INT;		// From STN300
+	iFromSTN500ToSTN300 AT %Q*: ARRAY[1..8] OF INT;		// To STN300
+
+	
+	iToSTN500FromSTN400 AT %I*: ARRAY[1..8] OF INT;		// From STN300
+	iFromSTN500ToSTN400 AT %Q*: ARRAY[1..8] OF INT;		// To STN300
+	
+
+	//Digital I/O Gantry Robot	
+	ixEmergencyStopOk		 	AT %I* 	: BOOL;			//Emergency stop reseted
+	ixLightBeamAndGatesClosed 	AT %I* 	: BOOL;			//Gate closed and reseted
+	ixBtnControlOn				AT %I*	: BOOL; 		//Button "Drift Till"
+	ixBtnProgramStart			AT %I*	: BOOL;			//Button "Program Start"
+	ixBtnProgramStop			AT %I*	: BOOL;			//Button "Program Stopp"
+
+	ixLimSwYPos					AT %I*	: BOOL;			//End limit switches and calibration sensors
+	ixCalSwY					AT %I*	: BOOL;
+	ixLimSwYNeg					AT %I*	: BOOL;
+	ixLimSwZPos					AT %I*	: BOOL;
+	ixCalSwZ					AT %I*	: BOOL;
+	ixLimSwZNeg					AT %I*	: BOOL;
+	ixLimSwX					AT %I*	: BOOL;
+	ixCalSwX					AT %I*	: BOOL;
+	
+	
+	qxIndControlOn				AT %Q*	: BOOL; 		//Indication Lamp "Drift Till"
+	qxIndProgramStart			AT %Q*	: BOOL;			//Indication Lamp Button "Program Start"
+	qxIndProgramStop			AT %Q*	: BOOL;			//Indication Lamp Button "Program Stopp"
+
+	qxGripper					AT %Q*	: BOOL;   		//Gripper pallets gantry robot
+	qxEnableSEWdrives			AT %Q*  : BOOL;			//Enable motors XYZ axes
+	
+	ComData: CommunicationData;
+	
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <POU Name="MAIN" Id="{104ec441-47eb-4139-a2a2-70833eb8a567}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+
+END_VAR
+
+    ]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+GantryRobotMotion();
+PLC_PRG();]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="18" Count="0" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="43" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

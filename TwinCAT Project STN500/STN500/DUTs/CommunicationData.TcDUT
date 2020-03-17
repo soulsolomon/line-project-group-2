@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <DUT Name="CommunicationData" Id="{aecfd99e-75b0-4ecf-8d3b-0658adb04dcc}">
+    <Declaration><![CDATA[TYPE CommunicationData :
+STRUCT
+	PickStation:INT;
+	PickPosition:INT;
+	AckPickStation:INT;
+	AckPickPosition:INT;
+	LeaveStation:INT;
+	LeavePosition:INT;
+	AckLeaveStation:INT;
+	AckLeavePosition:INT;
+	Status: STRING;
+	ManualMode: BOOL;
+	Auto: BOOL;
+	Paus: BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

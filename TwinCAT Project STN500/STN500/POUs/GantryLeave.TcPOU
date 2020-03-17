@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <POU Name="GantryLeave" Id="{34284e0e-2e75-4d2d-9aa6-c28c85ca665a}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK GantryLeave
+VAR_INPUT
+	En: BOOL;
+	LeaveStation: INT;
+	LeavePosition: INT;
+END_VAR
+VAR_OUTPUT
+	Done: BOOL;
+	Executing: BOOL;
+	Waiting: BOOL;
+	Error: BOOL;
+	Progress: INT;
+END_VAR
+VAR_IN_OUT
+	Data:CommunicationData;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF En THEN
+	
+	// Auto sequence leave pallet
+	CASE Progress OF
+		0:	//Clear old order
+			Data.LeaveStation := 0;
+			Data.LeavePosition := 0;
+			Progress := 10;
+
+		10:	//Start gantry robot auto squence
+			IF Data.Auto AND LeaveStation > 0 AND  LeaveStation <= 4 AND LeavePosition > 0 AND LeavePosition <= 9 THEN
+				Data.LeaveStation  := LeaveStation;
+				Data.LeavePosition := LeavePosition;
+				Executing := FALSE;
+				Waiting := FALSE;
+				Error := FALSE;
+				Progress := 30;
+			ELSE
+				Executing := FALSE;
+				Waiting := FALSE;
+				Error := TRUE;
+			END_IF
+
+		30: // Check acknowledge from GantryRobot
+			IF Data.AckLeaveStation = LeaveStation AND Data.AckLeavePosition = LeavePosition THEN
+				Executing := TRUE;
+				Waiting := FALSE;
+				Error := FALSE;
+				Progress := 50;
+			ELSE
+				Executing := FALSE;
+				Waiting := TRUE;
+				Error := NOT Data.Auto;
+			END_IF
+			
+		50: // Wait for gantry auto squence ready and clear order	
+			IF Data.AckLeaveStation = 0 AND Data.AckLeavePosition = 0 THEN
+				Data.LeaveStation := 0;
+				Data.LeavePosition := 0;
+				Executing := FALSE;
+				Waiting := FALSE;
+				Error := FALSE;
+				Progress := 100;
+			ELSE
+				Executing := TRUE;
+				Waiting := FALSE;
+				Error := NOT Data.Auto;
+			END_IF
+		
+		100: // Operation done
+			Done := TRUE;
+	END_CASE
+
+ELSE //En
+	IF Progress > 0 THEN
+		Data.LeaveStation := 0;
+		Data.LeavePosition := 0;	
+	END_IF
+	Progress := 0;
+	Done := FALSE;
+	Executing := FALSE;
+	Waiting := FALSE;
+	Error := FALSE;
+END_IF ]]></ST>
+    </Implementation>
+    <LineIds Name="GantryLeave">
+      <LineId Id="35" Count="0" />
+      <LineId Id="38" Count="3" />
+      <LineId Id="113" Count="2" />
+      <LineId Id="112" Count="0" />
+      <LineId Id="108" Count="0" />
+      <LineId Id="42" Count="41" />
+      <LineId Id="86" Count="1" />
+      <LineId Id="117" Count="2" />
+      <LineId Id="116" Count="0" />
+      <LineId Id="88" Count="1" />
+      <LineId Id="139" Count="2" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
