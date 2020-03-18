@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
   <Visu Name="Visualization" Id="{866203fd-76f7-4625-b539-f4e49690749e}">
     <XmlArchive>
       <Data>
@@ -79,9 +79,12 @@
                       <l n="Value" t="ArrayList" cet="FontDescription">
                         <o>
                           <v n="FontStyle">0</v>
+                          <v n="AdditionalFontStyle" t="UInt16">0</v>
                           <v n="ExplicitColor">-16777216</v>
                           <v n="FontName">"Arial"</v>
                           <v n="FontSize">48</v>
+                          <v n="ScriptIdentification">0</v>
+                          <v n="DoubleFontSize" t="Double">0</v>
                           <o n="NamedColor" t="NamedStyleColor">
                             <v n="Color">-16777216</v>
                             <v n="CanonicalName">"Font-Default-Color"</v>
@@ -108,6 +111,10 @@
                     <o>
                       <v n="Id">2597686782L</v>
                       <v n="Value">true</v>
+                    </o>
+                    <o>
+                      <v n="Id">3719097617L</v>
+                      <v n="Value">0</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
@@ -226,10 +233,13 @@
                       <l n="Value" t="ArrayList" cet="NamedStyleFont">
                         <o>
                           <v n="FontStyle">0</v>
+                          <v n="AdditionalFontStyle" t="UInt16">0</v>
                           <v n="ExplicitColor">-16777216</v>
                           <v n="CanonicalName">"Font-Heading"</v>
                           <v n="FontName">"Arial"</v>
                           <v n="FontSize">20</v>
+                          <v n="ScriptIdentification">0</v>
+                          <v n="DoubleFontSize" t="Double">0</v>
                           <o n="NamedColor" t="NamedStyleColor">
                             <v n="Color">-16777216</v>
                             <v n="CanonicalName">"Element-Button-FontColor"</v>
@@ -269,6 +279,10 @@ Menu"</v>
                     <o>
                       <v n="Id">2597686782L</v>
                       <v n="Value">false</v>
+                    </o>
+                    <o>
+                      <v n="Id">3719097617L</v>
+                      <v n="Value">0</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
@@ -403,10 +417,13 @@ Menu"</v>
                       <l n="Value" t="ArrayList" cet="NamedStyleFont">
                         <o>
                           <v n="FontStyle">0</v>
+                          <v n="AdditionalFontStyle" t="UInt16">0</v>
                           <v n="ExplicitColor">-16777216</v>
                           <v n="CanonicalName">"Font-Heading"</v>
                           <v n="FontName">"Arial"</v>
                           <v n="FontSize">20</v>
+                          <v n="ScriptIdentification">0</v>
+                          <v n="DoubleFontSize" t="Double">0</v>
                           <o n="NamedColor" t="NamedStyleColor">
                             <v n="Color">-16777216</v>
                             <v n="CanonicalName">"Font-Default-Color"</v>
@@ -441,6 +458,10 @@ Menu"</v>
                     <o>
                       <v n="Id">2477733581L</v>
                       <v n="Value">"PLC_PRG.fbGantryStatus.Status"</v>
+                    </o>
+                    <o>
+                      <v n="Id">3719097617L</v>
+                      <v n="Value">0</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
@@ -574,10 +595,13 @@ Menu"</v>
                       <l n="Value" t="ArrayList" cet="NamedStyleFont">
                         <o>
                           <v n="FontStyle">0</v>
+                          <v n="AdditionalFontStyle" t="UInt16">0</v>
                           <v n="ExplicitColor">-16777216</v>
                           <v n="CanonicalName">"Font-Heading"</v>
                           <v n="FontName">"Arial"</v>
                           <v n="FontSize">20</v>
+                          <v n="ScriptIdentification">0</v>
+                          <v n="DoubleFontSize" t="Double">0</v>
                           <o n="NamedColor" t="NamedStyleColor">
                             <v n="Color">-16777216</v>
                             <v n="CanonicalName">"Element-Button-FontColor"</v>
@@ -622,6 +646,10 @@ Menu"</v>
                       <v n="Value">false</v>
                     </o>
                     <o>
+                      <v n="Id">3719097617L</v>
+                      <v n="Value">0</v>
+                    </o>
+                    <o>
                       <v n="Id">823443203L</v>
                       <v n="Value">"1155"</v>
                     </o>
@@ -657,78 +685,68 @@ Menu"</v>
           <o n="GeneratedLMMDescriptions" t="GeneratedLanguageModelEntriesData">
             <o n="GeneratedVisuFbDescription" t="GenericFbDescription">
               <d n="FbMethods" t="CaseInsensitiveHashtable" ckt="String" cvt="Guid">
-                <v>HasVisibilityAccess</v>
-                <v>95eb8a9d-a2f7-43dc-849e-02583690f97e</v>
-                <v>ContainsPoint</v>
-                <v>46b50453-fdd6-4275-a7b5-f99c44b5cb3b</v>
-                <v>HasInputAccess</v>
-                <v>54621932-3a02-49fb-8b6b-d6d852fb6f38</v>
-                <v>HasInputAccessIntern</v>
-                <v>e036490c-5799-4ab8-ba16-848872026d34</v>
-                <v>GetTooltip</v>
-                <v>2ee6e790-2944-4124-81e4-bdabddf294ef</v>
-                <v>GetDialogInterfaceSize</v>
-                <v>270c58b4-de2c-4335-8799-df6cac029d79</v>
                 <v>GetUpdateRects</v>
-                <v>427fce1b-1107-49ec-ac4c-49bd6a0fad9d</v>
-                <v>GetNamespace</v>
-                <v>9081ebbe-c033-4396-8512-68149cea3d7c</v>
-                <v>SetResult</v>
-                <v>e6d7c3ff-297a-4b8c-a2fa-0890d0967d3c</v>
-                <v>GetTranslator</v>
-                <v>0a079395-995b-4224-acff-7115fa6f654e</v>
-                <v>Update</v>
-                <v>f51f2d0b-f158-4a2c-8291-3635a77d2506</v>
-                <v>SetClientData</v>
-                <v>7886f990-42f7-495c-8b48-90f09f61e1da</v>
-                <v>HasVisibilityAccessIntern</v>
-                <v>5b88c06c-dab2-45c9-988d-9ab28b15e17a</v>
-                <v>GetInstance</v>
-                <v>b1be0e8a-0385-4e8d-9553-ff4c3a5fc40e</v>
-                <v>GetClientData</v>
-                <v>38925f95-a89a-428e-89d5-fe6a4cea9c59</v>
-                <v>Paint</v>
-                <v>867536be-89fe-4ed5-9439-1000ab9d8525</v>
-                <v>GetElementArray</v>
-                <v>38a1cfa1-e3b4-4205-8775-5dff13135c96</v>
-                <v>SetVisuFlagsInternal</v>
-                <v>a2172577-8ac8-46f1-bdbd-e5e32217c904</v>
-                <v>GetText</v>
-                <v>a9414d18-f1c9-4650-856e-2bdbc16ea847</v>
-                <v>GetTextProperties</v>
-                <v>7d004bf7-cbe8-4b16-ae3e-b1d60dfab854</v>
-                <v>Initialize</v>
-                <v>b535af6a-1995-4735-9bf6-3569bacdb085</v>
-                <v>Destruct</v>
-                <v>cafc4329-1af4-43c3-8be5-9e6417c8eac4</v>
-                <v>SetStaticState</v>
-                <v>f823ae2f-124b-44ba-9dbb-d1b469da5ffa</v>
-                <v>GetSurroundingRect</v>
-                <v>a5efdd82-ab60-4e00-95e8-17c053192811</v>
-                <v>GetResult</v>
-                <v>4752b5f7-17e4-4ba6-abbf-5f3d393d4350</v>
-                <v>GetLocalUsergroup</v>
-                <v>e1a9aa3b-3ee5-4d7f-8153-092d0dcb216e</v>
-                <v>GetName</v>
-                <v>757fee8d-ea4a-44ee-8d68-6c7a56c8c190</v>
-                <v>GetSize</v>
-                <v>1d1fb65d-49ee-4403-99a6-3dd375241862</v>
-                <v>SetDialogInterface</v>
-                <v>f13ff529-67a7-4229-a091-aac25bf8765e</v>
+                <v>9836f130-4981-47f1-a37e-bcad0bc9c7b2</v>
+                <v>ContainsPoint</v>
+                <v>9c1683cd-2d98-46ae-8d7b-f59c04b1b62c</v>
                 <v>FB_Reinit</v>
-                <v>c799a331-eabf-4b5b-a36b-bd1fdba674af</v>
+                <v>e08a2a67-a607-4370-a6d9-2eb26a13ac88</v>
+                <v>SetStaticState</v>
+                <v>59093cdf-bc26-4edb-a794-c1b7171b6ffa</v>
+                <v>Update</v>
+                <v>15180b4d-9424-4d0d-a924-d09312164fd2</v>
+                <v>GetTooltip</v>
+                <v>52713f42-36ce-4250-b746-5bb5ae0e9c7e</v>
+                <v>GetNamespace</v>
+                <v>afc05dea-58d9-4553-80fd-26b4cbb2cf5b</v>
+                <v>GetTranslator</v>
+                <v>b107166e-f506-4669-be17-506bb401fbad</v>
+                <v>SetClientData</v>
+                <v>a18dc780-9995-4fbc-9b2b-c6c60724f56d</v>
+                <v>GetClientData</v>
+                <v>2c38fdfc-ed36-485e-9c39-b102c97f03f8</v>
+                <v>Paint</v>
+                <v>ddb66e01-6dae-497b-83f7-e4bdc55c0ede</v>
+                <v>HasVisibilityAccess</v>
+                <v>b877a9b5-f68e-45b6-9a48-290727baee68</v>
+                <v>GetElementArray</v>
+                <v>c302f971-8bd5-4201-b59b-7ef53248f09c</v>
+                <v>SetVisuFlagsInternal</v>
+                <v>e3f6428e-f65a-4c21-b8f1-9e787d99e483</v>
+                <v>GetText</v>
+                <v>d535923b-5803-4cd5-84a2-c093b5c6db80</v>
+                <v>GetTextProperties</v>
+                <v>57c93077-d1f6-409b-b593-01515391e0fb</v>
+                <v>IsAntialiasingInactive</v>
+                <v>875cf09c-d36f-4b46-9ff8-d7c027d7d752</v>
+                <v>HasInputAccessIntern</v>
+                <v>8d5fbe9a-c388-580d-9925-dfc2ecca7b68</v>
+                <v>Initialize</v>
+                <v>572743fa-04b9-4ac1-b85d-88b4aaaf5097</v>
+                <v>HasInputAccess</v>
+                <v>9c1312bb-0543-4b80-b52f-6243b8563611</v>
+                <v>HasVisibilityAccessIntern</v>
+                <v>d6d74f7a-2621-547f-83d8-2de1ceb7fc21</v>
+                <v>GetSurroundingRect</v>
+                <v>81631a20-41f3-46a8-8987-c25b8b0cadeb</v>
+                <v>GetLocalUsergroup</v>
+                <v>97f8bae4-17b8-44d4-b8f9-c414bdac2c55</v>
+                <v>GetName</v>
+                <v>26e5ad78-653b-492a-88f4-d7d405a9a569</v>
+                <v>GetSize</v>
+                <v>379ebede-a9df-4145-8ea7-28b317878942</v>
+                <v>Destruct</v>
+                <v>e7d24425-9725-4164-a114-93407cbd82b7</v>
                 <v>FB_Exit</v>
-                <v>f48a4bb2-2cac-4438-97c7-e7eb0525fd8f</v>
+                <v>44ba67c1-20e7-459d-b2ea-24a061e70716</v>
                 <v>GetInitializeVersion</v>
-                <v>de11ae55-1ca3-4687-b0e5-765aaeb9a64d</v>
-                <v>GetDialogInterface</v>
-                <v>a5d819d2-800c-499e-b6b4-b3eb436b1c2e</v>
+                <v>40f53faf-73e7-4b70-8e83-455c25c090ac</v>
                 <v>GetElementIdArray</v>
-                <v>182227d5-99d5-47a0-b101-43e1787743b3</v>
+                <v>983e10c3-d783-4182-9e8b-8b6423b189e5</v>
                 <v>HandleInput</v>
-                <v>df04dfbd-3810-4cda-8cf4-248349591328</v>
+                <v>c431993f-c9ce-4f92-9e7e-e62cc7b745a2</v>
                 <v>ElementInfo</v>
-                <v>b5bc0ec8-7d65-41c1-ae65-fdd1e2db3c7f</v>
+                <v>95a661a8-49cf-4417-96d5-5e9cfd0b7053</v>
               </d>
               <v n="FbName">"NotImportant"</v>
               <v n="FbGuid">{866203fd-76f7-4625-b539-f4e49690749e}</v>
@@ -741,10 +759,10 @@ Menu"</v>
               <d n="FbMethods" t="CaseInsensitiveHashtable" ckt="String" cvt="Guid">
                 <v>FB_Init</v>
                 <v>70432840-7e7d-4402-94b4-a5b1b5500969</v>
-                <v>FB_Exit</v>
-                <v>9e62eef7-e654-48c9-8e0d-c8d6f86d9810</v>
                 <v>FB_Reinit</v>
                 <v>5b92d9f0-15ee-47a5-b8c2-dffcc248b1c7</v>
+                <v>FB_Exit</v>
+                <v>9e62eef7-e654-48c9-8e0d-c8d6f86d9810</v>
               </d>
               <v n="FbName">"NotImportant"</v>
               <v n="FbGuid">{6677c98a-8562-4dc5-93f7-dc5669a0dd8c}</v>
@@ -829,9 +847,10 @@ Menu"</v>
         <Type n="Boolean">System.Boolean</Type>
         <Type n="CaseInsensitiveHashtable">{7df88604-7ac5-4e36-91c4-55e4fdad3e68}</Type>
         <Type n="ChangeVisuInputAction">{b4c3a27b-74e5-4a67-bfa9-12f8c8cda31f}</Type>
-        <Type n="ChangeVisuInputAction[]">_3S.CoDeSys.VisualElem.ChangeVisuInputAction[], VisualElem.plugin, Version=3.5.10.31, Culture=neutral, PublicKeyToken=null</Type>
+        <Type n="ChangeVisuInputAction[]">_3S.CoDeSys.VisualElem.ChangeVisuInputAction[], VisualElem.plugin, Version=3.5.13.30, Culture=neutral, PublicKeyToken=null</Type>
         <Type n="ChangeVisuType">{a418300c-fdec-47d4-86a4-53b5a5f941fa}</Type>
         <Type n="ComplexInput">{1de566f6-72a7-494c-9353-9a418172c96e}</Type>
+        <Type n="Double">System.Double</Type>
         <Type n="FontDescription">{896a5e54-96c3-433b-96d2-4f1442fef591}</Type>
         <Type n="GeneratedLanguageModelEntriesData">{703465dc-4679-4ff2-bcc3-c57d0a204da3}</Type>
         <Type n="GenericFbDescription">{40d6dd8d-dfd0-493a-8e29-c9a35e1e6539}</Type>
@@ -847,6 +866,7 @@ Menu"</v>
         <Type n="String">System.String</Type>
         <Type n="TextDocument">{f3878285-8e4f-490b-bb1b-9acbb7eb04db}</Type>
         <Type n="TextLine">{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}</Type>
+        <Type n="UInt16">System.UInt16</Type>
         <Type n="UInt32">System.UInt32</Type>
         <Type n="VisualElemCollection">{ef9d0b20-c96e-48db-b361-2ded4063150e}</Type>
         <Type n="VisualElemList">{f285c9a3-7019-446b-b98c-ccec3a0af8fa}</Type>
@@ -866,6 +886,8 @@ Menu"</v>
             <v n="IsStartVisu">false</v>
             <v n="VisuSizeMode" t="VisualVisuSizeMode">Specified</v>
             <v n="Internal">false</v>
+            <v n="DialogIsOpaque">false</v>
+            <v n="DialogIsOpaqueIsSet">false</v>
           </o>
         </Data>
         <TypeList>

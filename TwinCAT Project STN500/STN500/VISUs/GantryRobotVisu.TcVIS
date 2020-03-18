@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
   <Visu Name="GantryRobotVisu" Id="{00b2fabf-60ad-4184-b41c-b3b945dff1fc}">
     <XmlArchive>
       <Data>
@@ -116,10 +116,13 @@
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">0</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-Standard"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">12</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Font-Default-Color"</v>
@@ -154,6 +157,10 @@
                         <o>
                           <v n="Id">2597686782L</v>
                           <v n="Value">true</v>
+                        </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
                         </o>
                       </l>
                     </o>
@@ -276,10 +283,13 @@
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">0</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-Standard"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">12</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Font-Default-Color"</v>
@@ -314,6 +324,10 @@
                         <o>
                           <v n="Id">2597686782L</v>
                           <v n="Value">true</v>
+                        </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
                         </o>
                       </l>
                     </o>
@@ -436,10 +450,13 @@
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">0</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-Standard"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">12</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Font-Default-Color"</v>
@@ -474,6 +491,10 @@
                         <o>
                           <v n="Id">2597686782L</v>
                           <v n="Value">true</v>
+                        </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
                         </o>
                       </l>
                     </o>
@@ -596,10 +617,13 @@
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">0</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-Standard"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">12</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Font-Default-Color"</v>
@@ -634,6 +658,10 @@
                         <o>
                           <v n="Id">2597686782L</v>
                           <v n="Value">true</v>
+                        </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
                         </o>
                       </l>
                     </o>
@@ -763,10 +791,13 @@
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">1</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-HeadingLarge"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">28</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Element-Button-FontColor"</v>
@@ -809,6 +840,10 @@
                         <o>
                           <v n="Id">2496894244L</v>
                           <v n="Value">"NOT GantryRobotMotion.mxManualMode"</v>
+                        </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
                         </o>
                         <o>
                           <v n="Id">823443203L</v>
@@ -942,10 +977,13 @@
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">1</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-HeadingLarge"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">28</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Element-Button-FontColor"</v>
@@ -988,6 +1026,10 @@
                         <o>
                           <v n="Id">2496894244L</v>
                           <v n="Value">"NOT GantryRobotMotion.mxManualMode"</v>
+                        </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
                         </o>
                         <o>
                           <v n="Id">823443203L</v>
@@ -1121,10 +1163,13 @@
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">0</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-Standard"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">12</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Element-Button-FontColor"</v>
@@ -1167,6 +1212,10 @@
                         <o>
                           <v n="Id">2496894244L</v>
                           <v n="Value">"NOT GantryRobotMotion.mxManualMode"</v>
+                        </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
                         </o>
                         <o>
                           <v n="Id">823443203L</v>
@@ -1300,10 +1349,13 @@
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">0</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-Standard"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">12</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Element-Button-FontColor"</v>
@@ -1351,6 +1403,10 @@ End Limit X"</v>
                         <o>
                           <v n="Id">2880254039L</v>
                           <v n="Value">"NOT GantryRobotMotion.mxManualMode"</v>
+                        </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
                         </o>
                         <o>
                           <v n="Id">823443203L</v>
@@ -1484,10 +1540,13 @@ End Limit X"</v>
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">1</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-HeadingLarge"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">28</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Element-Button-FontColor"</v>
@@ -1530,6 +1589,10 @@ End Limit X"</v>
                         <o>
                           <v n="Id">2496894244L</v>
                           <v n="Value">"NOT GantryRobotMotion.mxManualMode"</v>
+                        </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
                         </o>
                         <o>
                           <v n="Id">823443203L</v>
@@ -1663,10 +1726,13 @@ End Limit X"</v>
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">1</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-HeadingLarge"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">28</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Element-Button-FontColor"</v>
@@ -1709,6 +1775,10 @@ End Limit X"</v>
                         <o>
                           <v n="Id">2496894244L</v>
                           <v n="Value">"NOT GantryRobotMotion.mxManualMode"</v>
+                        </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
                         </o>
                         <o>
                           <v n="Id">823443203L</v>
@@ -1846,10 +1916,13 @@ End Limit X"</v>
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">1</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-HeadingLarge"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">28</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Element-Button-FontColor"</v>
@@ -1892,6 +1965,10 @@ End Limit X"</v>
                         <o>
                           <v n="Id">2496894244L</v>
                           <v n="Value">"NOT GantryRobotMotion.mxManualMode"</v>
+                        </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
                         </o>
                         <o>
                           <v n="Id">823443203L</v>
@@ -2025,10 +2102,13 @@ End Limit X"</v>
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">1</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-HeadingLarge"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">28</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Element-Button-FontColor"</v>
@@ -2071,6 +2151,10 @@ End Limit X"</v>
                         <o>
                           <v n="Id">2496894244L</v>
                           <v n="Value">"NOT GantryRobotMotion.mxManualMode"</v>
+                        </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
                         </o>
                         <o>
                           <v n="Id">823443203L</v>
@@ -2207,10 +2291,13 @@ End Limit X"</v>
                       <l n="Value" t="ArrayList" cet="NamedStyleFont">
                         <o>
                           <v n="FontStyle">0</v>
+                          <v n="AdditionalFontStyle" t="UInt16">0</v>
                           <v n="ExplicitColor">-16777216</v>
                           <v n="CanonicalName">"Font-Standard"</v>
                           <v n="FontName">"Arial"</v>
                           <v n="FontSize">12</v>
+                          <v n="ScriptIdentification">0</v>
+                          <v n="DoubleFontSize" t="Double">0</v>
                           <o n="NamedColor" t="NamedStyleColor">
                             <v n="Color">-16777216</v>
                             <v n="CanonicalName">"Font-Default-Color"</v>
@@ -2241,6 +2328,10 @@ End Limit X"</v>
                     <o>
                       <v n="Id">2597686782L</v>
                       <v n="Value">false</v>
+                    </o>
+                    <o>
+                      <v n="Id">3719097617L</v>
+                      <v n="Value">0</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
@@ -2377,10 +2468,13 @@ End Limit X"</v>
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">0</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-Heading"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">20</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Element-Button-FontColor"</v>
@@ -2428,6 +2522,10 @@ On"</v>
                         <o>
                           <v n="Id">2496894244L</v>
                           <v n="Value">"NOT GantryRobotMotion.mxGeneralCOntrolOk"</v>
+                        </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
                         </o>
                         <o>
                           <v n="Id">823443203L</v>
@@ -2520,10 +2618,13 @@ On"</v>
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">0</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-Standard"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">12</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Font-Default-Color"</v>
@@ -2550,6 +2651,10 @@ On"</v>
                         <o>
                           <v n="Id">2597686782L</v>
                           <v n="Value">true</v>
+                        </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
                         </o>
                       </l>
                     </o>
@@ -2638,10 +2743,13 @@ On"</v>
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">0</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-Standard"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">12</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Font-Default-Color"</v>
@@ -2668,6 +2776,10 @@ On"</v>
                         <o>
                           <v n="Id">2597686782L</v>
                           <v n="Value">true</v>
+                        </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
                         </o>
                         <o>
                           <v n="Id">823443203L</v>
@@ -2763,6 +2875,10 @@ On"</v>
                           <v n="Id">743958181L</v>
                           <v n="Value">"GVL.ixLightBeamAndGatesClosed"</v>
                         </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
+                        </o>
                       </l>
                     </o>
                     <v n="VisualElementName">"Lamp1"</v>
@@ -2850,10 +2966,13 @@ On"</v>
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">0</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-Standard"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">12</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Font-Default-Color"</v>
@@ -2880,6 +2999,10 @@ On"</v>
                         <o>
                           <v n="Id">2597686782L</v>
                           <v n="Value">true</v>
+                        </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
                         </o>
                         <o>
                           <v n="Id">823443203L</v>
@@ -2975,6 +3098,10 @@ On"</v>
                           <v n="Id">743958181L</v>
                           <v n="Value">"GVL.ixEmergencyStopOk"</v>
                         </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
+                        </o>
                       </l>
                     </o>
                     <v n="VisualElementName">"Lamp1"</v>
@@ -3064,6 +3191,10 @@ On"</v>
                         <o>
                           <v n="Id">743958181L</v>
                           <v n="Value">"GVL.qxIndControlOn"</v>
+                        </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
                         </o>
                       </l>
                     </o>
@@ -3155,6 +3286,10 @@ On"</v>
                           <v n="Id">743958181L</v>
                           <v n="Value">"GVL.qxIndProgramStart"</v>
                         </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
+                        </o>
                       </l>
                     </o>
                     <v n="VisualElementName">"Lamp1"</v>
@@ -3242,10 +3377,13 @@ On"</v>
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">0</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-Standard"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">12</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Font-Default-Color"</v>
@@ -3272,6 +3410,10 @@ On"</v>
                         <o>
                           <v n="Id">2597686782L</v>
                           <v n="Value">true</v>
+                        </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
                         </o>
                         <o>
                           <v n="Id">823443203L</v>
@@ -3366,6 +3508,10 @@ On"</v>
                         <o>
                           <v n="Id">743958181L</v>
                           <v n="Value">"GantryRobotMotion.mxLimSwOK"</v>
+                        </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
                         </o>
                       </l>
                     </o>
@@ -3928,10 +4074,13 @@ On"</v>
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">0</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-Standard"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">12</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Font-Default-Color"</v>
@@ -4000,6 +4149,10 @@ On"</v>
                         <o>
                           <v n="Id">2597686782L</v>
                           <v n="Value">true</v>
+                        </o>
+                        <o>
+                          <v n="Id">3553112287L</v>
+                          <v n="Value">0</v>
                         </o>
                       </l>
                     </o>
@@ -4562,10 +4715,13 @@ On"</v>
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">0</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-Standard"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">12</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Font-Default-Color"</v>
@@ -4634,6 +4790,10 @@ On"</v>
                         <o>
                           <v n="Id">2597686782L</v>
                           <v n="Value">true</v>
+                        </o>
+                        <o>
+                          <v n="Id">3553112287L</v>
+                          <v n="Value">0</v>
                         </o>
                       </l>
                     </o>
@@ -5196,10 +5356,13 @@ On"</v>
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">0</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-Standard"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">12</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Font-Default-Color"</v>
@@ -5268,6 +5431,10 @@ On"</v>
                         <o>
                           <v n="Id">2597686782L</v>
                           <v n="Value">true</v>
+                        </o>
+                        <o>
+                          <v n="Id">3553112287L</v>
+                          <v n="Value">0</v>
                         </o>
                       </l>
                     </o>
@@ -5371,6 +5538,10 @@ On"</v>
                           <v n="Id">2597686782L</v>
                           <v n="Value">false</v>
                         </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
+                        </o>
                       </l>
                     </o>
                     <v n="VisualElementName">"RotarySwitch"</v>
@@ -5458,10 +5629,13 @@ On"</v>
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">0</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-Standard"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">12</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Font-Default-Color"</v>
@@ -5488,6 +5662,10 @@ On"</v>
                         <o>
                           <v n="Id">2597686782L</v>
                           <v n="Value">true</v>
+                        </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
                         </o>
                         <o>
                           <v n="Id">823443203L</v>
@@ -6054,10 +6232,13 @@ On"</v>
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">0</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-Standard"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">12</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Font-Default-Color"</v>
@@ -6126,6 +6307,10 @@ On"</v>
                         <o>
                           <v n="Id">2597686782L</v>
                           <v n="Value">true</v>
+                        </o>
+                        <o>
+                          <v n="Id">3553112287L</v>
+                          <v n="Value">0</v>
                         </o>
                       </l>
                     </o>
@@ -6255,10 +6440,13 @@ On"</v>
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">0</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-Heading"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">20</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Element-Button-FontColor"</v>
@@ -6301,6 +6489,10 @@ On"</v>
                         <o>
                           <v n="Id">2496894244L</v>
                           <v n="Value">"NOT GantryRobotMotion.mxAutoMode"</v>
+                        </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
                         </o>
                         <o>
                           <v n="Id">823443203L</v>
@@ -6396,6 +6588,10 @@ On"</v>
                           <v n="Id">2597686782L</v>
                           <v n="Value">false</v>
                         </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
+                        </o>
                       </l>
                     </o>
                     <v n="VisualElementName">"Lamp1"</v>
@@ -6486,6 +6682,10 @@ On"</v>
                           <v n="Id">2597686782L</v>
                           <v n="Value">false</v>
                         </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
+                        </o>
                       </l>
                     </o>
                     <v n="VisualElementName">"Lamp1"</v>
@@ -6575,6 +6775,10 @@ On"</v>
                         <o>
                           <v n="Id">2597686782L</v>
                           <v n="Value">false</v>
+                        </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
                         </o>
                       </l>
                     </o>
@@ -6704,10 +6908,13 @@ On"</v>
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">0</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-Standard"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">12</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Element-Button-FontColor"</v>
@@ -6748,6 +6955,10 @@ Servo Drives"</v>
                         <o>
                           <v n="Id">2597686782L</v>
                           <v n="Value">false</v>
+                        </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
                         </o>
                         <o>
                           <v n="Id">823443203L</v>
@@ -6876,10 +7087,13 @@ Servo Drives"</v>
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">0</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-Heading"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">20</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Element-Button-FontColor"</v>
@@ -6927,6 +7141,10 @@ Off"</v>
                         <o>
                           <v n="Id">2496894244L</v>
                           <v n="Value">"NOT GantryRobotMotion.mxGeneralCOntrolOk"</v>
+                        </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
                         </o>
                         <o>
                           <v n="Id">823443203L</v>
@@ -7060,10 +7278,13 @@ Off"</v>
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">0</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-Heading"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">20</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Element-Button-FontColor"</v>
@@ -7106,6 +7327,10 @@ Off"</v>
                         <o>
                           <v n="Id">2496894244L</v>
                           <v n="Value">"NOT GantryRobotMotion.mxAutoMode"</v>
+                        </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
                         </o>
                         <o>
                           <v n="Id">823443203L</v>
@@ -7242,10 +7467,13 @@ Off"</v>
                       <l n="Value" t="ArrayList" cet="NamedStyleFont">
                         <o>
                           <v n="FontStyle">0</v>
+                          <v n="AdditionalFontStyle" t="UInt16">0</v>
                           <v n="ExplicitColor">-16777216</v>
                           <v n="CanonicalName">"Font-Standard"</v>
                           <v n="FontName">"Arial"</v>
                           <v n="FontSize">12</v>
+                          <v n="ScriptIdentification">0</v>
+                          <v n="DoubleFontSize" t="Double">0</v>
                           <o n="NamedColor" t="NamedStyleColor">
                             <v n="Color">-16777216</v>
                             <v n="CanonicalName">"Font-Default-Color"</v>
@@ -7276,6 +7504,10 @@ Off"</v>
                     <o>
                       <v n="Id">2597686782L</v>
                       <v n="Value">false</v>
+                    </o>
+                    <o>
+                      <v n="Id">3719097617L</v>
+                      <v n="Value">0</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
@@ -7403,10 +7635,13 @@ Off"</v>
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">0</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-Heading"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">20</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Font-Default-Color"</v>
@@ -7441,6 +7676,10 @@ Off"</v>
                         <o>
                           <v n="Id">2597686782L</v>
                           <v n="Value">false</v>
+                        </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
                         </o>
                         <o>
                           <v n="Id">823443203L</v>
@@ -7565,10 +7804,13 @@ Off"</v>
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">0</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-Heading"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">20</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Font-Default-Color"</v>
@@ -7603,6 +7845,10 @@ Off"</v>
                         <o>
                           <v n="Id">2597686782L</v>
                           <v n="Value">false</v>
+                        </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
                         </o>
                         <o>
                           <v n="Id">823443203L</v>
@@ -7727,10 +7973,13 @@ Off"</v>
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">0</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-Heading"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">20</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Font-Default-Color"</v>
@@ -7765,6 +8014,10 @@ Off"</v>
                         <o>
                           <v n="Id">2597686782L</v>
                           <v n="Value">false</v>
+                        </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
                         </o>
                         <o>
                           <v n="Id">823443203L</v>
@@ -7901,10 +8154,13 @@ Off"</v>
                       <l n="Value" t="ArrayList" cet="NamedStyleFont">
                         <o>
                           <v n="FontStyle">0</v>
+                          <v n="AdditionalFontStyle" t="UInt16">0</v>
                           <v n="ExplicitColor">-16777216</v>
                           <v n="CanonicalName">"Font-Standard"</v>
                           <v n="FontName">"Arial"</v>
                           <v n="FontSize">12</v>
+                          <v n="ScriptIdentification">0</v>
+                          <v n="DoubleFontSize" t="Double">0</v>
                           <o n="NamedColor" t="NamedStyleColor">
                             <v n="Color">-16777216</v>
                             <v n="CanonicalName">"Font-Default-Color"</v>
@@ -7935,6 +8191,10 @@ Off"</v>
                     <o>
                       <v n="Id">2597686782L</v>
                       <v n="Value">false</v>
+                    </o>
+                    <o>
+                      <v n="Id">3719097617L</v>
+                      <v n="Value">0</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
@@ -8053,10 +8313,13 @@ Off"</v>
                       <l n="Value" t="ArrayList" cet="NamedStyleFont">
                         <o>
                           <v n="FontStyle">0</v>
+                          <v n="AdditionalFontStyle" t="UInt16">0</v>
                           <v n="ExplicitColor">-16777216</v>
                           <v n="CanonicalName">"Font-Heading"</v>
                           <v n="FontName">"Arial"</v>
                           <v n="FontSize">20</v>
+                          <v n="ScriptIdentification">0</v>
+                          <v n="DoubleFontSize" t="Double">0</v>
                           <o n="NamedColor" t="NamedStyleColor">
                             <v n="Color">-16777216</v>
                             <v n="CanonicalName">"Element-Button-FontColor"</v>
@@ -8095,6 +8358,10 @@ Off"</v>
                     <o>
                       <v n="Id">2597686782L</v>
                       <v n="Value">false</v>
+                    </o>
+                    <o>
+                      <v n="Id">3719097617L</v>
+                      <v n="Value">0</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
@@ -8229,10 +8496,13 @@ Off"</v>
                       <l n="Value" t="ArrayList" cet="NamedStyleFont">
                         <o>
                           <v n="FontStyle">0</v>
+                          <v n="AdditionalFontStyle" t="UInt16">0</v>
                           <v n="ExplicitColor">-16777216</v>
                           <v n="CanonicalName">"Font-Heading"</v>
                           <v n="FontName">"Arial"</v>
                           <v n="FontSize">20</v>
+                          <v n="ScriptIdentification">0</v>
+                          <v n="DoubleFontSize" t="Double">0</v>
                           <o n="NamedColor" t="NamedStyleColor">
                             <v n="Color">-16777216</v>
                             <v n="CanonicalName">"Font-Default-Color"</v>
@@ -8267,6 +8537,10 @@ Off"</v>
                     <o>
                       <v n="Id">2477733581L</v>
                       <v n="Value">"GantryRobotMotion.strStatusText"</v>
+                    </o>
+                    <o>
+                      <v n="Id">3719097617L</v>
+                      <v n="Value">0</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
@@ -8394,10 +8668,13 @@ Off"</v>
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">0</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-Heading"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">20</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Font-Default-Color"</v>
@@ -8434,6 +8711,10 @@ Off"</v>
                           <v n="Value">false</v>
                         </o>
                         <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
+                        </o>
+                        <o>
                           <v n="Id">823443203L</v>
                           <v n="Value">"762"</v>
                         </o>
@@ -8459,6 +8740,9 @@ Off"</v>
                           <v n="TextOutputVariableInitialized">true</v>
                           <v n="OtherVarConversion">""</v>
                           <v n="Format">"%i"</v>
+                          <v n="DialogPosition" t="DialogPositionSetting">UseGlobalSetting</v>
+                          <v n="DialogXPos">""</v>
+                          <v n="DialogYPos">""</v>
                         </o>
                       </a>
                     </d>
@@ -8572,10 +8856,13 @@ Off"</v>
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">0</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-Heading"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">20</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Font-Default-Color"</v>
@@ -8612,6 +8899,10 @@ Off"</v>
                           <v n="Value">false</v>
                         </o>
                         <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
+                        </o>
+                        <o>
                           <v n="Id">823443203L</v>
                           <v n="Value">"1043"</v>
                         </o>
@@ -8637,6 +8928,9 @@ Off"</v>
                           <v n="TextOutputVariableInitialized">true</v>
                           <v n="OtherVarConversion">""</v>
                           <v n="Format">"%i"</v>
+                          <v n="DialogPosition" t="DialogPositionSetting">UseGlobalSetting</v>
+                          <v n="DialogXPos">""</v>
+                          <v n="DialogYPos">""</v>
                         </o>
                       </a>
                     </d>
@@ -8759,10 +9053,13 @@ Off"</v>
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">0</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-Heading"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">20</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Element-Button-FontColor"</v>
@@ -8805,6 +9102,10 @@ Off"</v>
                         <o>
                           <v n="Id">2496894244L</v>
                           <v n="Value">"NOT GantryRobotMotion.mxManualMode"</v>
+                        </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
                         </o>
                         <o>
                           <v n="Id">823443203L</v>
@@ -8941,10 +9242,13 @@ Off"</v>
                       <l n="Value" t="ArrayList" cet="NamedStyleFont">
                         <o>
                           <v n="FontStyle">0</v>
+                          <v n="AdditionalFontStyle" t="UInt16">0</v>
                           <v n="ExplicitColor">-16777216</v>
                           <v n="CanonicalName">"Font-Standard"</v>
                           <v n="FontName">"Arial"</v>
                           <v n="FontSize">12</v>
+                          <v n="ScriptIdentification">0</v>
+                          <v n="DoubleFontSize" t="Double">0</v>
                           <o n="NamedColor" t="NamedStyleColor">
                             <v n="Color">-16777216</v>
                             <v n="CanonicalName">"Font-Default-Color"</v>
@@ -8975,6 +9279,10 @@ Off"</v>
                     <o>
                       <v n="Id">2597686782L</v>
                       <v n="Value">false</v>
+                    </o>
+                    <o>
+                      <v n="Id">3719097617L</v>
+                      <v n="Value">0</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
@@ -9111,10 +9419,13 @@ Off"</v>
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">0</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-Heading"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">20</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Element-Button-FontColor"</v>
@@ -9158,6 +9469,10 @@ Off"</v>
                         <o>
                           <v n="Id">2496894244L</v>
                           <v n="Value">"NOT GantryRobotMotion.mxManualMode OR NOT GantryRobotMotion.mxHomingDone"</v>
+                        </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
                         </o>
                         <o>
                           <v n="Id">823443203L</v>
@@ -9282,10 +9597,13 @@ Off"</v>
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">0</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-Standard"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">12</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Font-Default-Color"</v>
@@ -9326,6 +9644,10 @@ Off"</v>
                           <v n="Value">"NOT GantryRobotMotion.mxManualMode"</v>
                         </o>
                         <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
+                        </o>
+                        <o>
                           <v n="Id">823443203L</v>
                           <v n="Value">"1392"</v>
                         </o>
@@ -9351,6 +9673,9 @@ Off"</v>
                           <v n="TextOutputVariableInitialized">true</v>
                           <v n="OtherVarConversion">""</v>
                           <v n="Format">"%i"</v>
+                          <v n="DialogPosition" t="DialogPositionSetting">UseGlobalSetting</v>
+                          <v n="DialogXPos">""</v>
+                          <v n="DialogYPos">""</v>
                         </o>
                       </a>
                     </d>
@@ -9473,10 +9798,13 @@ Off"</v>
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">0</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-Heading"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">20</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Element-Button-FontColor"</v>
@@ -9520,6 +9848,10 @@ Position"</v>
                         <o>
                           <v n="Id">2496894244L</v>
                           <v n="Value">"NOT GantryRobotMotion.mxManualMode OR NOT GantryRobotMotion.mxHomingDone"</v>
+                        </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
                         </o>
                         <o>
                           <v n="Id">823443203L</v>
@@ -9644,10 +9976,13 @@ Position"</v>
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">0</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-Standard"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">12</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Font-Default-Color"</v>
@@ -9688,6 +10023,10 @@ Position"</v>
                           <v n="Value">"NOT GantryRobotMotion.mxManualMode"</v>
                         </o>
                         <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
+                        </o>
+                        <o>
                           <v n="Id">823443203L</v>
                           <v n="Value">"586"</v>
                         </o>
@@ -9713,6 +10052,9 @@ Position"</v>
                           <v n="TextOutputVariableInitialized">true</v>
                           <v n="OtherVarConversion">""</v>
                           <v n="Format">"%i"</v>
+                          <v n="DialogPosition" t="DialogPositionSetting">UseGlobalSetting</v>
+                          <v n="DialogXPos">""</v>
+                          <v n="DialogYPos">""</v>
                         </o>
                       </a>
                     </d>
@@ -9826,10 +10168,13 @@ Position"</v>
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">0</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-Standard"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">12</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Font-Default-Color"</v>
@@ -9870,6 +10215,10 @@ Position"</v>
                           <v n="Value">"NOT GantryRobotMotion.mxManualMode"</v>
                         </o>
                         <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
+                        </o>
+                        <o>
                           <v n="Id">823443203L</v>
                           <v n="Value">"754"</v>
                         </o>
@@ -9895,6 +10244,9 @@ Position"</v>
                           <v n="TextOutputVariableInitialized">true</v>
                           <v n="OtherVarConversion">""</v>
                           <v n="Format">"%f"</v>
+                          <v n="DialogPosition" t="DialogPositionSetting">UseGlobalSetting</v>
+                          <v n="DialogXPos">""</v>
+                          <v n="DialogYPos">""</v>
                         </o>
                         <o t="STSnippetInputAction">
                           <v n="STSnippet">"GantryRobotMotion.mxReminderToSave := TRUE;"</v>
@@ -10011,10 +10363,13 @@ Position"</v>
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">0</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-Standard"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">12</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Font-Default-Color"</v>
@@ -10055,6 +10410,10 @@ Position"</v>
                           <v n="Value">"NOT GantryRobotMotion.mxManualMode"</v>
                         </o>
                         <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
+                        </o>
+                        <o>
                           <v n="Id">823443203L</v>
                           <v n="Value">"1274"</v>
                         </o>
@@ -10080,6 +10439,9 @@ Position"</v>
                           <v n="TextOutputVariableInitialized">true</v>
                           <v n="OtherVarConversion">""</v>
                           <v n="Format">"%f"</v>
+                          <v n="DialogPosition" t="DialogPositionSetting">UseGlobalSetting</v>
+                          <v n="DialogXPos">""</v>
+                          <v n="DialogYPos">""</v>
                         </o>
                         <o t="STSnippetInputAction">
                           <v n="STSnippet">"GantryRobotMotion.mxReminderToSave := TRUE;"</v>
@@ -10205,10 +10567,13 @@ Position"</v>
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">0</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-Heading"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">20</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Element-Button-FontColor"</v>
@@ -10251,6 +10616,10 @@ Position"</v>
                         <o>
                           <v n="Id">2496894244L</v>
                           <v n="Value">"NOT GantryRobotMotion.mxManualMode"</v>
+                        </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
                         </o>
                         <o>
                           <v n="Id">823443203L</v>
@@ -10384,10 +10753,13 @@ Position"</v>
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">0</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-Heading"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">20</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Element-Button-FontColor"</v>
@@ -10430,6 +10802,10 @@ Position"</v>
                         <o>
                           <v n="Id">2496894244L</v>
                           <v n="Value">"NOT GantryRobotMotion.mxManualMode"</v>
+                        </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
                         </o>
                         <o>
                           <v n="Id">823443203L</v>
@@ -10554,10 +10930,13 @@ Position"</v>
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">0</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-Standard"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">12</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Font-Default-Color"</v>
@@ -10598,6 +10977,10 @@ Position"</v>
                           <v n="Value">"NOT GantryRobotMotion.mxManualMode"</v>
                         </o>
                         <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
+                        </o>
+                        <o>
                           <v n="Id">823443203L</v>
                           <v n="Value">"910"</v>
                         </o>
@@ -10623,6 +11006,9 @@ Position"</v>
                           <v n="TextOutputVariableInitialized">true</v>
                           <v n="OtherVarConversion">""</v>
                           <v n="Format">"%f"</v>
+                          <v n="DialogPosition" t="DialogPositionSetting">UseGlobalSetting</v>
+                          <v n="DialogXPos">""</v>
+                          <v n="DialogYPos">""</v>
                         </o>
                         <o t="STSnippetInputAction">
                           <v n="STSnippet">"GantryRobotMotion.mxReminderToSave := TRUE;"</v>
@@ -10751,10 +11137,13 @@ Position"</v>
                       <l n="Value" t="ArrayList" cet="NamedStyleFont">
                         <o>
                           <v n="FontStyle">0</v>
+                          <v n="AdditionalFontStyle" t="UInt16">0</v>
                           <v n="ExplicitColor">-16777216</v>
                           <v n="CanonicalName">"Font-Standard"</v>
                           <v n="FontName">"Arial"</v>
                           <v n="FontSize">12</v>
+                          <v n="ScriptIdentification">0</v>
+                          <v n="DoubleFontSize" t="Double">0</v>
                           <o n="NamedColor" t="NamedStyleColor">
                             <v n="Color">-16777216</v>
                             <v n="CanonicalName">"Font-Default-Color"</v>
@@ -10785,6 +11174,10 @@ Position"</v>
                     <o>
                       <v n="Id">2597686782L</v>
                       <v n="Value">false</v>
+                    </o>
+                    <o>
+                      <v n="Id">3719097617L</v>
+                      <v n="Value">0</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
@@ -10883,6 +11276,10 @@ Position"</v>
                           <v n="Id">2597686782L</v>
                           <v n="Value">false</v>
                         </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
+                        </o>
                       </l>
                     </o>
                     <v n="VisualElementName">"Lamp1"</v>
@@ -10973,6 +11370,10 @@ Position"</v>
                           <v n="Id">2597686782L</v>
                           <v n="Value">false</v>
                         </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
+                        </o>
                       </l>
                     </o>
                     <v n="VisualElementName">"Lamp1"</v>
@@ -11062,6 +11463,10 @@ Position"</v>
                         <o>
                           <v n="Id">2597686782L</v>
                           <v n="Value">false</v>
+                        </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
                         </o>
                       </l>
                     </o>
@@ -11191,10 +11596,13 @@ Position"</v>
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">0</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-Heading"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">20</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Element-Button-FontColor"</v>
@@ -11237,6 +11645,10 @@ Position"</v>
                         <o>
                           <v n="Id">2496894244L</v>
                           <v n="Value">"NOT GantryRobotMotion.mxManualMode"</v>
+                        </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
                         </o>
                         <o>
                           <v n="Id">823443203L</v>
@@ -11370,10 +11782,13 @@ Position"</v>
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">0</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-Heading"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">20</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Element-Button-FontColor"</v>
@@ -11416,6 +11831,10 @@ Position"</v>
                         <o>
                           <v n="Id">2496894244L</v>
                           <v n="Value">"NOT GantryRobotMotion.mxManualMode"</v>
+                        </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
                         </o>
                         <o>
                           <v n="Id">823443203L</v>
@@ -11549,10 +11968,13 @@ Position"</v>
                           <l n="Value" t="ArrayList" cet="NamedStyleFont">
                             <o>
                               <v n="FontStyle">0</v>
+                              <v n="AdditionalFontStyle" t="UInt16">0</v>
                               <v n="ExplicitColor">-16777216</v>
                               <v n="CanonicalName">"Font-Heading"</v>
                               <v n="FontName">"Arial"</v>
                               <v n="FontSize">20</v>
+                              <v n="ScriptIdentification">0</v>
+                              <v n="DoubleFontSize" t="Double">0</v>
                               <o n="NamedColor" t="NamedStyleColor">
                                 <v n="Color">-16777216</v>
                                 <v n="CanonicalName">"Element-Button-FontColor"</v>
@@ -11595,6 +12017,10 @@ Position"</v>
                         <o>
                           <v n="Id">2496894244L</v>
                           <v n="Value">"NOT GantryRobotMotion.mxManualMode"</v>
+                        </o>
+                        <o>
+                          <v n="Id">3719097617L</v>
+                          <v n="Value">0</v>
                         </o>
                         <o>
                           <v n="Id">823443203L</v>
@@ -11731,10 +12157,13 @@ Position"</v>
                       <l n="Value" t="ArrayList" cet="NamedStyleFont">
                         <o>
                           <v n="FontStyle">0</v>
+                          <v n="AdditionalFontStyle" t="UInt16">0</v>
                           <v n="ExplicitColor">-16777216</v>
                           <v n="CanonicalName">"Font-Standard"</v>
                           <v n="FontName">"Arial"</v>
                           <v n="FontSize">12</v>
+                          <v n="ScriptIdentification">0</v>
+                          <v n="DoubleFontSize" t="Double">0</v>
                           <o n="NamedColor" t="NamedStyleColor">
                             <v n="Color">-16777216</v>
                             <v n="CanonicalName">"Font-Default-Color"</v>
@@ -11765,6 +12194,10 @@ Position"</v>
                     <o>
                       <v n="Id">2597686782L</v>
                       <v n="Value">false</v>
+                    </o>
+                    <o>
+                      <v n="Id">3719097617L</v>
+                      <v n="Value">0</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
@@ -11857,10 +12290,13 @@ Position"</v>
                       <l n="Value" t="ArrayList" cet="NamedStyleFont">
                         <o>
                           <v n="FontStyle">0</v>
+                          <v n="AdditionalFontStyle" t="UInt16">0</v>
                           <v n="ExplicitColor">-16777216</v>
                           <v n="CanonicalName">"Font-Heading"</v>
                           <v n="FontName">"Arial"</v>
                           <v n="FontSize">20</v>
+                          <v n="ScriptIdentification">0</v>
+                          <v n="DoubleFontSize" t="Double">0</v>
                           <o n="NamedColor" t="NamedStyleColor">
                             <v n="Color">-16777216</v>
                             <v n="CanonicalName">"Font-Default-Color"</v>
@@ -11891,6 +12327,10 @@ Position"</v>
                     <o>
                       <v n="Id">2597686782L</v>
                       <v n="Value">false</v>
+                    </o>
+                    <o>
+                      <v n="Id">3719097617L</v>
+                      <v n="Value">0</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
@@ -11928,78 +12368,68 @@ Position"</v>
           <o n="GeneratedLMMDescriptions" t="GeneratedLanguageModelEntriesData">
             <o n="GeneratedVisuFbDescription" t="GenericFbDescription">
               <d n="FbMethods" t="CaseInsensitiveHashtable_1" ckt="String" cvt="Guid">
-                <v>HasVisibilityAccess</v>
-                <v>e8494ecc-619a-48e1-811a-39746fec0135</v>
+                <v>GetUpdateRects</v>
+                <v>9316b93f-4edf-4b83-9f48-b81535581310</v>
                 <v>ContainsPoint</v>
-                <v>5f1f0dc9-8339-4761-aa05-be5fa705fc2e</v>
-                <v>HasInputAccess</v>
-                <v>fffcbb2d-a410-4a1d-a681-3995280b253f</v>
+                <v>f70914f8-14bf-4e00-aa80-0c4a27d7dd53</v>
+                <v>FB_Reinit</v>
+                <v>29fe09d3-7030-4e26-ab34-afc17806dec4</v>
+                <v>SetStaticState</v>
+                <v>f84acb22-b74b-4fc0-ab6f-edd96cc51b59</v>
+                <v>Update</v>
+                <v>31f44a4c-ed8a-49d6-996b-06c240bd118f</v>
+                <v>GetTooltip</v>
+                <v>bd529024-6c33-4004-a6fc-8483e307f9ff</v>
+                <v>GetNamespace</v>
+                <v>99618ec5-44a7-4a57-a176-029f7741e908</v>
+                <v>GetTranslator</v>
+                <v>5f7d6626-86f0-469f-993f-068fdd1c0f99</v>
+                <v>SetClientData</v>
+                <v>b52c5d24-6f64-450a-818c-569a4372bf40</v>
+                <v>GetClientData</v>
+                <v>9c7cd2bf-3572-4c11-b2b8-2b0df0495686</v>
+                <v>Paint</v>
+                <v>436bc47c-abad-4cdc-b323-2e4e0451ee7b</v>
+                <v>HasVisibilityAccess</v>
+                <v>b9842d53-ed75-4bb1-847c-c9b59a8245ad</v>
+                <v>GetElementArray</v>
+                <v>85ef256a-6b4b-4fd7-b83e-83be7bc5d5a7</v>
+                <v>SetVisuFlagsInternal</v>
+                <v>d52bf881-ec7b-4d1b-ad7b-5156cfd5b44a</v>
+                <v>GetText</v>
+                <v>6e8f4f1a-3113-482e-b098-d7397e326c42</v>
+                <v>GetTextProperties</v>
+                <v>be62526c-595d-48d8-8462-6c233a6de132</v>
+                <v>IsAntialiasingInactive</v>
+                <v>40d29246-2df1-435d-bbef-9d03e71c15ce</v>
                 <v>HasInputAccessIntern</v>
                 <v>701bbb2a-438b-5f29-9f3f-c087c7dcfd4a</v>
-                <v>GetTooltip</v>
-                <v>ebaf3d1a-eb08-4589-b59a-12816abfeb54</v>
-                <v>GetDialogInterfaceSize</v>
-                <v>1400d126-d20d-4150-9f8c-0b73e3a9fb35</v>
-                <v>GetUpdateRects</v>
-                <v>2cf59bf0-77f5-462e-afba-6d67c3c8ac42</v>
-                <v>GetNamespace</v>
-                <v>2eebab42-8607-4a6f-b72b-785ff7c70594</v>
-                <v>SetResult</v>
-                <v>100f5da5-0fcf-48d5-be3e-3ef51354af6e</v>
-                <v>GetTranslator</v>
-                <v>aec70521-9401-4e81-be10-96d3c32c54c1</v>
-                <v>Update</v>
-                <v>275b4cc9-4563-40fb-8cc0-8b564e023257</v>
-                <v>SetClientData</v>
-                <v>0782eeaa-0451-4595-a494-082fcd42209a</v>
+                <v>Initialize</v>
+                <v>aaff0f83-51c8-4b8a-91d0-4141fda719e5</v>
+                <v>HasInputAccess</v>
+                <v>5c19b961-33f6-4766-be86-913b01535e6c</v>
                 <v>HasVisibilityAccessIntern</v>
                 <v>02866283-df3f-5164-b195-51e5130f8134</v>
-                <v>GetInstance</v>
-                <v>2edbf0e8-9946-49db-974e-7fe05ee473a8</v>
-                <v>GetClientData</v>
-                <v>0a92ee1e-dc40-4799-9936-34ab781522f9</v>
-                <v>Paint</v>
-                <v>bc72307c-db33-4895-b6f3-758ca207f734</v>
-                <v>GetElementArray</v>
-                <v>e08f49e7-3d79-43d0-a71a-8f4707ca85d1</v>
-                <v>SetVisuFlagsInternal</v>
-                <v>31791f36-12fe-470c-be10-a4043fe8a0e7</v>
-                <v>GetText</v>
-                <v>3139f1c8-47fc-48b3-9faf-6554d4c3ecfa</v>
-                <v>GetTextProperties</v>
-                <v>c8d2ea49-3074-4475-93b6-f8000c36f5eb</v>
-                <v>Initialize</v>
-                <v>d181bf5a-9820-420f-abc2-a89231087a20</v>
-                <v>Destruct</v>
-                <v>e24583f2-c45e-474f-a09e-28ff60dd6e47</v>
-                <v>SetStaticState</v>
-                <v>e0a64f90-2f60-4934-898e-cc92eb782570</v>
                 <v>GetSurroundingRect</v>
-                <v>cdfe3665-f828-4337-bfa8-d330a9975d19</v>
-                <v>GetResult</v>
-                <v>bdead2af-56c0-477b-b76a-ee20c3880d74</v>
+                <v>121a0954-35f4-4685-b731-862570c7c9ce</v>
                 <v>GetLocalUsergroup</v>
-                <v>2e67a09b-ae0a-499a-8627-cfe602516e0f</v>
+                <v>4f7b0ae2-be13-4a42-a65a-9f0615add63e</v>
                 <v>GetName</v>
-                <v>f4dc5b6a-c36b-47a9-93b7-737d6847b2b5</v>
+                <v>ef27237a-9c4e-400d-933c-3abcf4f04940</v>
                 <v>GetSize</v>
-                <v>1b6d742c-9b26-41c8-ac27-b0f8d630455a</v>
-                <v>SetDialogInterface</v>
-                <v>a34aa374-eb50-4ea0-bfc0-0e30d4e1bb26</v>
-                <v>FB_Reinit</v>
-                <v>78e2390f-dce5-4f93-b1c6-26819ae154cc</v>
+                <v>985b56e8-0dc4-463b-be34-5280df9997d4</v>
+                <v>Destruct</v>
+                <v>69d97f34-b7fd-4d2a-a26e-fb4b953e8fb3</v>
                 <v>FB_Exit</v>
-                <v>b0cded16-869c-4cd0-aa32-b59b8f454170</v>
+                <v>cc540de4-b484-409b-b6cd-53ea83240f42</v>
                 <v>GetInitializeVersion</v>
-                <v>e210c02e-c703-4e1f-86df-0037ff92c821</v>
-                <v>GetDialogInterface</v>
-                <v>c082c5c8-89c2-42e0-9c99-e86fe1b6efdc</v>
+                <v>c074c09c-c9db-431a-84f6-cc981c907f85</v>
                 <v>GetElementIdArray</v>
-                <v>32aa623f-2f4c-4c6a-b1db-b8fd6fba8435</v>
+                <v>704faaf9-5cbb-4b1b-9358-5f82ffc1fc74</v>
                 <v>HandleInput</v>
-                <v>6ccaedfa-0b26-4d32-88b4-bcbad229d42e</v>
+                <v>b3ae577a-55a5-4ad5-b719-e4c9a8636486</v>
                 <v>ElementInfo</v>
-                <v>6ab71237-f260-46f8-bfa7-f4d06b4c315e</v>
+                <v>ce66e817-3330-48fd-8900-8cbe96089d94</v>
               </d>
               <v n="FbName">"NotImportant"</v>
               <v n="FbGuid">{00b2fabf-60ad-4184-b41c-b3b945dff1fc}</v>
@@ -12012,10 +12442,10 @@ Position"</v>
               <d n="FbMethods" t="CaseInsensitiveHashtable_1" ckt="String" cvt="Guid">
                 <v>FB_Init</v>
                 <v>f6506dea-c9b2-4f1b-b7ea-7f66d27fcc1c</v>
-                <v>FB_Exit</v>
-                <v>04b88deb-9255-4882-a7f2-e616be69d800</v>
                 <v>FB_Reinit</v>
                 <v>d31ce0fb-1d13-4d03-81e6-33190a34251c</v>
+                <v>FB_Exit</v>
+                <v>04b88deb-9255-4882-a7f2-e616be69d800</v>
               </d>
               <v n="FbName">"NotImportant"</v>
               <v n="FbGuid">{d1eb8f26-46c7-47b6-8e50-9147c6f08250}</v>
@@ -12097,9 +12527,11 @@ Position"</v>
         <Type n="CaseInsensitiveHashtable">{02a85e84-ef2d-46fc-93f2-acb0bbff3eda}</Type>
         <Type n="CaseInsensitiveHashtable_1">{7df88604-7ac5-4e36-91c4-55e4fdad3e68}</Type>
         <Type n="ChangeVisuInputAction">{b4c3a27b-74e5-4a67-bfa9-12f8c8cda31f}</Type>
-        <Type n="ChangeVisuInputAction[]">_3S.CoDeSys.VisualElem.ChangeVisuInputAction[], VisualElem.plugin, Version=3.5.10.31, Culture=neutral, PublicKeyToken=null</Type>
+        <Type n="ChangeVisuInputAction[]">_3S.CoDeSys.VisualElem.ChangeVisuInputAction[], VisualElem.plugin, Version=3.5.13.30, Culture=neutral, PublicKeyToken=null</Type>
         <Type n="ChangeVisuType">{a418300c-fdec-47d4-86a4-53b5a5f941fa}</Type>
         <Type n="ComplexInput">{1de566f6-72a7-494c-9353-9a418172c96e}</Type>
+        <Type n="DialogPositionSetting">{16f3f59a-37ad-4991-a1af-cc2926974e08}</Type>
+        <Type n="Double">System.Double</Type>
         <Type n="DynamicArrayNode">{6c16f79c-dd98-4c29-b3ba-7042e3055542}</Type>
         <Type n="GeneratedLanguageModelEntriesData">{703465dc-4679-4ff2-bcc3-c57d0a204da3}</Type>
         <Type n="GenericFbDescription">{40d6dd8d-dfd0-493a-8e29-c9a35e1e6539}</Type>
@@ -12108,9 +12540,9 @@ Position"</v>
         <Type n="Hashtable">System.Collections.Hashtable</Type>
         <Type n="HotkeyConfiguration">{6b108d46-58af-4e41-a3f4-174d8f160cc4}</Type>
         <Type n="IInputAction">{69265815-ba9d-4bec-bfcb-427fb9172844}</Type>
-        <Type n="IInputAction[]">_3S.CoDeSys.VisualElem.IInputAction[], VisualElem, Version=3.5.10.0, Culture=neutral, PublicKeyToken=null</Type>
+        <Type n="IInputAction[]">_3S.CoDeSys.VisualElem.IInputAction[], VisualElem, Version=3.5.13.0, Culture=neutral, PublicKeyToken=null</Type>
         <Type n="InputBoxInputAction">{e8e7e747-f76f-4dee-ab1c-b9637e41ac26}</Type>
-        <Type n="InputBoxInputAction[]">_3S.CoDeSys.VisualElem.InputBoxInputAction[], VisualElem.plugin, Version=3.5.10.31, Culture=neutral, PublicKeyToken=null</Type>
+        <Type n="InputBoxInputAction[]">_3S.CoDeSys.VisualElem.InputBoxInputAction[], VisualElem.plugin, Version=3.5.13.30, Culture=neutral, PublicKeyToken=null</Type>
         <Type n="Int16">System.Int16</Type>
         <Type n="Int32">System.Int32</Type>
         <Type n="Int64">System.Int64</Type>
@@ -12124,6 +12556,7 @@ Position"</v>
         <Type n="TypeClass">{16f7aa24-038f-444e-9d81-b001bc091d35}</Type>
         <Type n="TypeNodeAttributes2">{c1464dbe-c10d-4717-be8f-63efe8638434}</Type>
         <Type n="TypeNodeType">{b12a9636-e818-4598-ae0d-fb6a2446102c}</Type>
+        <Type n="UInt16">System.UInt16</Type>
         <Type n="UInt32">System.UInt32</Type>
         <Type n="UInt64">System.UInt64</Type>
         <Type n="VisualElemCollection">{ef9d0b20-c96e-48db-b361-2ded4063150e}</Type>
@@ -12144,6 +12577,8 @@ Position"</v>
             <v n="IsStartVisu">false</v>
             <v n="VisuSizeMode" t="VisualVisuSizeMode">Specified</v>
             <v n="Internal">false</v>
+            <v n="DialogIsOpaque">false</v>
+            <v n="DialogIsOpaqueIsSet">false</v>
           </o>
         </Data>
         <TypeList>
